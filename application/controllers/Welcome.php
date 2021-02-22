@@ -5,7 +5,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('blank');
+		$this->load->view('auth/login');
+		
 	}
 	public function try()
 	{
