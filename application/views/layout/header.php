@@ -23,6 +23,8 @@
     <link href="<?= base_url() ?>assets/material-pro/minisidebar/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/material-pro/minisidebar/css/colors/blue.css" id="theme" rel="stylesheet">
+
+
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">

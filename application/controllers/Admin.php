@@ -8,12 +8,12 @@ class Admin extends CI_Controller {
         
     // }
 
-	public function index()
+	public function dashboard()
 	{
 		$this->load->view('admin/dashboard');
 	}
-	public function try()
+	public function manage_menu()
 	{
-		$this->load->view('awal');
+		$this->load->view('admin/menu');
 	}
 }
