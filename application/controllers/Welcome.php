@@ -5,11 +5,12 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('auth/login');
+		$this->load->view('try-layout');
 		
 	}
 	public function try()
 	{
-		$this->load->view('awal');
+		$this->load->view('page/dashboard');
+
 	}
 }
