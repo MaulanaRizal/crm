@@ -27,6 +27,9 @@
                 <li>
                     <a class="waves-effect waves-dark" href="<?= base_url('user/annual_target') ?>" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Annual Target</span></a>
                 </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="<?= base_url('opportunity/index') ?>" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i><span class="hide-menu">Opportunity</span></a>
+                </li>
                 <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Maps</span></a>
                     <ul aria-expanded="false" class="collapse" style="height: 10px;">
                         <li><a href="map-google.html">Google Maps</a></li>

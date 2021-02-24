@@ -18,6 +18,11 @@
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
         <!--Custom JavaScript -->
         <script src="<?= base_url() ?>assets/js/custom.min.js"></script>
+        <!--Editable-->
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/tiny-editable/numeric-input-example.js"></script>
         <!-- ============================================================== -->
         <!-- This page plugins -->
         <!-- ============================================================== -->

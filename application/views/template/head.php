@@ -20,6 +20,7 @@
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
+    <!-- <link href="<?= base_url() ?>assets/css/colors/default-dark.css" id="theme" rel="stylesheet"> -->
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
