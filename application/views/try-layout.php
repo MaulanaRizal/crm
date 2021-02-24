@@ -519,7 +519,6 @@
     
     
     <?php $this->load->view('template/jquery'); ?>
-    
         <script>
             $(document).ready(function() {
                 $('#myTable').DataTable();

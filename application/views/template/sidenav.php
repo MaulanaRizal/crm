@@ -27,10 +27,16 @@
                 <li>
                     <a class="waves-effect waves-dark" href="<?= base_url('user/annual_target') ?>" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Annual Target</span></a>
                 </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Maps</span></a>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Leads</span></a>
                     <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="map-google.html">Google Maps</a></li>
-                        <li><a href="map-vector.html">Vector Maps</a></li>
+                        <li><a href="#">Table Lead</a></li>
+                        <li><a href="#">Add Lead</a></li>
+                    </ul>
+                </li>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Opportunities</span></a>
+                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                        <li><a href="#">Table Opportunity</a></li>
+                        <li><a href="#">Add Opportunity</a></li>
                     </ul>
                 </li>
             </ul>
