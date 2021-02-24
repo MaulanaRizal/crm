@@ -1,4 +1,14 @@
-<?php $this->load->view('layout/header'); ?>
+<?php $this->load->view('template/head'); ?>
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <div id="main-wrapper">
+    <?php $this->load->view('template/navbar'); ?>
+    <?php $this->load->view('template/sidenav'); ?>
+
+    <!-- content -->
         <div class="page-wrapper">
             <!-- Container fluid  -->
             <div class="container-fluid">
@@ -7,18 +17,17 @@
                     <div class="col-md-5 col-8 align-self-center">
                         <h3 class="text-themecolor">Dashboard</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-home"></i> Home</a></li>
-                            <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
+
                 </div>
-                <!-- Start Page Content -->
+                <!-- Start Content -->
 
-                
 
-                <!-- End PAge Content -->
-            </div>
-            <!-- footer -->
-            <?php $this->load->view('layout/bottom'); ?>
-        </div>
-<?php $this->load->view('layout/footer'); ?>
+    <!-- footer -->
+            <footer class="footer">
+                © 2019 Material Pro Admin by wrappixel.com
+            </footer>
+    <?php $this->load->view('template/jquery'); ?>
