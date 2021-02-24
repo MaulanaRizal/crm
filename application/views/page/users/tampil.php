@@ -1,86 +1,79 @@
 <?php $this->load->view('template/head'); ?>
+
 <body class="fix-header fix-sidebar card-no-border">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <div id="main-wrapper">
-    <?php $this->load->view('template/navbar'); ?>
-    <?php $this->load->view('template/sidenav'); ?>
-    
-    
-    <!-- content -->
+        <?php $this->load->view('template/navbar'); ?>
+        <?php $this->load->view('template/sidenav'); ?>
+
+
+        <!-- content -->
         <div class="page-wrapper">
             <!-- Container fluid  -->
             <div class="container-fluid">
                 <!-- Bread crumb and right sidebar toggle -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Opportunity</h3>
+                        <h3 class="text-themecolor">Pengguna</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)"> <i class="fa fa-home"></i> Dashboard</a></li>
-                            <li class="breadcrumb-item active">Opportunity</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
 
                 </div>
                 <!-- Start Content -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="#" class="btn waves-effect waves-light btn-primary float-right"><i class="mdi mdi-account-plus"></i> Tambah</a>
-                                    <h3>Daftar Opportunity</h3>
-                                    <hr>
-                                    <div class="table-responsive">
-                                    <table class="table striped m-b-20" id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Opportunity ID</th>
-                                                <th>Topic</th>
-                                                <th>Customer</th>
-                                                <th>Status</th>
-                                                <th>SBU Owner</th>
-                                                <th>Created On</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <a class="btn waves-effect waves-light btn-info" href="#"><i class="fa fa-edit"></i> Edit</a>
-                                                    <a class="btn waves-effect waves-light btn-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
-                                                </td>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>    
-                            </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <a href="<?= base_url()?>pengguna" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                        <h3>Table User </h3>
+                        <span>Table kelola user crm icon+</span>
+                        <hr>
+                        <div class="table-responsive m-t-40">
+                            <table id="myTable" class="table striped m-b-20">
+                            <thead>
+                                <tr>
+                                    <th width=50>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>SBU</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Rozal</td>
+                                    <td>Rozal56@mail.com</td>
+                                    <td>Cawang</td>
+                                    <td>Sales</td>
+                                    <td><label class="label label-danger">non-active</label></td>
+                                    <td>
+                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-                <!-- End Content -->
-            </div>
-            <!-- End Container fluid  -->
 
-            <!-- footer -->
+                </div>
+            </div>
             <footer class="footer">
                 © 2019 Material Pro Admin by wrappixel.com
             </footer>
-            <!-- End footer -->
         </div>
-    <!-- /content -->
-    
-    
-    <?php $this->load->view('template/jquery'); ?>
-
-    
+        <!-- /content -->
+        <?php $this->load->view('template/jquery'); ?>
         <script>
             $(document).ready(function() {
                 $('#myTable').DataTable();
@@ -127,10 +120,6 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-        </script>
-
-
-        
         </script>
 </body>
 

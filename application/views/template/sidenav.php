@@ -19,21 +19,27 @@
                     <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/manage_menu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Manage Menu </span></a>
+                    <a class="waves-effect waves-dark" href="<?= base_url('user/manage_menu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Atur Menu </span></a>
                 </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/users') ?>" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Users</span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/annual_target') ?>" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Annual Target</span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('opportunity/index') ?>" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i><span class="hide-menu">Opportunity</span></a>
-                </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Maps</span></a>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pengguna</span></a>
                     <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="map-google.html">Google Maps</a></li>
-                        <li><a href="map-vector.html">Vector Maps</a></li>
+                        <li><a href="<?= base_url() ?>/user/users">Daftar Pengguan</a></li>
+                        <li><a href="<?= base_url()?>pengguna/">Tambah Pengguna</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="<?= base_url('user/annual_target') ?>" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Target Tahunan</span></a>
+                </li>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Lead</span></a>
+                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                        <li><a href="<?= base_url() ?>user/leads">Daftar Lead</a></li>
+                        <li><a href="<?= base_url()?>lead/">Tambah Lead</a></li>
+                    </ul>
+                </li>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Opportunities</span></a>
+                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                        <li><a href="<?= base_url() ?>/user/opportunity">Daftar Opportunity</a></li>
+                        <li><a href="map-vector.html">Tambah Opportunity</a></li>
                     </ul>
                 </li>
             </ul>

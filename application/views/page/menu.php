@@ -17,7 +17,7 @@
                     <div class="col-md-5 col-8 align-self-center">
                         <h3 class="text-themecolor">Manage Menu</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li class="breadcrumb-item active">Manage Menu</li>
                         </ol>
                     </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> add</button>
+                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
 
                         <div class="modal fade" id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                             <div class="modal-dialog" role="document">

@@ -17,10 +17,18 @@ class User extends CI_Controller {
 	}
 	public function users()
 	{
-		$this->load->view('page/users/table_user');
+		$this->load->view('page/users/tampil');
 	}
 	public function annual_target()
 	{
 		$this->load->view('page/annual');
+	}
+	public function leads()
+	{
+		$this->load->view('page/lead/tampil');
+	}
+	public function opportunity()
+	{
+		$this->load->view('page/opportunity/indexOpportunity');
 	}
 }
