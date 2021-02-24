@@ -8,9 +8,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('try-layout');
 		
 	}
-	public function try()
+	public function blank()
 	{
-		$this->load->view('page/dashboard');
+		$this->load->view('blank');
 
 	}
 }

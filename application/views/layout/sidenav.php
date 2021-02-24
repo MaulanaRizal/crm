@@ -14,9 +14,6 @@
                 </div>
             </div>
         </div>
-        <!-- End User profile text-->
-
-        <!-- Sidebar navigation-->
         <nav class="sidebar-nav no-margin">
             <ul id="sidebarnav">
                 <li class="nav-small-cap">MENUS</li>
