@@ -11,7 +11,6 @@
     
     <!-- content -->
         <div class="page-wrapper">
-            <!-- Container fluid  -->
             <div class="container-fluid">
                 <!-- Bread crumb and right sidebar toggle -->
                 <div class="row page-titles">
@@ -23,12 +22,13 @@
                             <li class="breadcrumb-item active"> Tambah Lead</li>
                         </ol>
                     </div>
+
                 </div>
-                <!-- Start Page Content -->
+                <!-- Start Content -->
 
-                
 
-                <!-- End PAge Content -->
+
+                <!-- End Content -->
             </div>
             <!-- footer -->
             <footer class="footer">
@@ -40,3 +40,5 @@
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
 </body>
+
+</html>
