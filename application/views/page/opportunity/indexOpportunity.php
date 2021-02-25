@@ -29,7 +29,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="#" class="btn waves-effect waves-light btn-primary float-right"><i class="mdi mdi-account-plus"></i> Tambah</a>
+                                <a href="<?= base_url()?>opportunity/tambahOpportunity" class="btn waves-effect waves-light btn-primary float-right"><i class="mdi mdi-account-plus"></i> Tambah</a>
                                     <h3>Daftar Opportunity</h3>
                                     <hr>
                                     <div class="table-responsive">
