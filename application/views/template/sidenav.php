@@ -42,6 +42,15 @@
                         <li><a href="map-vector.html">Tambah Opportunity</a></li>
                     </ul>
                 </li>
+                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Agreements</span></a>
+                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                        <li><a href="<?= base_url() ?>user/agreements">Daftar Agreement</a></li>
+                        <li><a href="<?= base_url()?>lead/">Tambah Agreement</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="<?= base_url('user/services') ?>" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Services </span></a>
+                </li>
             </ul>
         </nav>
     </div>

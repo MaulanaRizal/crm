@@ -7,6 +7,10 @@ class User extends CI_Controller {
     // {
         
     // }
+	public function index()
+	{
+		$this->load->view('auth/login');
+	}
 	public function dashboard()
 	{
 		$this->load->view('page/dashboard');
@@ -30,5 +34,13 @@ class User extends CI_Controller {
 	public function opportunity()
 	{
 		$this->load->view('page/opportunity/indexOpportunity');
+	}
+	public function agreements()
+	{
+		$this->load->view('page/agreement/tampil');
+	}	
+	public function services()
+	{
+		$this->load->view('page/service');
 	}
 }
