@@ -45,6 +45,11 @@
                     <form action="<?= base_url('login') ?>" method="post">
             <div class="login-box card" style="background-color: #1E88E5">
                 <div class="card-body">
+                        <div class="alert alert-danger">
+                            <?php if(!empty($_SESSION['message'])){
+                                echo $_SESSION['fail'];
+                            } ?>
+                        </div>
                         <div class="form-group ">
                             <div class="col-sm">
                                 <label style="color: white">Email</label>
