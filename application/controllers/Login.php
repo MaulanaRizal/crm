@@ -3,14 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct()
-    {
+    // public function __construct()
+    // {
         
-    }
+    // }
 
 	public function index()
 	{
-		$this->load->view('login');
+		$this->session->set_userdata('email', $_POST['email']);
+		redirect('user/dashboard');
 	}
 	public function login()
 	{

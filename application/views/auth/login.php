@@ -42,23 +42,23 @@
             <div class="text-center">
                 <img style="width: 200px" src="<?= base_url();?>assets/material-pro/assets/images/icon-plus.png" class="img-fluid" alt="icon-plus">
             </div>
+                    <form action="<?= base_url('login') ?>" method="post">
             <div class="login-box card" style="background-color: #1E88E5">
                 <div class="card-body">
-                    <form id="loginform">
                         <div class="form-group ">
                             <div class="col-sm">
                                 <label style="color: white">Email</label>
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" name=email class="form-control" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm">
                                 <label style="color: white">Password</label>
-                                <input class="form-control" type="password" placeholder="Password"> 
+                                <input class="form-control" name=password type="password" placeholder="Password"> 
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-light me-md-5" type="button">Button</button>
+                            <button class="btn btn-light me-md-5" type="submit">Button</button>
                             <!--<button class="btn btn-primary" type="button">Button</button>-->
                         </div>
                     </form>
