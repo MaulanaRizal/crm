@@ -459,7 +459,7 @@ create table USERS
    ID_USER              int not null auto_increment,
    ID_SBU               int,
    ID_ROLE              int,
-   CRM_EMAIL            varchar(256),
+   CRM_EMAIL            varchar(256) unique,
    CRM_PASSWORD         varchar(256),
    NAMA_LENGKAP         varchar(256),
    TELEPON              varchar(256),

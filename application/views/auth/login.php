@@ -32,7 +32,8 @@
     <!-- ============================================================== -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
@@ -40,16 +41,16 @@
     <section id="wrapper">
         <div class="login-register" style="background-color: #EEF5F9">
             <div class="text-center">
-                <img style="width: 200px" src="<?= base_url();?>assets/material-pro/assets/images/icon-plus.png" class="img-fluid" alt="icon-plus">
+                <img style="width: 200px" src="<?= base_url(); ?>assets/material-pro/assets/images/icon-plus.png" class="img-fluid" alt="icon-plus">
             </div>
-                    <form action="<?= base_url('login') ?>" method="post">
-            <div class="login-box card" style="background-color: #1E88E5">
-                <div class="card-body">
-                        <div class="alert alert-danger">
-                            <?php if(!empty($_SESSION['message'])){
-                                echo $_SESSION['fail'];
-                            } ?>
-                        </div>
+            <form action="<?= base_url('login') ?>" method="post">
+                <div class="login-box card" style="background-color: #1E88E5">
+                    <div class="card-body">
+                        <?php if (!empty($_SESSION['fail'])) { ?>
+                            <div class="alert alert-danger">
+                            <strong>Gagal!</strong><?= $_SESSION['fail'] ?>
+                            </div>
+                        <?php } unset($_SESSION['fail']);?>
                         <div class="form-group ">
                             <div class="col-sm">
                                 <label style="color: white">Email</label>
@@ -59,16 +60,16 @@
                         <div class="form-group">
                             <div class="col-sm">
                                 <label style="color: white">Password</label>
-                                <input class="form-control" name=password type="password" placeholder="Password"> 
+                                <input class="form-control" name=password type="password" placeholder="Password">
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-light me-md-5" type="submit">Button</button>
                             <!--<button class="btn btn-primary" type="button">Button</button>-->
                         </div>
-                    </form>
-                </div>
-            </div>
+            </form>
+        </div>
+        </div>
         </div>
     </section>
     <!-- ============================================================== -->
@@ -106,14 +107,15 @@
     <!--c3 JavaScript -->
     <script src="<?= base_url() ?>assets/material-pro/assets/plugins/d3/d3.min.js"></script>
     <script src="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.js"></script>
-    <!-- Chart JS -->
-    <script src="<?= base_url() ?>assets/material-pro/minisidebar/js/dashboard1.js"></script>
-    <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>assets/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <!-- Chart JS asdas-->
+    <script src="<?= base_url() ?>assets/js/custom-crm.js"></script>
+    <!-- ============================================================== -->
 </body>
 
 
 <!-- Mirrored from www.wrappixel.com/demos/admin-templates/material-pro/minisidebar/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Feb 2019 11:15:51 GMT -->
+
 </html>
