@@ -14,6 +14,22 @@ Class M_pengguna extends CI_Model {
     {
         $this->db->insert($table,$data);
     }
+    public function getData($table,$data)
+    {
+        $result = $this->db->get_where($table,$data);
+        return $result;
+    }
+    public function update($table,$data)
+    {
+        $this->db->replace($table,$data);
+    }
+    public function delete($table,$id)
+    {
+        $data = array(
+            'ID_USER' => $id
+        );
+        $this->db->delete($table,$data);
+    }
 
 }
 ?>

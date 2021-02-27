@@ -27,10 +27,13 @@
 
                 </div>
                 <!-- Start Content -->
-
+                <?php if(!empty($_SESSION['message'])){?>
+                <div class="alert alert-success">
+                    <strong> Berhasil! </strong><?= $_SESSION['message']?>.
+                </div>
+                <?php unset($_SESSION['message']) ; }?>
                 <div class="card">
                     <div class="card-body">
-                        
                         <a href="<?= base_url()?>pengguna" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
                         <h3>Table User </h3>
                         <span>Table kelola user crm icon+</span>
@@ -40,7 +43,7 @@
                             <thead>
                                 <tr>
                                     <th width=50>#</th>
-                                    <th>Name</th>
+                                    <th>Nama Lengkap</th>
                                     <th>Email</th>
                                     <th>SBU</th>
                                     <th>Role</th>
@@ -57,7 +60,7 @@
                                     <td><?= $data->CRM_EMAIL?></td>
                                     <td><?= $data->SBU_REGION?></td>
                                     <td><?= $data->CRM_ROLE?></td>
-                                    <td><?php if($data->CRM_STATUS=='on'){?>
+                                    <td><?php if($data->CRM_STATUS==1){?>
                                         <label class="label label-success">active</label>
                                     <?php }else{ ?>
                                         <label class="label label-danger">non-active</label>
@@ -66,8 +69,8 @@
                                     </td>
                                     
                                     <td>
-                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                        <a href="<?= base_url()?>pengguna/delete/<?= $data->ID_USER ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="<?= base_url()?>pengguna/edit/<?= $data->ID_USER ?>" class="btn btn-info"><i class="fa fa-info"></i></a>
                                     </td>
                                 </tr>
                                 <?php 
@@ -86,53 +89,7 @@
         </div>
         <!-- /content -->
         <?php $this->load->view('template/jquery'); ?>
-        <script>
-            $(document).ready(function() {
-                $('#myTable').DataTable();
-                $(document).ready(function() {
-                    var table = $('#example').DataTable({
-                        "columnDefs": [{
-                            "visible": false,
-                            "targets": 2
-                        }],
-                        "order": [
-                            [2, 'asc']
-                        ],
-                        "displayLength": 15,
-                        "drawCallback": function(settings) {
-                            var api = this.api();
-                            var rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            var last = null;
-                            api.column(2, {
-                                page: 'current'
-                            }).data().each(function(group, i) {
-                                if (last !== group) {
-                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                    last = group;
-                                }
-                            });
-                        }
-                    });
-                    // Order by the grouping
-                    $('#example tbody').on('click', 'tr.group', function() {
-                        var currentOrder = table.order()[0];
-                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                            table.order([2, 'desc']).draw();
-                        } else {
-                            table.order([2, 'asc']).draw();
-                        }
-                    });
-                });
-            });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
+
 </body>
 
 
