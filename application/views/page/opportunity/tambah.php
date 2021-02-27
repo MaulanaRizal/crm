@@ -1,15 +1,17 @@
 <?php $this->load->view('template/head'); ?>
+
 <body class="fix-header fix-sidebar card-no-border">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <div id="main-wrapper">
-    <?php $this->load->view('template/navbar'); ?>
-    <?php $this->load->view('template/sidenav'); ?>
-    
-    
-    <!-- content -->
+        <?php $this->load->view('template/navbar'); ?>
+        <?php $this->load->view('template/sidenav'); ?>
+
+
+        <!-- content -->
         <div class="page-wrapper">
             <div class="container-fluid">
                 <!-- Bread crumb and right sidebar toggle -->
@@ -68,7 +70,7 @@
                                         <h4 class="card-title">Tambah Opportunity</h4>
                                     </div>
                                 </div>
-<hr>
+                                <hr>
                                 <div class="d-flex no-block align-items-center">
                                     <div>
                                         <h4 class="card-title">Summary</h4>
@@ -192,80 +194,81 @@
                                             <textarea class="form-control"></textarea>
                                         </div>
                                     </div>
+                                    <button class="right-side-toggle btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                                 <h4 class="card-title">Addressing Terminating & Originating</h4>
                                 <div class="table-responsive m-t-40">
                                     <table id="" class="table striped m-b-20">
-                                    <button class="btn btn-primary float-right">Tambah</button>
-                                    <thead>
-                                        <tr>
-                                            <th width=50>#</th>
-                                            <th>Address ID</th>
-                                            <th>Category</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Account</th>
-                                            <th>Region SBU</th>
-                                            <th>Country</th>
-                                            <th>Status</th>
-                                            <th>Province</th>
-                                            <th>State</th>
-                                            <th>Street</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
+                                        <button class="btn btn-primary float-right">Tambah</button>
+                                        <thead>
+                                            <tr>
+                                                <th width=50>#</th>
+                                                <th>Address ID</th>
+                                                <th>Category</th>
+                                                <th>Type</th>
+                                                <th>Name</th>
+                                                <th>Account</th>
+                                                <th>Region SBU</th>
+                                                <th>Country</th>
+                                                <th>Status</th>
+                                                <th>Province</th>
+                                                <th>State</th>
+                                                <th>Street</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <h4 class="card-title">Product Line Item</h4>
                                 <div class="table-responsive m-t-40">
                                     <table id="" class="table striped m-b-20">
-                                    <button class="btn btn-primary float-right">Tambah</button>
-                                    <thead>
-                                        <tr>
-                                            <th width=50>#</th>
-                                            <th>ID</th>
-                                            <th>SLA</th>
-                                            <th>Account</th>
-                                            <th>Service ID</th>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Bandwidth</th>
-                                            <th>HJT</th>
-                                            <th>Price Per Unit</th>
-                                            <th>Extended Amount</th>
-                                            <th>Opportunity ID</th>
-                                            <th>Opportunity ID</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
+                                        <button class="btn btn-primary float-right">Tambah</button>
+                                        <thead>
+                                            <tr>
+                                                <th width=50>#</th>
+                                                <th>ID</th>
+                                                <th>SLA</th>
+                                                <th>Account</th>
+                                                <th>Service ID</th>
+                                                <th>Product Name</th>
+                                                <th>Description</th>
+                                                <th>Bandwidth</th>
+                                                <th>HJT</th>
+                                                <th>Price Per Unit</th>
+                                                <th>Extended Amount</th>
+                                                <th>Opportunity ID</th>
+                                                <th>Opportunity ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -283,81 +286,81 @@
     </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
-        <script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
             $(document).ready(function() {
-                $('#myTable').DataTable();
-                $(document).ready(function() {
-                    var table = $('#example').DataTable({
-                        "columnDefs": [{
-                            "visible": false,
-                            "targets": 2
-                        }],
-                        "order": [
-                            [2, 'asc']
-                        ],
-                        "displayLength": 15,
-                        "drawCallback": function(settings) {
-                            var api = this.api();
-                            var rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            var last = null;
-                            api.column(2, {
-                                page: 'current'
-                            }).data().each(function(group, i) {
-                                if (last !== group) {
-                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                    last = group;
-                                }
-                            });
-                        }
-                    });
-                    // Order by the grouping
-                    $('#example tbody').on('click', 'tr.group', function() {
-                        var currentOrder = table.order()[0];
-                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                            table.order([2, 'desc']).draw();
-                        } else {
-                            table.order([2, 'asc']).draw();
-                        }
-                    });
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 15,
+                    "drawCallback": function(settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function(group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function() {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
                 });
             });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
-       <script type="text/javascript">
-            var dengan_rupiah1 = document.getElementById('rupiah1');
-                dengan_rupiah1.addEventListener('keyup', function(e){
-                dengan_rupiah1.value = formatRupiah(this.value, 'Rp. ');
-            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    </script>
+    <script type="text/javascript">
+        var dengan_rupiah1 = document.getElementById('rupiah1');
+        dengan_rupiah1.addEventListener('keyup', function(e) {
+            dengan_rupiah1.value = formatRupiah(this.value, 'Rp. ');
+        });
 
-            var dengan_rupiah2 = document.getElementById('rupiah2');
-                dengan_rupiah2.addEventListener('keyup', function(e){
-                dengan_rupiah2.value = formatRupiah(this.value, 'Rp. ');
-            });
-    
-            /* Fungsi */
-            function formatRupiah(angka, prefix){
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        var dengan_rupiah2 = document.getElementById('rupiah2');
+        dengan_rupiah2.addEventListener('keyup', function(e) {
+            dengan_rupiah2.value = formatRupiah(this.value, 'Rp. ');
+        });
+
+        /* Fungsi */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
                 split = number_string.split(','),
                 sisa = split[0].length % 3,
                 rupiah = split[0].substr(0, sisa),
                 ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-            
-                if (ribuan) {
-                    separator = sisa ? '.' : '';
-                    rupiah += separator + ribuan.join('.');
-                }
-        
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
             }
-       </script>
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    </script>
 </body>
 
 </html>

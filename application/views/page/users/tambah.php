@@ -31,49 +31,58 @@
                             <span >Masukan data pengguna baru untuk memberikan hak akses pada sistem.</span>
                             </div>
                             <hr>
-                            <form class="form-horizontal">
+                                <form action="<?= base_url('pengguna/tambah')?> " method="post">
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-3 text-right control-label col-form-label">Name*</label>
+                                    <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Pengguna">
+                                        <input type="text" class="form-control" required name=nama id="inputEmail3" placeholder="Nama Pengguna">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="telepon" class="col-sm-3 text-right control-label col-form-label">Telepon*</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nomor telepon yang bisa dihubungi">
+                                        <input type="text" class="form-control" required name="telepon" id="inputEmail3" placeholder="Nomor telepon yang bisa dihubungi">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Role*</label>
                                     <div class="col-sm-4">
-                                    <select class="form-control">
+                                    <select class="form-control" required name="role">
                                             <option>Pilih Role...</option>
-                                            <option>Admin</option>
-                                            <option>Sales</option>
-                                            <option>Akivasi</option>
-                                            <option>Adev</option>
-                                            <option>Manager</option>
-                                            <option>General Manager</option>
+                                            <?php foreach($roles as $row) {?>
+                                                <option value='<?= $row->ID_ROLE ?>'><?= $row->CRM_ROLE; ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="username" class="col-sm-3 text-right control-label col-form-label">Username*</label>
+                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">SBU*</label>
+                                    <div class="col-sm-4">
+                                        <?php //var_dump($sbu)?> 
+                                    <select class="form-control"required name="sbu">
+                                            <option>Pilih SBU...</option>
+                                            <?php foreach($sbu as $row) {?>
+                                                <option value="<?= $row->ID_SBU ?>" ><?= $row->SBU_REGION; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-3 text-right control-label col-form-label">Email*</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputPassword3" placeholder="username">
+                                        <input type="email" required name="email" class="form-control" id="inputPassword3" placeholder="username">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-3 text-right control-label col-form-label">Password*</label>
                                     <div class="col-sm-7">
-                                        <input type="password" class="form-control" id="inputPassword4" placeholder="password">
+                                        <input type="password" required name="password" class="form-control" id="inputPassword4" placeholder="password">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-sm-3 col-sm-7">
                                         <div class="checkbox checkbox-success">
-                                            <input id="status" type="checkbox">
+                                            <input id="status" name="status" type="checkbox">
                                             <label for="status">Pengguna masih aktif</label>
                                         </div>
                                     </div>

@@ -3,10 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
 
-    // public function __construct()
-    // {
-        
-    // }
+    public function __construct()
+    {
+		parent::__construct();
+		$this->load->model('m_users','model');
+    }
 	public function index()
 	{
 		$this->load->view('auth/login');
@@ -21,7 +22,8 @@ class User extends CI_Controller {
 	}
 	public function users()
 	{
-		$this->load->view('page/users/tampil');
+		$data['user'] = $this->model->getTable('users')->result();
+		$this->load->view('page/users/tampil',$data);
 	}
 	public function annual_target()
 	{
@@ -42,5 +44,9 @@ class User extends CI_Controller {
 	public function services()
 	{
 		$this->load->view('page/service');
+	}
+	public function sbu()
+	{
+		$this->load->view('page/sbu/tampil');
 	}
 }

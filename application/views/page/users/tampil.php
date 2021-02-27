@@ -49,18 +49,30 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php $num = 1;
+                            foreach($user as $data){ ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Rozal</td>
-                                    <td>Rozal56@mail.com</td>
-                                    <td>Cawang</td>
-                                    <td>Sales</td>
-                                    <td><label class="label label-danger">non-active</label></td>
+                                    <td><?= $num ?></td>
+                                    <td><?= $data->NAMA_LENGKAP ?></td>
+                                    <td><?= $data->CRM_EMAIL?></td>
+                                    <td><?= $data->SBU_REGION?></td>
+                                    <td><?= $data->CRM_ROLE?></td>
+                                    <td><?php if($data->CRM_STATUS=='on'){?>
+                                        <label class="label label-success">active</label>
+                                    <?php }else{ ?>
+                                        <label class="label label-danger">non-active</label>
+
+                                    <?php } ?>
+                                    </td>
+                                    
                                     <td>
                                         <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
                                     </td>
                                 </tr>
+                                <?php 
+                            $num++;
+                            }?>
                             </tbody>
                             </table>
                         </div>

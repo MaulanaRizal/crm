@@ -23,7 +23,7 @@
                 </li>
                 <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pengguna</span></a>
                     <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>/user/users">Daftar Pengguan</a></li>
+                        <li><a href="<?= base_url() ?>user/users">Daftar Pengguan</a></li>
                         <li><a href="<?= base_url()?>pengguna/">Tambah Pengguna</a></li>
                     </ul>
                 </li>
@@ -38,7 +38,7 @@
                 </li>
                 <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Opportunities</span></a>
                     <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>/user/opportunity">Daftar Opportunity</a></li>
+                        <li><a href="<?= base_url() ?>user/opportunity">Daftar Opportunity</a></li>
                         <li><a href="map-vector.html">Tambah Opportunity</a></li>
                     </ul>
                 </li>
@@ -50,6 +50,9 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="<?= base_url('user/services') ?>" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Services </span></a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="<?= base_url('user/sbu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">SBU </span></a>
                 </li>
             </ul>
         </nav>
