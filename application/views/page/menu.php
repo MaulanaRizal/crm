@@ -23,9 +23,9 @@
                             <li class="breadcrumb-item active">Manage Menu</li>
                         </ol>
                     </div>
-
                 </div>
 
+                <!-- START content -->
 
                 <div class="row">
                     <div class="col-sm-4">
@@ -60,8 +60,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
-
-                                <div class="modal fade" id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                                
+                                <div class="modal fade " id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -70,6 +70,10 @@
                                             </div>
                                             <div class="modal-body">
                                                 <form>
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="control-label">Recipient:</label>
+                                                        <input type="text" class="form-control" id="recipient-name1">
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="recipient-name" class="control-label">Recipient:</label>
                                                         <input type="text" class="form-control" id="recipient-name1">
