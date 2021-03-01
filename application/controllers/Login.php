@@ -30,4 +30,14 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('awal');
 	}
+	public function logout(){
+		$this->session->unset_userdata(array(
+			'CRM_EMAIL',
+			'CRM_PASSWORD'
+		));
+	}
+	public function member_logout(){
+		$this->logout();
+		redirect('');
+	}
 }

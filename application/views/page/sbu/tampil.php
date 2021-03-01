@@ -28,12 +28,14 @@
                 </div>
                 <!-- Start Content -->
 
+
                 <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="">
                         <div class="card">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
 
+                                <!-- Modal -->
                                 <div class="modal fade" id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -41,7 +43,7 @@
                                                 <h4 class="modal-title" id="exampleModalLabel1">Tambah Data SBU</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
-                                            <form action="" method="post">
+                                            <form action="<?= base_url('Sbu/tambah')?>" method="post">
                                             <div class="modal-body">
                                                 <form>
                                                     <div class="form-group">
@@ -74,22 +76,25 @@
                                             <tr>
                                                 <th width=50>#</th>
                                                 <th>Wilayah SBU</th>
-                                                <th>SBU Owner</th>
                                                 <th width=500>Deskripsi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $num = 1;
+                                            foreach($sbu as $data){ ?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>Jakarta</td>
-                                                <td>Suhardi Wijaya</td>
-                                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>
+                                                <td><?= $num ?></td>
+                                                <td><?= $data->SBU_REGION ?></td>
+                                                <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
-                                                    <a class="btn waves-effect waves-light btn-info" href="#"><i class="fa fa-edit"></i> Edit</a>
-                                                    <a class="btn waves-effect waves-light btn-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                    <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
                                                 </td>
-
+                                            </tr>
+                                            <?php 
+                                            $num++;
+                                            }?>
                                         </tbody>
                                     </table>
                                 </div>
