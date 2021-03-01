@@ -24,9 +24,16 @@
 
                 </div>
                 <!-- Start Content -->
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Haloo</h3>
+                        <hr>
+                        <?= $_SESSION['email'] ?>
+                    </div>
+                </div>
 
-
-    <!-- footer -->
+                <!-- footer -->
             <footer class="footer">
                 © 2019 Material Pro Admin by wrappixel.com
             </footer>

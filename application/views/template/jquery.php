@@ -34,7 +34,8 @@
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.js"></script>
         <!-- Chart JS -->
         <script src="<?= base_url() ?>assets/js/crm.js"></script>
-
+        <!-- load custom JavaScript -->
+        <script src="<?= base_url() ?>assets/js/custom-crm.js"></script>
         <!-- data table -->
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/datatables/datatables.min.js"></script>
         <!-- start - This is for export functionality only -->
@@ -45,9 +46,6 @@
         <script src="../../../../../cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-        <!-- end - This is for export functionality only -->
-
-        <!-- ============================================================== -->
         <!-- Style switcher -->
-        <!-- ============================================================== -->
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+

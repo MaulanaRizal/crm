@@ -60,9 +60,9 @@ create table ACTIVATION_LIST
    ID_AL                int not null auto_increment,
    ID_AGREEMENT         int,
    NO_AL                varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    SBU                  varchar(256),
-   OWNER                varchar(256),
+   PEMILIK                varchar(256),
    DEKRIPSI             varchar(256),
    primary key (ID_AL)
 );
@@ -78,8 +78,8 @@ create table ACTIVATION_REQUEST
    TANGGAL_AKTIVASI     date,
    TANGGAL_PERMINTAAN_AKTIVASI date,
    TANGGAL_TERAKTIVASI  date,
-   STATUS               varchar(256),
-   OWNER                varchar(256),
+   CRM_STATUS               varchar(256),
+   PEMILIK                varchar(256),
    primary key (ID_AR)
 );
 
@@ -129,7 +129,7 @@ create table AGREEMENTS
    HUKUMAN              varchar(256),
    AKUN_BANK            varchar(256),
    REKENING             varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    SBU_OWNER            varchar(256),
    PEMILIK              varchar(256),
    DESKRIPSI            varchar(256),
@@ -143,9 +143,9 @@ create table ANNUAL_TARGET
 (
    ID_ANNUAL            int not null auto_increment,
    ID_USER              int,
-   TARGET               int not null,
+   ANNUAL_TARGET               int not null,
    PERIODE              int not null,
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    primary key (ID_ANNUAL)
 );
 
@@ -213,8 +213,8 @@ create table LEADS
    AKTIVITAS            varchar(1024),
    SUMBER_LEAD          varchar(256),
    RATING               varchar(256),
-   STATUS               varchar(256),
-   OWNER                varchar(256),
+   CRM_STATUS               varchar(256),
+   PEMILIK                varchar(256),
    ASSIGN_USER          int,
    primary key (ID_LEADS)
 );
@@ -253,7 +253,7 @@ create table OPPORTUNITIES
    SOLUSI               varchar(256),
    AKTIVITAS            varchar(1024),
    KATEGORI             varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    SBU                  varchar(256),
    PEMILIK              varchar(256),
    primary key (ID_OPPORTUNITY)
@@ -311,8 +311,8 @@ create table PROGRESS
    TANGGAL              date,
    KENDALA              varchar(256),
    DESKRIPSI            varchar(256),
-   STATUS               varchar(256),
-   OWNER                varchar(256),
+   CRM_STATUS               varchar(256),
+   PEMILIK                varchar(256),
    primary key (ID_PROGRESS)
 );
 
@@ -324,8 +324,8 @@ create table PROJECT_ACTIVATION
    ID_PA                int not null auto_increment,
    ID_OPPORTUNITY       int,
    NO_PA                varchar(256),
-   STATUS               varchar(256),
-   OWNER                varchar(256),
+   CRM_STATUS               varchar(256),
+   PEMILIK                varchar(256),
    primary key (ID_PA)
 );
 
@@ -337,7 +337,7 @@ create table PROJECT_ACTIVATION_NODE
    ID_PA_NODE           int not null auto_increment,
    ID_PA                int,
    NO_PA_NODE           varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    PIC                  varchar(256),
    primary key (ID_PA_NODE)
 );
@@ -352,7 +352,7 @@ create table PROJECT_INITATION
    NO_INIATION          varchar(256),
    TANGGAL_MULAI        date,
    KENDALA              varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    CREATED_ON           timestamp,
    primary key (ID_INITATION)
 );
@@ -382,7 +382,7 @@ create table PS_NODE
 (
    ID_PS                int not null auto_increment,
    NO_PS                varchar(256),
-   STATUS               varchar(256),
+   CRM_STATUS               varchar(256),
    PIC                  varchar(256),
    primary key (ID_PS)
 );
@@ -393,7 +393,7 @@ create table PS_NODE
 create table ROLES
 (
    ID_ROLE              int not null auto_increment,
-   ROLE                 varchar(256) not null,
+   CRM_ROLE                 varchar(256) not null,
    DESKRIPSI            varchar(256),
    primary key (ID_ROLE)
 );
@@ -459,12 +459,12 @@ create table USERS
    ID_USER              int not null auto_increment,
    ID_SBU               int,
    ID_ROLE              int,
-   EMAIL                varchar(256),
-   PASSWORD             varchar(256),
-   USERNAME             varchar(256),
+   CRM_EMAIL            varchar(256) unique,
+   CRM_PASSWORD         varchar(256),
+   NAMA_LENGKAP         varchar(256),
    TELEPON              varchar(256),
    CHANGE_PASSWORD      date,
-   STATUS               varchar(256),
+   CRM_STATUS           varchar(256),
    primary key (ID_USER)
 );
 
