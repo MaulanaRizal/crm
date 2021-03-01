@@ -40,7 +40,7 @@
                                 <span>Mengubah data pengguna yang sudah tersedia.</span>
                             </div>
                             <hr>
-                            <form action="<?= base_url('pengguna/tambah') ?> " method="post">
+                            <form action="<?= base_url('pengguna/update/'.$id)?>" method="post">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
                                     <div class="col-sm-7">
@@ -87,7 +87,7 @@
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-3 text-right control-label col-form-label">Email*</label>
                                     <div class="col-sm-7">
-                                        <input type="email" required disabled name="email" class="form-control" id="" placeholder="Email" value="<?= $data->CRM_EMAIL ?>">
+                                        <input type="email" required readonly="true" name="email" class="form-control" id="" placeholder="Email" value="<?= $data->CRM_EMAIL ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">

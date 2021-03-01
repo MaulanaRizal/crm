@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-Class M_pengguna extends CI_Model {
+Class M_menu extends CI_Model {
 
 	public function __construct(){
 		parent::__construct();

@@ -14,3 +14,6 @@ INSERT INTO `roles` (`ID_ROLE`, `CRM_ROLE`, `DESKRIPSI`) VALUES (NULL, 'General 
 -- Insert data sbu
 INSERT INTO `sbu` (`ID_SBU`, `DESKRIPSI`, `SBU_REGION`) VALUES (NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Jakarta');
 INSERT INTO `sbu` (`ID_SBU`, `DESKRIPSI`, `SBU_REGION`) VALUES (NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Cawang');
+
+-- Inser dashboard
+INSERT INTO `menus` (`ID_MENU`, `MEN_ID_MENU`, `NAMA_MENU`, `ICON`, `LINK`) VALUES (NULL, NULL, 'Dashboard', '<i class=\"mdi mdi-gauge\"></i>', 'user/dashboard');

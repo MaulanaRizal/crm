@@ -53,7 +53,8 @@ class Pengguna extends CI_Controller {
 		);
 		$data['roles'] 	= $this->model->getTable('ROLES')->result();
 		$data['sbu'] 	= $this->model->getTable('SBU')->result();
-		$data['user'] = $this->model->getData('users',$where)->result();
+		$data['user']	= $this->model->getData('users',$where)->result();
+		$data['id']		= $id;
 		$this->load->view('page/users/edit',$data);
 	}
 	public function update($id)
@@ -69,9 +70,10 @@ class Pengguna extends CI_Controller {
 				'CRM_PASSWORD'	=> $_POST['password'],
 				'NAMA_LENGKAP'	=> $_POST['nama'],
 				'TELEPON'		=> $_POST['telepon'],
+				'CRM_EMAIL'		=> $_POST['email'],
 				'CRM_STATUS'	=> $status
 			);
-			$this->model->update('users',$data);
+			$this->model->update('users',$data,$id);
 			$this->session->set_flashdata('message','Data berhasil diubah');
 			redirect('user/users');
 			// echo 'Tidak Tersedia';

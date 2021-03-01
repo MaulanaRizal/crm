@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,13 +21,22 @@
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
-    <!-- <link href="<?= base_url() ?>assets/css/colors/default-dark.css" id="theme" rel="stylesheet"> -->
-    <!-- You can change the theme colors from here -->
+
     <link href="<?= base_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <style>
+        .icon::before {
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .tps::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 400;
+            content: "\f1ea";
+        }
+    </style>
+    <![endif]-->
 </head>

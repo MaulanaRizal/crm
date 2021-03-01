@@ -60,34 +60,59 @@
                         <div class="card">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
-                                
+
                                 <div class="modal fade " id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="exampleModalLabel1">New message</h4>
+                                                <h4 class="modal-title" id="exampleModalLabel1">Tambah Menu</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form>
+                                                <form action="<?= base_url() ?>menu/tambah" method="post">
                                                     <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Recipient:</label>
-                                                        <input type="text" class="form-control" id="recipient-name1">
+                                                        <label for="icon" class="control-label">Nama Menu:</label>
+                                                        <div class="from-group">
+                                                            <select name="icon" name=icon id="icon" class="col-md-3 form-control " onchange="showIcon()">
+                                                                <option value="">icon</option>
+                                                                <option value="<i class='mdi mdi-clipboard-text'>">Dokumen</option>
+                                                                <option value="<i class='mdi mdi-account'>">Akun</option>
+                                                                <option value="<i class='fas fa-chart-line'>">Diagram</option>
+                                                                <option value="<i class='mdi mdi-settings'>">Gear</option>
+                                                            </select>
+                                                            &nbsp;
+                                                            <input type="text" class="form-control col-md-8" onkeyup="showMenu()" name=menu id="menu">
+                                                        </div>
+                                                        <br>
+                                                        <div class="row form-group justify-content-center">
+                                                            <div class="col-md-1 " id="showIcon"></div>
+                                                            <p id="showMenu"></p>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Recipient:</label>
-                                                        <input type="text" class="form-control" id="recipient-name1">
+                                                        <label for="link" class="control-label">Link:</label>
+                                                        <input type="text" class="form-control" id="link" name="link" onkeyup="showLink()">
+                                                        <br>
+                                                        <br>
+                                                        <div class="row form-group justify-content-center">
+                                                            <p class="col-md-12" id="showLink"></p>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="message-text" class="control-label">Message:</label>
-                                                        <textarea class="form-control" id="message-text1"></textarea>
+                                                        <label for="recipient-name" class="control-label">Parent Menu:</label>
+                                                        <select name="parent" class="form-control" id="">
+                                                            <option value="">Pilih parent menu...</option>
+                                                        <?php foreach ($menu as $select) { ?>
+                                                            <option value="<?= $select->ID_MENU ?>"><?= $select->NAMA_MENU ?></option>
+                                                        <?php } ?>
+                                                        </select>
                                                     </div>
-                                                </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Send message</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -100,14 +125,19 @@
                                         <th>Menu Name</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="#">Dashboard</a></td>
-                                        <td>
-                                            <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                            <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $num = 1;
+                                    foreach ($menu as $table) { ?>
+                                        <tr>
+                                            <td><?= $num ?></td>
+                                            <td><a href="#"><?= $table->ICON . " " . $table->NAMA_MENU ?></a></td>
+                                            <td>
+                                                <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php $num++;
+                                    } ?>
                                 </table>
                             </div>
                         </div>
@@ -180,6 +210,24 @@
                         this.parentElement.querySelector(".nested").classList.toggle("active");
                         this.classList.toggle("caret-down");
                     });
+                }
+
+                function showIcon() {
+                    var value = document.getElementById('icon').value;
+
+                    document.getElementById('showIcon').innerHTML = value;
+                }
+
+                function showMenu() {
+                    var value = document.getElementById('menu').value;
+
+                    document.getElementById('showMenu').innerHTML = value;
+                }
+
+                function showLink() {
+                    var value = document.getElementById('link').value;
+
+                    document.getElementById('showLink').innerHTML = '<?= base_url() ?>' + value;
                 }
             </script>
             <?php $this->load->view('template/jquery'); ?>
