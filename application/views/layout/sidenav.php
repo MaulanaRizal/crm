@@ -10,7 +10,7 @@
                 <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Markarn Doe</a>
                 <div class="dropdown-menu animated flipInY">
 
-                    <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"> </i> Logout</a>
+                    <a href="<?php echo base_url('auth/logout'); ?>" class="dropdown-item"><i class="fa fa-power-off"> </i> Logout</a>
                 </div>
             </div>
         </div>

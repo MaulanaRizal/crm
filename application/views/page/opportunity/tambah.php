@@ -117,7 +117,7 @@
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Tipe Opportunity</label>
                                         <div class="col-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select class="custom-select col-12" id="inlineFormCustomSelect1">
                                                 <option selected="">Choose...</option>
                                                 <option value="1">Opportunity Baru</option>
                                                 <option value="2">Agreement Tersedia</option>
@@ -325,14 +325,13 @@
                     }
                 });
             });
-        });
-        $('#example23').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    </script>
+            $('#example23').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        </script>
     <script type="text/javascript">
         var dengan_rupiah1 = document.getElementById('rupiah1');
         dengan_rupiah1.addEventListener('keyup', function(e) {
