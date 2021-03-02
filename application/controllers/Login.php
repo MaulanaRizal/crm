@@ -18,7 +18,7 @@ class Login extends CI_Controller {
 		$login_status = $this->login->login('users',$where)->num_rows();
 		// echo $login_status;
 		if($login_status == 1 ){
-			echo 'masuk';
+			// echo 'masuk';
 			redirect('user/dashboard');
 		}else{
 			// echo 'gagal masuk';

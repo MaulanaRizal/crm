@@ -21,8 +21,10 @@ class Menu extends CI_Controller
         $this->model->insert('menus', $data);
         redirect('user/manage_menu');
     }
-    public function blank()
+    
+    public function delete($id)
     {
-        $this->load->view('blank');
+            $this->model->delete($id);
+            redirect('user/manage_menu');
     }
 }

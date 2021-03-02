@@ -26,12 +26,12 @@ Class M_menu extends CI_Model {
         );
         $this->db->update($table,$data,$where);
     }
-    public function delete($table,$id)
+    public function delete($id)
     {
         $data = array(
-            'ID_USER' => $id
+            'ID_MENU' => $id
         );
-        $this->db->delete($table,$data);
+        $this->db->delete('menus',$data);
     }
 
 }
