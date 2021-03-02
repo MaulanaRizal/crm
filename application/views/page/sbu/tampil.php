@@ -1,11 +1,11 @@
 <?php $this->load->view('template/head'); ?>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!-- <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
         </svg>
-    </div>
+    </div> -->
     <div id="main-wrapper">
         <?php $this->load->view('template/navbar'); ?>
         <?php $this->load->view('template/sidenav'); ?>
@@ -34,40 +34,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="exampleModalLabel1">Tambah Data SBU</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <form action="<?= base_url('Sbu/tambah')?>" method="post">
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Wilayah SBU:</label>
-                                                        <input type="text" class="form-control" id="recipient-name1">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Pemilik SBU:</label>
-                                                        <input type="text" class="form-control" id="recipient-name1">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="message-text" class="control-label">Deskripsi:</label>
-                                                        <textarea class="form-control" rows=6 id="message-text1" ></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            </form>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Send message</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <h3>Daftar SBU</h3>
                                 <hr>
                                 <div class="table-responsive">
@@ -88,8 +54,8 @@
                                                 <td><?= $data->SBU_REGION ?></td>
                                                 <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
-                                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                                    <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_SBU;?>"><i class="fa fa-trash"></i></a>
+                                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modal_edit<?=$data->ID_SBU?>"><i class="fa fa-info"></i></a>
                                                 </td>
                                             </tr>
                                             <?php 
@@ -115,6 +81,91 @@
         </div>
         <!-- /content -->
 
+        <!-- Modal Tambah-->
+            <div class="modal fade" id="tambahMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel1">Tambah Data SBU</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <form action="<?= base_url('sbu/tambah')?>" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Wilayah SBU:</label>
+                                    <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Deskripsi:</label>
+                                    <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan&nbsp;</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal tambah -->
+            </div>
+            <!-- modal edit -->
+            <?php foreach($sbu as $data){ ?>
+            <div class="modal fade" id="modal_edit<?= $data->ID_SBU; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel1">Edit Data SBU</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <form action="<?= base_url('sbu/ubah')?>" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Wilayah SBU:</label>
+                                    <input type="text" class="form-control" id="recipient-name1" name="sbu_region" value="<?= $data->SBU_REGION ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Deskripsi:</label>
+                                    <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"><?= $data->DESKRIPSI ?></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="hidden" name="id_sbu" value="<?php echo $data->ID_SBU?>">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan&nbsp;</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <!-- end modal edit -->
+
+            <!-- modal hapus -->
+            <?php foreach($sbu as $data){ ?>
+        <div class="modal fade" id="modal_hapus<?= $data->ID_SBU; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url('sbu/hapus')?>">
+                <div class="modal-body">
+                    <p>Anda yakin mau menghapus!</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_sbu" value="<?php echo $data->ID_SBU?>">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    <?php } ?>
+            <!-- end modal hapus -->
 
         <?php $this->load->view('template/jquery'); ?>
 </body>
