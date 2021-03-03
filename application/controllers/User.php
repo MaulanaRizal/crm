@@ -20,9 +20,8 @@ class User extends CI_Controller
 	}
 	public function manage_menu()
 	{
-		function createTree($data, $parent)
+		function createTree($data,$parent)
 		{
-			// $tree = null;
 			foreach ($data as $node) {
 				if ($node->MEN_ID_MENU == $parent) {
 					$tree[] = array(
@@ -36,16 +35,11 @@ class User extends CI_Controller
 		}
 
 		$nav = $this->menu->getTable('Menus')->result();
-		$tree = array(
-			'nama'	=> 'Dashboard',
-			'child'	=> createTree($nav, 1)
-		);
-
+		$tree = createTree($nav,null);
 		$data['tree']= json_encode($tree);
 		$data['menu'] = $this->menu->getTable('Menus')->result();
-		$this->load->view('page/menu',$data);
+		$this->load->view('page/menu/menu',$data);
 		// $this->load->view('awal',$data);
-
 	}
 	public function users()
 	{

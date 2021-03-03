@@ -22,7 +22,7 @@ Class M_menu extends CI_Model {
     public function update($table,$data,$id)
     {
         $where = array(
-            'ID_USER' => $id
+            'ID_MENU' => $id
         );
         $this->db->update($table,$data,$where);
     }

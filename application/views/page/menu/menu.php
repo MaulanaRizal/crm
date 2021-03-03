@@ -17,18 +17,18 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Manage Menu</h3>
+                        <h3 class="text-themecolor">Manajemen Menu</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-home"></i>
                                     Dashboard</a></li>
-                            <li class="breadcrumb-item active">Manage Menu</li>
+                            <li class="breadcrumb-item active">Manajemen Menu</li>
                         </ol>
                     </div>
                 </div>
 
                 <!-- START content -->
 
-                <div class="row">
+                <div class="row">   
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
@@ -45,7 +45,7 @@
                                     <div class=" modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="exampleModalLabel1">Tambah Menu</h4>
+                                            <h4 class="modal-title">Tambah Menu</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
 
@@ -59,7 +59,7 @@
                                                             <option value="<i class='mdi mdi-clipboard-text'>">Dokumen
                                                             </option>
                                                             <option value="<i class='mdi mdi-account'>">Akun</option>
-                                                            <option value="<i class='fas fa-chart-line'>">Diagram
+                                                            <option value="<i class='mdi mdi-chart-bar'>">Diagram
                                                             </option>
                                                             <option value="<i class='mdi mdi-settings'>">Gear</option>
                                                         </select>
@@ -84,7 +84,7 @@
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="control-label">Parent
                                                         Menu:</label>
-                                                    <select name="parent" class="form-control" id="">
+                                                    <select name="parent" required class="form-control" id="">
                                                         <option value="">Pilih parent menu...</option>
                                                         <?php foreach ($menu as $select) { ?>
                                                             <option value="<?= $select->ID_MENU ?>">
@@ -113,43 +113,44 @@
                                 </tr>
                                 <?php
                                 $num = 1;
-                                foreach ($menu as $table) { ?>
+                                foreach ($menu as $table) : ?>
                                     <tr>
                                         <td><?= $num ?></td>
                                         <td><a href="#"><?= $table->ICON . " " . $table->NAMA_MENU ?></a></td>
                                         <td>
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#hapusMenu"><i class="fa fa-trash"></i></button>
-                                            <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
-                                            <!-- <a href="<?= base_url('menu/delete/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-info"></i></a> -->
-
+                                            <?php if (empty($table->MEN_ID_MENU)) : ?>
+                                                <a href="<?= base_url('menu/edit/'.$table->ID_MENU)?>" class="btn btn-info"><i class="fa fa-edit"></i></a>                                                
+                                            <?php else : ?>
+                                                <a href="<?= base_url('menu/edit/'.$table->ID_MENU)?>" class="btn btn-info"><i class="fa fa-edit"></i></a>                                                
+                                                <button class="btn btn-danger" data-toggle="modal" data-target="#hapusMenu-<?= $table->ID_MENU ?>"><i class="fa fa-trash"></i></button>
+                                            <?php endif ?>
                                             <!-- Modal Hapus -->
-                                            <div class="modal fade" id="hapusMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="hapusMenu-<?= $table->ID_MENU ?>" tabindex="-1" role="dialog">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel"><?= $table->ID_MENU ?></h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            ...
+                                                            <p>
+                                                                Apakah anda yakin ingin menghapus menu <strong><?= $table->NAMA_MENU ?></strong> dari sistem? penghapusan ini bersifat permanentdan tidak bisa di kembalikan.
+                                                            </p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                            <a href="<?= base_url('menu/deleteMenu/' . $table->ID_MENU) ?>" class="btn btn-danger">Hapus</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- end modal hapus -->
-                                            <!-- <div class="modal fade " id="hapusMenu" tabindex="-1" role="dialog""> -->
+                                            <!-- Modal Hapus -->
                                         </td>
                                     </tr>
-
-
                                 <?php $num++;
-                                } ?>
+                                endforeach ?>
                             </table>
                         </div>
                     </div>
@@ -157,9 +158,11 @@
 
                 <div class="col-md-8">
                     <div class="card">
-
                         <div class="card-body">
-                            <h3>Table Access</h3>
+                        <form action="<?= base_url('menu/updateAccess') ?>" method="post">
+                        
+                            <button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"></i> Submit</button>
+                            <h3>Tabel Akses Pengguna</h3>
                             <hr>
                             <table class="table ">
                                 <tr>
@@ -170,36 +173,35 @@
                                     <th>Manager</th>
                                     <th>General Manager</th>
                                 </tr>
+                                <?php foreach($menu as $access): ?>
                                 <tr>
-                                    <td>Dashboard</td>
+                                    <td><?= $access->NAMA_MENU ?></td>
                                     <td>
-                                        <input type="checkbox" id="dashboard_sales" checked="">
-                                        <label for="dashboard_sales"></label>
+                                        <input type="checkbox" name="sales[]" id="<?=$access->NAMA_MENU ?>_sales" value="<?= $access->ID_MENU ?>">
+                                        <label for="<?=$access->NAMA_MENU ?>_sales"></label>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="dashboard_aktivasi" checked="">
-                                        <label for="dashboard_aktivasi"></label>
+                                        <input type="checkbox" name="aktivasi[]" id="<?=$access->NAMA_MENU ?>_aktivasi" value="<?= $access->ID_MENU ?>">
+                                        <label for="<?=$access->NAMA_MENU ?>_aktivasi"></label>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="dashboard_adev" checked="">
-                                        <label for="dashboard_adev"></label>
+                                        <input type="checkbox" name="adev[]" id="<?=$access->NAMA_MENU ?>_adev" value="<?= $access->ID_MENU ?>">
+                                        <label for="<?=$access->NAMA_MENU ?>_adev"></label>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="dashboard_manager" checked="">
-                                        <label for="dashboard_manager"></label>
+                                        <input type="checkbox" name="manager[]" id="<?=$access->NAMA_MENU ?>_manager" value="<?= $access->ID_MENU ?>">
+                                        <label for="<?=$access->NAMA_MENU ?>_manager"></label>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="dashboard_gm" checked="">
-                                        <label for="dashboard_gm"></label>
+                                        <input type="checkbox" name="gm[]" id="<?=$access->NAMA_MENU ?>_gm" value="<?= $access->ID_MENU ?>">
+                                        <label for="<?=$access->NAMA_MENU ?>_gm"></label>
                                     </td>
                                 </tr>
+                                <?php endforeach ?>
 
                             </table>
 
-                            <form action="">
-                                <input type="checkbox" name="adev" id="adev">
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -218,6 +220,7 @@
         </script>
 
         <script>
+            //  js for tambah Menu
             var toggler = document.getElementsByClassName("caret");
             var i;
 
@@ -245,14 +248,18 @@
 
                 document.getElementById('showLink').innerHTML = '<?= base_url() ?>' + value;
             }
+
+            // JS for update menu
+
+            // js fo navigation tree
             var tree = <?= $tree ?>;
 
             function viewTree(tree) {
                 var show = '<ul>';
                 var key;
-                show += '<li>' + tree['nama'] + '</li>'
-                for (key in tree['child']) {
-                    show += viewTree(tree['child'][key])
+                for (key in tree) {
+                    show += '<li>' + tree[key]['nama'] + '</li>'
+                    show += viewTree(tree[key]['child'])
                 }
                 show += '</ul>'
                 return show;
