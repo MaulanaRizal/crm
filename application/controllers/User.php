@@ -34,10 +34,13 @@ class User extends CI_Controller
 			}
 		}
 
+		
 		$nav = $this->menu->getTable('Menus')->result();
 		$tree = createTree($nav,null);
-		$data['tree']= json_encode($tree);
-		$data['menu'] = $this->menu->getTable('Menus')->result();
+		$data['tree']	= json_encode($tree);
+		$data['menus'] 	= $this->menu->getTable('Menus')->result();
+		$data['roles'] 	= $this->menu->getTable('Roles')->result();
+		$data['accesses']	= $this->menu->getTable('role_menu')->result();
 		$this->load->view('page/menu/menu',$data);
 		// $this->load->view('awal',$data);
 	}

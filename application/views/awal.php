@@ -1,5 +1,12 @@
 <div id=demo></div>
 <div id=navigation></div>
+<?php
+    $i = true;
+    if($i==true){
+        $result = 'ada';
+    }
+    echo isset($result);
+?>
 
 <script>
     var tree = <?= $tree ?>;

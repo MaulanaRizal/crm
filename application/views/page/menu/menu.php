@@ -28,7 +28,7 @@
 
                 <!-- START content -->
 
-                <div class="row">   
+                <div class="row">
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
@@ -86,7 +86,7 @@
                                                         Menu:</label>
                                                     <select name="parent" required class="form-control" id="">
                                                         <option value="">Pilih parent menu...</option>
-                                                        <?php foreach ($menu as $select) { ?>
+                                                        <?php foreach ($menus as $select) { ?>
                                                             <option value="<?= $select->ID_MENU ?>">
                                                                 <?= $select->NAMA_MENU ?></option>
                                                         <?php } ?>
@@ -113,15 +113,15 @@
                                 </tr>
                                 <?php
                                 $num = 1;
-                                foreach ($menu as $table) : ?>
+                                foreach ($menus as $table) : ?>
                                     <tr>
                                         <td><?= $num ?></td>
                                         <td><a href="#"><?= $table->ICON . " " . $table->NAMA_MENU ?></a></td>
                                         <td>
                                             <?php if (empty($table->MEN_ID_MENU)) : ?>
-                                                <a href="<?= base_url('menu/edit/'.$table->ID_MENU)?>" class="btn btn-info"><i class="fa fa-edit"></i></a>                                                
+                                                <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                             <?php else : ?>
-                                                <a href="<?= base_url('menu/edit/'.$table->ID_MENU)?>" class="btn btn-info"><i class="fa fa-edit"></i></a>                                                
+                                                <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                 <button class="btn btn-danger" data-toggle="modal" data-target="#hapusMenu-<?= $table->ID_MENU ?>"><i class="fa fa-trash"></i></button>
                                             <?php endif ?>
                                             <!-- Modal Hapus -->
@@ -159,47 +159,41 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                        <form action="<?= base_url('menu/updateAccess') ?>" method="post">
-                        
-                            <button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"></i> Submit</button>
-                            <h3>Tabel Akses Pengguna</h3>
-                            <hr>
-                            <table class="table ">
-                                <tr>
-                                    <th>Menu</th>
-                                    <th>Sales</th>
-                                    <th>Aktivasi</th>
-                                    <th>Adev</th>
-                                    <th>Manager</th>
-                                    <th>General Manager</th>
-                                </tr>
-                                <?php foreach($menu as $access): ?>
-                                <tr>
-                                    <td><?= $access->NAMA_MENU ?></td>
-                                    <td>
-                                        <input type="checkbox" name="sales[]" id="<?=$access->NAMA_MENU ?>_sales" value="<?= $access->ID_MENU ?>">
-                                        <label for="<?=$access->NAMA_MENU ?>_sales"></label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="aktivasi[]" id="<?=$access->NAMA_MENU ?>_aktivasi" value="<?= $access->ID_MENU ?>">
-                                        <label for="<?=$access->NAMA_MENU ?>_aktivasi"></label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="adev[]" id="<?=$access->NAMA_MENU ?>_adev" value="<?= $access->ID_MENU ?>">
-                                        <label for="<?=$access->NAMA_MENU ?>_adev"></label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="manager[]" id="<?=$access->NAMA_MENU ?>_manager" value="<?= $access->ID_MENU ?>">
-                                        <label for="<?=$access->NAMA_MENU ?>_manager"></label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="gm[]" id="<?=$access->NAMA_MENU ?>_gm" value="<?= $access->ID_MENU ?>">
-                                        <label for="<?=$access->NAMA_MENU ?>_gm"></label>
-                                    </td>
-                                </tr>
-                                <?php endforeach ?>
+                            <form action="<?= base_url('menu/updateAccess') ?>" method="post">
 
-                            </table>
+                                <button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"></i> Submit</button>
+                                <h3>Tabel Akses Pengguna</h3>
+                                <hr>
+                                <table class="table ">
+                                    <tr>
+                                        <th>Menu</th>
+                                        <?php foreach ($roles as $role) : ?>
+                                            <th><?= $role->CRM_ROLE ?></th>
+                                        <?php endforeach ?>
+                                    </tr>
+                                    <?php foreach ($menus as $menu) : ?>
+                                        <tr>
+                                            <td><?= $menu->NAMA_MENU ?></td>
+                                            <?php foreach ($roles as $role) : ?>
+                                                <td>
+                                                    <?php foreach ($accesses as $access) {
+                                                        if ($access->ID_ROLE == $role->ID_ROLE and $access->ID_MENU == $menu->ID_MENU) {
+                                                            $check = true;
+                                                        }
+                                                    } ?>
+                                                    <?php if (isset($check)) : ?>
+                                                        <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>" checked>
+                                                        <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
+                                                    <?php else : ?>
+                                                        <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>">
+                                                        <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
+                                                    <?php endif ?>
+                                                </td>
+                                            <?php unset($check);endforeach ?>
+                                        </tr>
+                                    <?php endforeach ?>
+
+                                </table>
 
                             </form>
                         </div>

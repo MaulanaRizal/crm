@@ -19,36 +19,51 @@ class Menu extends CI_Controller
         $this->model->insert('menus', $data);
         redirect('user/manage_menu');
     }
-    
+
     public function deleteMenu($id)
     {
-            $this->model->delete($id);
-            redirect('user/manage_menu');
+        $this->model->delete($id);
+        redirect('user/manage_menu');
     }
     public function edit($id)
     {
-        $where = array (
+        $where = array(
             'ID_MENU' => $id
         );
-        $data['data'] = $this->model->getData('Menus',$where)->result();
-		$data['menu'] = $this->model->getTable('Menus')->result();
-        $this->load->view('page/menu/edit',$data);
+        $data['data'] = $this->model->getData('Menus', $where)->result();
+        $data['menu'] = $this->model->getTable('Menus')->result();
+        $this->load->view('page/menu/edit', $data);
     }
     public function update($id)
-	{
+    {
         $data = array(
             'MEN_ID_MENU' => $_POST['parent'],
             'ICON'        => $_POST['icon'],
             'NAMA_MENU'   => $_POST['menu'],
             'LINK'        => $_POST['link']
         );
-			$this->model->update('menus',$data,$id);
-			$this->session->set_flashdata('message','Data berhasil diubah');
-			redirect('user/manage_menu');
-			// echo 'Tidak Tersedia';		
-	}
+        $this->model->update('menus', $data, $id);
+        $this->session->set_flashdata('message', 'Data berhasil diubah');
+        redirect('user/manage_menu');
+        // echo 'Tidak Tersedia';		
+    }
     public function updateAccess()
     {
         var_dump($_POST);
+        $this->model->deleteAll('role_menu');
+        foreach ($_POST['user'] as $role => $menus) {
+            echo '<br>masuk ' . $role . '<br>';
+            var_dump($menus);
+            foreach ($menus as $menu) {
+                echo '<br>' . $menu;
+                $data = array(
+                    'ID_ROLE' => $role,
+                    'ID_MENU' => $menu
+                );
+                // $result = $this->model->getData('role_menu',$data)->num_rows();
+                $this->model->insert('role_menu', $data);
+            }
+        }
+        redirect('user/manage_menu');
     }
 }
