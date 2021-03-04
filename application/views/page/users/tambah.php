@@ -36,7 +36,7 @@
                             <span >Masukan data pengguna baru untuk memberikan hak akses pada sistem.</span>
                             </div>
                             <hr>
-                                <form action="<?= base_url('pengguna/tambah')?> " method="post">
+                                <form action="<?= base_url('pengguna/insert')?> " method="post">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
                                     <div class="col-sm-7">
@@ -113,12 +113,6 @@
 <script>
 var input = document.getElementById('password');
 
-input.onKeyUp = function(){
-    // validate 8 character lenght
-    if(input.value.length>=8){
-
-    }
-};
 
 function numberInput(evt) {
 	var char = String.fromCharCode(evt.which);

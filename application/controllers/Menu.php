@@ -8,6 +8,33 @@ class Menu extends CI_Controller
         parent::__construct();
         $this->load->model('m_menu', 'model');
     }
+    public function createTree($data,$parent)
+		{
+			foreach ($data as $node) {
+				if ($node->MEN_ID_MENU == $parent) {
+					$tree[] = array(
+						'nama'  => $node->NAMA_MENU,
+                        'icon'  => $node->ICON,
+                        'link'  => base_url($node->LINK),
+						'child' => $this->createTree($data, $node->ID_MENU)
+					);
+				}
+			} if(isset($tree)){
+				return $tree;
+			}
+		}
+    public function index()
+	{
+		
+		$nav = $this->model->getTable('Menus')->result();
+		$tree = $this->createTree($nav,null);
+		$data['tree']	= json_encode($tree);
+		$data['menus'] 	= $this->model->getTable('Menus')->result();
+		$data['roles'] 	= $this->model->getTable('Roles')->result();
+		$data['accesses']	= $this->model->getTable('role_menu')->result();
+		$this->load->view('page/menu/menu',$data);
+		// $this->load->view('awal',$data);
+	}
     public function tambah()
     {
         $data = array(
@@ -65,5 +92,13 @@ class Menu extends CI_Controller
             }
         }
         redirect('user/manage_menu');
+    }
+    public function sidenav()
+    {
+        $this->session->set_userdata('role','admin');
+        $data['awal'] = 'awal';
+        $data['trees'] = $this->createTree($this->model->getTable('Menus')->result(),null);
+        
+        $this->load->view('awal',$data);
     }
 }

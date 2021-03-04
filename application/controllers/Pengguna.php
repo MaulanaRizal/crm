@@ -9,22 +9,27 @@ class Pengguna extends CI_Controller {
     }
 	public function index()
 	{
+		$data['user'] = $this->model->SBUandROLE()->result();
+		$this->load->view('page/users/tampil', $data);
+	}
+	public function tambah()
+	{
 		// $data = $this->model->getTable('ROLES')->result();
 		$data['roles'] 	= $this->model->getTable('ROLES')->result();
 		$data['sbu'] 	= $this->model->getTable('SBU')->result();
 		$this->load->view('page/users/tambah',$data);
 		
 	}
-	public function tambah()
+	public function insert()
 	{
 		$data = array (
 			'CRM_EMAIL' =>$_POST['email']
 		);
-		$check = $this->model->getData('users',$data)->row();		
-		if(isset($check)){
+		$check = $this->model->getData('users',$data)->num_rows();		
+		if($check>0){
 			// echo 'Tersedia';
 			$this->session->set_flashdata('message','Email sudah tersedia. Silahkan masukan email yang lain');
-			redirect('pengguna');
+			redirect('pengguna/tambah');
 		}else{
 			if(isset($_POST['status'])==true){
 				$status = true;
@@ -42,7 +47,7 @@ class Pengguna extends CI_Controller {
 			);
 			$this->model->insert('users',$data);
 			$this->session->set_flashdata('message','Data berhasil dimasukan');
-			redirect('user/users');
+			redirect('pengguna');
 			// echo 'Tidak Tersedia';
 		}
 	}
@@ -75,7 +80,7 @@ class Pengguna extends CI_Controller {
 			);
 			$this->model->update('users',$data,$id);
 			$this->session->set_flashdata('message','Data berhasil diubah');
-			redirect('user/users');
+			redirect('/pengguna');
 			// echo 'Tidak Tersedia';
 		
 	}
@@ -84,6 +89,6 @@ class Pengguna extends CI_Controller {
 		// echo $id;
 		$this->model->delete('users',$id);
 		$this->session->set_flashdata('message','Data berhasil dihapus');
-		redirect('user/users');
+		redirect('/pengguna');
 	}
 }

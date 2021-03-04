@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <h3>Haloo</h3>
                         <hr>
-                        <?= $_SESSION['email'] ?>
+                        <?= $_SESSION['status'] ?>
                     </div>
                 </div>
 
