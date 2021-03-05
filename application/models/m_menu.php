@@ -33,6 +33,10 @@ Class M_menu extends CI_Model {
         );
         $this->db->delete('menus',$data);
     }
+    public function deleteAll($table)
+    {
+        $this->db->empty_table($table);
+    }
 
 }
 ?>

@@ -33,6 +33,11 @@ Class M_pengguna extends CI_Model {
         );
         $this->db->delete($table,$data);
     }
+    public function SBUandROLE()
+    {
+            $data = $this->db->query('SELECT * FROM users INNER JOIN sbu on users.ID_SBU=sbu.ID_SBU INNER JOIN roles on users.ID_SBU=roles.ID_ROLE');
+            return $data;
+    }
 
 }
 ?>

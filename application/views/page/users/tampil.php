@@ -34,7 +34,7 @@
                 <?php unset($_SESSION['message']) ; }?>
                 <div class="card">
                     <div class="card-body">
-                        <a href="<?= base_url()?>pengguna" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                        <a href="<?= base_url()?>pengguna/tambah" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
                         <h3>Table User </h3>
                         <span>Table kelola user crm icon+</span>
                         <hr>
