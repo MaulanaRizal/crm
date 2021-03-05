@@ -15,16 +15,23 @@ class Login extends CI_Controller {
 			$query = $this->m_login->login($post);
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
+				$data = $this->m_login->get($row->ID_USER)->row();
 				$params = array(
-					'ID_USER' => $row->ID_USER,
-					'ID_ROLE' => $row->ID_ROLE
+					'ID_USER' => $data->ID_USER,
+					'ID_ROLE' => $data->ID_ROLE,
+					'ID_SBU' => $data->ID_SBU,
+					'CRM_EMAIL' => $data->CRM_EMAIL,
+					'NAMA_LENGKAP' => $data->NAMA_LENGKAP,
+					'TELEPON' => $data->TELEPON,
+					'CRM_ROLE' => $data->CRM_ROLE
 				);
 				$this->session->set_userdata($params);
 				echo "<script>
 					alert('Selamat, login berhasil');
 					window.location='".site_url('user/dashboard')."';
 				</script>";
-			}else{
+			}
+			else{
 				echo "<script>
 					alert('Login Gagal');
 					window.location='".site_url('login')."';

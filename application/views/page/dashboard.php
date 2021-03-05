@@ -24,6 +24,7 @@
 
                 </div>
                 <!-- Start Content -->
+                <textarea><?= $_SESSION['NAMA_LENGKAP'] ?></textarea>
                 
                 <div class="card">
                     <div class="card-body">
