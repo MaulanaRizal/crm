@@ -43,7 +43,7 @@
             <div class="text-center">
                 <img style="width: 200px" src="<?= base_url(); ?>assets/material-pro/assets/images/icon-plus.png" class="img-fluid" alt="icon-plus">
             </div>
-            <form action="<?= base_url('login') ?>" method="post">
+            <form action="<?= site_url('login/proses') ?>" method="post">
                 <div class="login-box card" style="background-color: #1E88E5">
                     <div class="card-body">
                         <?php if (!empty($_SESSION['fail'])) { ?>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-light me-md-5" type="submit">Button</button>
+                            <button class="btn btn-light me-md-5" name="login" type="submit">Button</button>
                             <!--<button class="btn btn-primary" type="button">Button</button>-->
                         </div>
             </form>

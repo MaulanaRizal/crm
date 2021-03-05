@@ -10,12 +10,9 @@ class User extends CI_Controller
 		$this->load->model('m_users', 'users');
 		$this->load->model('m_menu', 'menu');
 	}
-	public function index()
-	{
-		$this->load->view('auth/login');
-	}
 	public function dashboard()
 	{
+		check_not_login();
 		$this->load->view('page/dashboard');
 	}
 	public function manage_menu()

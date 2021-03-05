@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         
-                        <a href="<?= base_url()?>pengguna" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                        <a href="<?= base_url()?>lead/tambahLead" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
                         <h3>Table Lead </h3>
                         <span>Table kelola lead crm icon+</span>
                         <hr>
@@ -41,24 +41,22 @@
                                 <tr>
                                     <th width=50>#</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>SBU</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
+                                    <th>Topic</th>
+                                    <th>Status Reason</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Rozal</td>
-                                    <td>Rozal56@mail.com</td>
-                                    <td>Cawang</td>
-                                    <td>Sales</td>
-                                    <td><label class="label label-danger">non-active</label></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
-                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                        <a href="" class="btn btn-success"><i class="fas fa-phone"></i></a>
+                                        <a href="" class="btn btn-dark"><i class="fas fa-phone-slash"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

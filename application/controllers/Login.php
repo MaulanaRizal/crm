@@ -3,41 +3,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct()
-    {
-		parent::__construct();
-		$this->load->model('m_login','login');
-		
-    }
-	public function index()
-	{
-		$where = array(
-			'CRM_EMAIL'		=> $_POST['email'],
-			'CRM_PASSWORD'	=> $_POST['password']
-		);
-		$login_status = $this->login->login('users',$where)->num_rows();
-		// echo $login_status;
-		if($login_status == 1 ){
-			// echo 'masuk';
-			redirect('user/dashboard');
-		}else{
-			// echo 'gagal masuk';
-			$this->session->set_flashdata('fail','username atau password salah');
-			redirect('user');
+    public function index(){
+    	check_already_login();
+		$this->load->view('auth/login');
+	}
+
+	public function proses(){
+		$post = $this->input->post(null, TRUE);
+		if(isset($post['login'])){
+			$this->load->model('m_login');
+			$query = $this->m_login->login($post);
+			if ($query->num_rows() > 0) {
+				$row = $query->row();
+				$params = array(
+					'ID_USER' => $row->ID_USER,
+					'ID_ROLE' => $row->ID_ROLE
+				);
+				$this->session->set_userdata($params);
+				echo "<script>
+					alert('Selamat, login berhasil');
+					window.location='".site_url('user/dashboard')."';
+				</script>";
+			}else{
+				echo "<script>
+					alert('Login Gagal');
+					window.location='".site_url('login')."';
+				</script>";
+			}
 		}
 	}
-	public function login()
+
+	public function logout()
 	{
-		$this->load->view('awal');
-	}
-	public function logout(){
-		$this->session->unset_userdata(array(
-			'CRM_EMAIL',
-			'CRM_PASSWORD'
-		));
-	}
-	public function member_logout(){
-		$this->logout();
-		redirect('');
+		$params = array('ID_USER', 'ID_ROLE');
+		$this->session->unset_userdata($params);
+		redirect('login');
 	}
 }

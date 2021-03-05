@@ -1,25 +1,26 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 Class M_login extends CI_Model {
 
-	public function __construct(){
-		parent::__construct();
-    }
 
-	function login($table,$where)
+	public function login($post)
 	{
-		// code...
-		return $this->db->get_where($table,$where);
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('CRM_EMAIL', $post['email']);
+		$this->db->where('CRM_PASSWORD', ($post['password']));
+		$query = $this->db->get();
+		return $query;
 	}
-
-	function getData($varUser, $varPassword)
-	{
-		$getField = array('username' => $varUser, 'password' => $varPassword);
-
-		$query = $this->db->get_where('pengguna', $getField);
-
-		return $query->row();
-	}
-
+	// public function get($id = null)
+	// {
+	// 	$this->db->from('users');
+	// 	if ($id != null) {
+	// 		$this->db->where('ID_USER', $id);
+	// 	}
+	// 	$query = $this->db->get();
+	// 	return $query;
+	// }
 }
 ?>
