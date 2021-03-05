@@ -16,4 +16,12 @@ function check_not_login(){
 	}
 }
 
+function check_admin(){
+	$ci =& get_instance();
+	$ci->load->library('fungsi');
+	if($ci->fungsi->user_login()->ID_ROLE != 1){
+		redirect('user/dashboard');
+	}
+}
+
 ?>

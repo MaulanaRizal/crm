@@ -51,8 +51,8 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="<?= base_url() ?>assets/material-pro/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <span>Admin icon+</span>
+                                                <h4><?= $_SESSION['NAMA_LENGKAP'] ?></h4>
+                                                <span><?= $_SESSION['CRM_ROLE'] ?></span>
                                             </div>
                                         </div>
                                     </li>
