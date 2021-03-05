@@ -6,6 +6,7 @@ class Menu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        check_not_login();
         $this->load->model('m_menu', 'model');
     }
     public function createTree($data,$parent)
@@ -44,13 +45,13 @@ class Menu extends CI_Controller
             'LINK'        => $_POST['link']
         );
         $this->model->insert('menus', $data);
-        redirect('user/manage_menu');
+        redirect('menu');
     }
 
     public function deleteMenu($id)
     {
         $this->model->delete($id);
-        redirect('user/manage_menu');
+        redirect('menu');
     }
     public function edit($id)
     {
@@ -71,7 +72,7 @@ class Menu extends CI_Controller
         );
         $this->model->update('menus', $data, $id);
         $this->session->set_flashdata('message', 'Data berhasil diubah');
-        redirect('user/manage_menu');
+        redirect('menu');
         // echo 'Tidak Tersedia';		
     }
     public function updateAccess()
@@ -91,13 +92,13 @@ class Menu extends CI_Controller
                 $this->model->insert('role_menu', $data);
             }
         }
-        redirect('user/manage_menu');
+        redirect('menu');
     }
     public function sidenav()
     {
         $this->session->set_userdata('role','admin');
         $data['awal'] = 'awal';
-        $data['trees'] = $this->createTree($this->model->getTable('Menus')->result(),null);
+        $data['tree'] = $this->createTree($this->model->getTable('Menus')->result(),null);
         
         $this->load->view('awal',$data);
     }

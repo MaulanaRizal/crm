@@ -7,7 +7,7 @@
             <div class="profile-img"> <img src="<?= base_url() ?>assets/material-pro/assets/images/users/profile.png" alt="user" /> </div>
             <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Markarn Doe</a>
                 <div class="dropdown-menu animated flipInY">
-                    <a href="<?php echo base_url('login/logout'); ?>" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                    <a href="<?php echo base_url('login/member_logout'); ?>" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
                 </div>
             </div>
         </div>
@@ -15,6 +15,10 @@
         <nav class="sidebar-nav no-margin">
             <ul id="sidebarnav">
                 <li class="nav-small-cap">MENUS</li>
+                <?php sideNav(); ?>
+                <!-- <li>
+                    <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                </li>
                 <li>
                     <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                 </li>
@@ -53,7 +57,7 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="<?= base_url('user/sbu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">SBU </span></a>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>

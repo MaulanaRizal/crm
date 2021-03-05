@@ -1,14 +1,13 @@
-<?php $this->load->view('template/head'); ?>
 
+<?php $this->load->view('template/head'); ?>
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!-- <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-        </svg>
-    </div>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div> -->
     <div id="main-wrapper">
-        <?php $this->load->view('template/navbar'); ?>
-        <?php $this->load->view('template/sidenav', $awal); ?>
+    <?php $this->load->view('template/navbar'); ?>
+    <?php $this->load->view('template/sidenav'); ?>
         <div class="page-wrapper">
             <div class="container-fluid">
                 <!-- Bread crumb and right sidebar toggle -->
@@ -19,30 +18,12 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                    </div>  
+                    </div>
+
                 </div>
                 <!-- Start Content -->
-                <div class="row">
 
-                    <div class="col-2">
-                        <nav class="sidebar-nav no-margin">
-                            <ul id="sidebarnav">
-                                <li class="nav-small-cap">MENUS</li>
-                                <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false">
-                                        <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="card col-8">
-                        <div class="card-body">
-                            this for session : <?= $_SESSION['role'] ?>
-                            foreach
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- End Content -->
             </div>
@@ -50,7 +31,82 @@
                 © 2019 Material Pro Admin by wrappixel.com
             </footer>
         </div>
-        <?php $this->load->view('template/jquery'); ?>
+    <?php $this->load->view('template/jquery'); ?>
+        <script>
+            $(document).ready(function() {
+                $('#myTable').DataTable();
+                $(document).ready(function() {
+                    var table = $('#example').DataTable({
+                        "columnDefs": [{
+                            "visible": false,
+                            "targets": 2
+                        }],
+                        "order": [
+                            [2, 'asc']
+                        ],
+                        "displayLength": 15,
+                        "drawCallback": function(settings) {
+                            var api = this.api();
+                            var rows = api.rows({
+                                page: 'current'
+                            }).nodes();
+                            var last = null;
+                            api.column(2, {
+                                page: 'current'
+                            }).data().each(function(group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                    last = group;
+                                }
+                            });
+                        }
+                    });
+                    // Order by the grouping
+                    $('#example tbody').on('click', 'tr.group', function() {
+                        var currentOrder = table.order()[0];
+                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                            table.order([2, 'desc']).draw();
+                        } else {
+                            table.order([2, 'asc']).draw();
+                        }
+                    });
+                });
+            });
+            $('#example23').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        </script>
 </body>
-
 </html>
+<script>
+    var treeMenu = <?= $tree ?>;
+
+    function menuTree(tree) {
+        var show = '';
+        for (key in tree) {
+            if(tree[key]['child']!=null){
+                show += '<li>' + "<a class='has-arrow waves-effect waves-dark' href='' aria-expanded='false'>"+tree[key]['icon']+"<span class='hide-menu'>"+tree[key]['nama']+"</span></a>" + '</li>';
+                show += "<ul aria-expanded='false' class='collapse' style='height: 10px;'>"+menuTree(tree[key]['child'])+'</ul>'
+            }else{
+                show += '<li>' + "<a class='waves-effect waves-dark' href='' aria-expanded='false'>"+tree[key]['icon']+"<span class='hide-menu'>"+tree[key]['nama']+"</span></a>" + '</li>';
+            }
+        }
+        
+        return show;
+    }
+    var node_menu = menuTree(treeMenu[0]['child'])+'</ul>';
+
+    var root_menu = 
+    "<nav class='sidebar-nav no-margin'><ul id='sidebarnav'><li class='nav-small-cap'>MENUS</li><li>"+
+    "<a class='waves-effect waves-dark' href="+treeMenu[0]['link']+" aria-expanded='false'>"+treeMenu[0]['icon']+
+    "</i><span class='hide-menu'>"+treeMenu[0]['nama']+"</span></a></li>"+node_menu+"</ul></nav>";
+    
+    
+    
+    // var root_menu = tree[0]['icon'];
+    document.getElementById('home').innerHTML = root_menu;
+    document.getElementById('menu').innerHTML = node_menu;  
+</script>
