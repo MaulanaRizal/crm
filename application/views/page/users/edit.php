@@ -93,7 +93,7 @@
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-3 text-right control-label col-form-label">Password*</label>
                                     <div class="col-sm-7">
-                                        <input type="password" required name="password" minlength="8" maxlength="15" class="form-control" id="" placeholder="password" value="<?= $data->CRM_PASSWORD ?>">
+                                        <input type="password" required name="password" minlength="8" maxlength="15" class="form-control" id="" placeholder="password" >
                                         <small class="form-text text-muted">masukan password minimal 8 karakter dan maksimal 15 karakter.</small>
                                     </div>
                                 </div>

@@ -10,6 +10,8 @@ class Pengguna extends CI_Controller {
 	public function index()
 	{
 		$data['user'] = $this->model->SBUandROLE()->result();
+		$data['title']      = 'Pengguna';
+
 		$this->load->view('page/users/tampil', $data);
 	}
 	public function tambah()
@@ -40,7 +42,7 @@ class Pengguna extends CI_Controller {
 				'ID_SBU' 		=> $_POST['sbu'],
 				'ID_ROLE'		=> $_POST['role'],
 				'CRM_EMAIL'		=> $_POST['email'],
-				'CRM_PASSWORD'	=> $_POST['password'],
+				'CRM_PASSWORD'	=> md5($_POST['password']),
 				'NAMA_LENGKAP'	=> $_POST['nama'],
 				'TELEPON'		=> $_POST['telepon'],
 				'CRM_STATUS'	=> $status
@@ -72,7 +74,7 @@ class Pengguna extends CI_Controller {
 			$data = array(
 				'ID_SBU' 		=> $_POST['sbu'],
 				'ID_ROLE'		=> $_POST['role'],
-				'CRM_PASSWORD'	=> $_POST['password'],
+				'CRM_PASSWORD'	=> md5($_POST['password']),
 				'NAMA_LENGKAP'	=> $_POST['nama'],
 				'TELEPON'		=> $_POST['telepon'],
 				'CRM_EMAIL'		=> $_POST['email'],

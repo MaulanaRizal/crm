@@ -17,13 +17,13 @@ class Login extends CI_Controller {
 				$row = $query->row();
 				$data = $this->m_login->get($row->ID_USER)->row();
 				$params = array(
-					'ID_USER' => $data->ID_USER,
-					'ID_ROLE' => $data->ID_ROLE,
-					'ID_SBU' => $data->ID_SBU,
-					'CRM_EMAIL' => $data->CRM_EMAIL,
-					'NAMA_LENGKAP' => $data->NAMA_LENGKAP,
-					'TELEPON' => $data->TELEPON,
-					'CRM_ROLE' => $data->CRM_ROLE
+					'ID_USER'	 	=> $data->ID_USER,
+					'ID_ROLE' 		=> $data->ID_ROLE,
+					'ID_SBU' 		=> $data->ID_SBU,
+					'CRM_EMAIL' 	=> $data->CRM_EMAIL,
+					'NAMA_LENGKAP' 	=> $data->NAMA_LENGKAP,
+					'TELEPON' 		=> $data->TELEPON,
+					'CRM_ROLE' 		=> $data->CRM_ROLE
 				);
 				$this->session->set_userdata($params);
 				echo "<script>
@@ -42,8 +42,9 @@ class Login extends CI_Controller {
 
 	public function logout()
 	{
-		$params = array('ID_USER', 'ID_ROLE');
-		$this->session->unset_userdata($params);
+		// $params = array('ID_USER', 'ID_ROLE');
+		// $this->session->unset_userdata($params);
+		session_destroy();
 		redirect('login');
 	}
 }

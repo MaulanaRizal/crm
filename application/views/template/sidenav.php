@@ -16,48 +16,6 @@
             <ul id="sidebarnav">
                 <li class="nav-small-cap">MENUS</li>
                 <?php sideNav(); ?>
-                <!-- <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/dashboard') ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('menu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Atur Menu </span></a>
-                </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pengguna</span></a>
-                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>pengguna">Daftar Pengguan</a></li>
-                        <li><a href="<?= base_url()?>pengguna/">Tambah Pengguna</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/annual_target') ?>" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Target Tahunan</span></a>
-                </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Lead</span></a>
-                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>user/leads">Daftar Lead</a></li>
-                        <li><a href="<?= base_url()?>lead/">Tambah Lead</a></li>
-                    </ul>
-                </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Opportunities</span></a>
-                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>user/opportunity">Daftar Opportunity</a></li>
-                        <li><a href="map-vector.html">Tambah Opportunity</a></li>
-                    </ul>
-                </li>
-                <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Agreements</span></a>
-                    <ul aria-expanded="false" class="collapse" style="height: 10px;">
-                        <li><a href="<?= base_url() ?>user/agreements">Daftar Agreement</a></li>
-                        <li><a href="<?= base_url()?>lead/">Tambah Agreement</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/services') ?>" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Services </span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('user/sbu') ?>" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">SBU </span></a>
-                </li> -->
             </ul>
         </nav>
     </div>

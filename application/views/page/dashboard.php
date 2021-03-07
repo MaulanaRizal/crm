@@ -24,13 +24,10 @@
 
                 </div>
                 <!-- Start Content -->
-                <textarea><?= $_SESSION['NAMA_LENGKAP'] ?></textarea>
-                
+
                 <div class="card">
                     <div class="card-body">
-                        <h3>Haloo</h3>
-                        <hr>
-                        <?= $_SESSION['status'] ?>
+                        <?= $_SESSION['ID_USER'] ?>
                     </div>
                 </div>
 

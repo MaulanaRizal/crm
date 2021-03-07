@@ -1,4 +1,4 @@
-<?php $this->load->view('template/head'); ?>
+<?php $this->load->view('template/head',$title); ?>
 
 <body class="fix-header fix-sidebar card-no-border">
     <div class="preloader">
@@ -59,7 +59,7 @@
                                                             <option value="<i class='mdi mdi-clipboard-text'>">Dokumen
                                                             </option>
                                                             <option value="<i class='mdi mdi-account'>">Akun</option>
-                                                            <option value="<i class='mdi mdi-chart-bar'>">Diagram
+                                                            <option value="<i class='mdi mdi-chart-bar'>">Grafik
                                                             </option>
                                                             <option value="<i class='mdi mdi-settings'>">Gear</option>
                                                         </select>

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/material-pro/assets/images/favicon.png">
-    <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
+    <title>CRM ICON+ | <?= $title ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- chartist CSS -->
@@ -23,20 +23,4 @@
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
 
     <link href="<?= base_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
-    <style>
-        .icon::before {
-            display: inline-block;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .tps::before {
-            font-family: "Font Awesome 5 Free";
-            font-weight: 400;
-            content: "\f1ea";
-        }
-    </style>
-    <![endif]-->
 </head>
