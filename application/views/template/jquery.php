@@ -46,5 +46,14 @@
         <script src="../../../../../cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/switchery/dist/switchery.min.js"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js" type="text/javascript"></script>
+        <script src="<?= base_url() ?>assets/material-pro/assets/plugins/dff/dff.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../assets/plugins/multiselect/js/jquery.multi-select.js"></script>
+
         <!-- Style switcher -->
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>

@@ -32,7 +32,6 @@
 
                 <div class="card">
                     <div class="card-body">
-
                         <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahService"><i class="fa fa-plus"></i> Tambah</button>
                         <!-- Start Modal -->
                         <div class="modal fade" id="tambahService" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">

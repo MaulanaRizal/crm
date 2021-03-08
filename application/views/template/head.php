@@ -17,6 +17,14 @@
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- Form  -->
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/material-pro/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
     <!--This page css - Morris CSS -->
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->

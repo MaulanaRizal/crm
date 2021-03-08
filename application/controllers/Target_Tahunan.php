@@ -12,6 +12,12 @@ class Target_Tahunan extends CI_Controller {
 
 	public function index()
 	{
+		$where = array (
+			'ID_SBU'	=> $_SESSION['ID_SBU'],
+			'ID_ROLE'	=> 2
+		);
+		$data['saleses'] = $this->target->getData('users',$where)->result();
+		// var_dump($data['saleses']);
 		$data['targets'] = $this->target->tampilTable($_SESSION['ID_SBU'])->result();
 		$data['title'] = "Target Tahunan";
 		$this->load->view('page/annual',$data);

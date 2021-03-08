@@ -10,13 +10,14 @@ class Pengguna extends CI_Controller {
 	public function index()
 	{
 		$data['user'] = $this->model->SBUandROLE()->result();
-		$data['title']      = 'Pengguna';
+		$data['title'] = 'Pengguna';
 
 		$this->load->view('page/users/tampil', $data);
 	}
 	public function tambah()
 	{
 		// $data = $this->model->getTable('ROLES')->result();
+		$data['title']	= 'Tambah Pengguna';
 		$data['roles'] 	= $this->model->getTable('ROLES')->result();
 		$data['sbu'] 	= $this->model->getTable('SBU')->result();
 		$this->load->view('page/users/tambah',$data);
@@ -58,6 +59,7 @@ class Pengguna extends CI_Controller {
 		$where = array (
 			'ID_USER' =>$id
 		);
+		$data['title']	= 'Edit Pengguna';
 		$data['roles'] 	= $this->model->getTable('ROLES')->result();
 		$data['sbu'] 	= $this->model->getTable('SBU')->result();
 		$data['user']	= $this->model->getData('users',$where)->result();

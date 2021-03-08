@@ -17,5 +17,6 @@ Class M_Target_Tahunan extends CI_Model {
     {
         return $this->db->query("SELECT * FROM `annual_target` WHERE ID_SBU=$id ORDER BY `annual_target`.`PERIODE` DESC");
     }
+
 }
 ?>

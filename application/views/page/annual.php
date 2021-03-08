@@ -27,7 +27,7 @@
 
                 </div>
                 <!-- Start Content -->
-                <?php if(isset($_SESSION['message'])){
+                <?php if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
                     unset($_SESSION['message']);
                 }
@@ -86,13 +86,13 @@
                                                 <td><?= $target->PERIODE ?></td>
                                                 <td><?= $target->ANNUAL_TARGET ?></td>
                                                 <td>
-                                                    <?php if (date('Y')==$target->PERIODE) : ?>
+                                                    <?php if (date('Y') == $target->PERIODE) : ?>
                                                         <button class="btn btn-primary" data-toggle="modal" data-target="#editTarget"><i class="fas fa-edit"></i></button>
                                                     <?php elseif ($target->CRM_STATUS == 'Won') : ?>
                                                         <label class="label label-warning">Won</label>
                                                     <?php elseif ($target->CRM_STATUS == 'Fail') : ?>
                                                         <label class="label label-danger">Fail</label>
-                                                    <?php elseif (date('Y')<$target->PERIODE) : ?>
+                                                    <?php elseif (date('Y') < $target->PERIODE) : ?>
                                                         <a href="#" class='btn btn-danger'> <i class='fa fa-trash'></i></a>
                                                     <?php endif ?>
                                                 </td>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h3>Sales Performances</h3>
+                                <h3>Performa Sales</h3>
                                 <hr>
                                 <table class="table">
                                     <tr>
@@ -178,22 +178,18 @@
                                         <th>Target(Rp)</th>
                                         <th>Status</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Indra Rahardi</td>
-                                        <td>100</td>
-                                        <td>40,5%</td>
-                                        <td>500.000.000</td>
-                                        <td><label class="label label-danger">Faild</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Rinda Rahardi</td>
-                                        <td>50</td>
-                                        <td>80,5%</td>
-                                        <td>500.000.000</td>
-                                        <td><label class="label label-warning">Won</label></td>
-                                    </tr>
+                                    <?php $num = 1?>
+                                    <?php foreach ($saleses as $sales) : ?>
+                                        <tr>
+                                            <td><?= $num ?></td>
+                                            <td><?= $sales->NAMA_LENGKAP ?></td>
+                                            <td>50</td>
+                                            <td>80,5%</td>
+                                            <td>500.000.000</td>
+                                            <td><label class="label label-warning">Won</label></td>
+                                        </tr>
+                                        <?php $num++ ?>
+                                    <?php endforeach ?>
                                 </table>
                             </div>
                         </div>
