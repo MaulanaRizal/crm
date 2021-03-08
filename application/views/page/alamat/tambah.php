@@ -169,6 +169,7 @@
         <script src="<?= base_url()?>database/wilayah.json"></script>
         <script>
             $(".select2").select2();
+            
         </script>
 </body>
 
