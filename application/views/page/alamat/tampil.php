@@ -34,27 +34,38 @@
                             <thead>
                                 <tr>
                                     <th width=50>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>SBU</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Kode Alamat</th>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Tipe</th>
+                                    <th width=400>Alamat</th>
+                                    <th width=100>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php $num= 1 ?>
+                            <?php foreach($alamats as $alamat): ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Rozal</td>
-                                    <td>Rozal56@mail.com</td>
-                                    <td>Cawang</td>
-                                    <td>Sales</td>
-                                    <td><label class="label label-danger">non-active</label></td>
+                                    <td><?= $num ?></td>
+                                    <td><?= $alamat->NO_ADDRESS ?></td>
+                                    <td><?= $alamat->NAMA ?></td>
+                                    <td><?= $alamat->KATEGORI ?></td>
                                     <td>
-                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                    <?php if($alamat->TIPE=='Terminating'):?>
+                                    <label class="label label-danger">Terminating</label><br>
+                                    <?php elseif($alamat->TIPE=='Originating'): ?>
+                                    <label class="label label-info">Originating</label>
+                                    <?php endif ?>
+                                    </td>
+                                    <td><?= $alamat->ALAMAT; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        <br><br>
+                                        <a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>
+                            <?php $num++ ?>
+                                <?php endforeach ?>
                             </tbody>
                             </table>
                         </div>

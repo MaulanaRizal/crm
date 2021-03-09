@@ -37,6 +37,10 @@ Class M_alamat extends CI_Model {
     {
         return $this->db->query("SELECT * FROM `wilayah` where level = 1");
     }
+    public function getAlamat()
+    {
+        return $this->db->query("SELECT * FROM `addreess` ORDER BY `addreess`.`ID_ADDRESS` DESC");
+    }
 
 }
 ?>
