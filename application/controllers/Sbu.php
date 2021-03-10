@@ -5,6 +5,10 @@ class SBU extends CI_Controller{
 		parent::__construct();
 		$this->load->model('m_sbu', 'sbu');	
 	}
+	public function index(){
+		$data["sbu"] = $this->sbu->show()->result();
+		$this->load->view('page/sbu/tampil', $data);
+	}
 	public function tambah(){
 		$data = array(
 			'SBU_REGION' => $this->input->post('sbu_region'),
@@ -12,7 +16,7 @@ class SBU extends CI_Controller{
 		);
 		$this->sbu->insert('sbu', $data);
 		$this->session->set_flashdata('message','Data berhasil dimasukan');
-		redirect('user/sbu');
+		redirect('sbu');
 	}
 	public function ubah(){
 		$id_sbu = $this->input->post('id_sbu');
@@ -22,12 +26,12 @@ class SBU extends CI_Controller{
 		);
 		$this->sbu->update($data, $id_sbu);
 		$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-		redirect('user/sbu');
+		redirect('sbu');
 	}
 	public function hapus(){
 		$id_sbu = $this->input->post('id_sbu');
 		$this->sbu->delete($id_sbu);
-		redirect('user/sbu');
+		redirect('sbu');
 	}
 } 
 ?>

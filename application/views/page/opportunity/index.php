@@ -33,31 +33,42 @@
                                     <h3>Daftar Opportunity</h3>
                                     <hr>
                                     <div class="table-responsive">
-                                    <table class="table striped m-b-20" id="myTable">
+                                    <table width="1800px" class="table striped m-b-20" id="myTable">
                                         <thead>
                                             <tr>
-                                                <th>Opportunity ID</th>
+                                                <th>#</th>
                                                 <th>Topic</th>
-                                                <th>Customer</th>
-                                                <th>Status</th>
-                                                <th>SBU Owner</th>
-                                                <th>Created On</th>
+                                                <th>No Opportunity</th>
+                                                <th>Tipe Survey</th>
+                                                <th>Pendapatan</th>
+                                                <th>Anggaran</th>
+                                                <th>Proses Pemesanan</th>
+                                                <th>Kategori</th>
+                                                <th>Deskripsi</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <?php $num = 1;
+                                            foreach($opportunity as $data){?>
+                                            <tr style="text-align: left">
+                                                <td><?= $num ?></td>
+                                                <td><?= $data->TOPIC ?></td>
+                                                <td><?= $data->NO_OPPORTUNITY ?></td>
+                                                <td><?= $data->TIPE_SURVEY ?></td>
+                                                <td><?= $data->PENDAPATAN?></td>
+                                                <td><?= $data->ANGGARAN ?></td>
+                                                <td><?= $data->PROSES_PEMESANAN ?></td>
+                                                <td><?= $data->KATEGORI ?></td>
+                                                <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
-                                                    <a class="btn waves-effect waves-light btn-info" href="#"><i class="fa fa-edit"></i> Edit</a>
-                                                    <a class="btn waves-effect waves-light btn-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                                    <a href="<?= base_url('opportunity/updateOpportunity') ?>" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-primary"><i class="fas fa-trophy"></i></a>
+                                                    <a href="#" class="btn btn-primary"><i class="far fa-times-circle"></i></a>
                                                 </td>
-                                            
+                                            </tr>
+                                            <?php $num++; 
+                                            }?>
                                         </tbody>
                                     </table>
                                 </div>    

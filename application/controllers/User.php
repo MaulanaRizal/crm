@@ -15,10 +15,6 @@ class User extends CI_Controller
         $data['title']      = 'Dashboard';
 		$this->load->view('page/dashboard',$data);
 	}
-	public function leads()
-	{
-		$this->load->view('page/lead/tampil');
-	}
 	public function opportunity()
 	{
 		$this->load->view('page/opportunity/indexOpportunity');
@@ -30,9 +26,5 @@ class User extends CI_Controller
 	public function services()
 	{
 		$this->load->view('page/service');
-	}
-	public function sbu()
-	{
-		$this->load->view('page/sbu/tampil');
 	}
 }

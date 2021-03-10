@@ -31,112 +31,121 @@
                             <strong>Gagal!</strong><?= $_SESSION['message'] ?>
                             </div>
                         <?php } unset($_SESSION['message']);?>
-                    <div class="card col-lg-10 ">
+                    <div class="card col-lg-11">
                         <div class="card-body">
                             <div class="text-center">
-                            <h3> Form Tambah Lead Baru</h3>
+                                <h3> Form Tambah Lead Baru</h3>
                             </div>
                             <hr>
-                                <form action="<?= base_url('pengguna/tambah')?> " method="post">
-                                <div class="form-group row">
-                                    <label for="topic" class="col-sm-3 text-right control-label col-form-label">Topic*</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" required name="topic" id="" placeholder="Masukkan Topic">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama*</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" required name="nama" id="" placeholder="Masukkan Nama">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="pekerjaan" class="col-sm-3 text-right control-label col-form-label">Pekerjaan</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="pekerjaan" id="" placeholder="Masukkan Jabatan">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="telepon" class="col-sm-3 text-right control-label col-form-label">Telepon</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="telepon" id="" placeholder="Masukkan Telepon">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="coordinate" class="col-sm-3 text-right control-label col-form-label">Coordinate</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="coordinate" id="" placeholder="Masukkan Coordinate">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="alamat" class="col-sm-3 text-right control-label col-form-label">Alamat</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="alamat" id="" placeholder="Masukkan Alamat Lengkap">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="coordinate" class="col-sm-3 text-right control-label col-form-label">Coordinate</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="coordinate" id="" placeholder="Masukkan Coordinate">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="penawaran" class="col-sm-3 text-right control-label col-form-label">Penawaran</label>
-                                    <div class="col-sm-7">
-                                        <input type="date" class="form-control" name="penawaran" id="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="penawaran_kembali" class="col-sm-3 text-right control-label col-form-label">Penawaran Kembali</label>
-                                    <div class="col-sm-7">
-                                        <input type="date" class="form-control" name="penawaran_kembali" id="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">Role*</label>
-                                    <div class="col-sm-7">
-                                    <select class="form-control" required name="role" required>
-                                            <option value="">Pilih Role...</option>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">SBU*</label>
-                                    <div class="col-sm-4">
-                                        <?php //var_dump($sbu)?> 
-                                    <select class="form-control"required name="sbu">
-                                            <option value="">Pilih SBU...</option>
-                                            <?php foreach($sbu as $row) {?>
-                                                <option value="<?= $row->ID_SBU ?>" ><?= $row->SBU_REGION; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="email" class="col-sm-3 text-right control-label col-form-label">Email*</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" required name="email" class="form-control" id="" placeholder="username">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-sm-3 text-right control-label col-form-label">Password*</label>
-                                    <div class="col-sm-7">
-                                        <input type="password" required name="password" minlength="8" maxlength="15" class="form-control" id="" placeholder="password">
-                                        <small class="form-text text-muted">masukan password minimal 8 karakter dan maksimal 15 karakter.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="offset-sm-3 col-sm-7">
-                                        <div class="checkbox checkbox-success">
-                                            <input id="status" name="status" type="checkbox">
-                                            <label for="status">Pengguna masih aktif</label>
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Topic*</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Topic">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Nama*</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Nama">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Pekerjaan</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Pekerjaan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Telepon</label>
+                                            <div class="col-md-9">
+                                                <input type="number" class="form-control" placeholder="Telepon">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Coordinat</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Coordinat">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Alamat</label>
+                                            <div class="col-md-9">
+                                                <a href="#"><textarea class="form-control" placeholder="Tulis Alamat Lengkap" disabled></textarea></a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Penawaran</label>
+                                            <div class="col-md-9">
+                                                <input type="date" class="form-control" placeholder="Penawaran">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Penawaran Kembali</label>
+                                            <div class="col-md-9">
+                                                <input type="date" class="form-control" placeholder="Penawaran Kembali">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Sumber Lead</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control">
+                                                    <option selected="">Pilih...</option>
+                                                    <option value="1">Iklan</option>
+                                                    <option value="2">Rujukan Karyawan</option>
+                                                    <option value="3">Rujukan Eksternal</option>
+                                                    <option value="4">Partner</option>
+                                                    <option value="5">Hubungan Masyarakat</option>
+                                                    <option value="6">Seminar</option>
+                                                    <option value="7">Pameran Dagang</option>
+                                                    <option value="8">Web</option>
+                                                    <option value="9">Dari Mulut ke Mulut</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Rating</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control">
+                                                    <option selected="">Pilih...</option>
+                                                    <option value="1">Hot</option>
+                                                    <option value="2">Warm</option>
+                                                    <option value="3">Cold</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Status</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control">
+                                                    <option selected="">Pilih...</option>
+                                                    <option value="1">New</option>
+                                                    <option value="2">Contacted</option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-left col-md-3">Pemilik</label>
+                                            <div class="input-group col-md-9">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="ti-user"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Pemilik">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group m-b-0">
-                                    <div class="offset-sm-3 col-sm-7">
-                                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>
+                                    <div class="col-md-6">
+                                        <div class="text-center">
+                                            <h5>Aktivitas</h5>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="" data-toggle="modal" data-target="#telepon">Tambah Panggilan Telepon</a> | 
+                                            <a href="#">Tambah Tugas</a>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -151,9 +160,35 @@
             </footer>
             <!-- End footer -->
         </div>
-    </div>
+        <div class="modal fade" id="telepon" role="dialog">
+                    <div class="modal-dialog">
+                        <form method="post" action="change-goal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Tambah Panggilan Telepon</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <input class="form-control" name="newGoal" id="newGoal">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+        </div>
+        </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
+    <script type="text/javascript">
+        const modal = document.getElementById("modal");
+
+        function openModal(){
+            modal.setAttribute("open", true);
+        }
+    </script>
         <script>
             $(document).ready(function() {
                 $('#myTable').DataTable();

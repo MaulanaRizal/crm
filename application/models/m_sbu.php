@@ -8,7 +8,7 @@ class M_sbu extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 	}
-	public function show($table){
+	public function show(){
 		$data = $this->db->query("select * from sbu");
 		return $data;
 	}

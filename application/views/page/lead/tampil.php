@@ -36,7 +36,7 @@
                         <span>Table kelola lead crm icon+</span>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table id="myTable" class="table striped m-b-20">
+                            <table style="text-align: left" id="myTable" class="table striped m-b-20">
                             <thead>
                                 <tr>
                                     <th width=50>#</th>
@@ -52,9 +52,8 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
                                     <td>
-                                        <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                        <a href="" class="btn btn-info"><i class="far fa-edit"></i></a>
                                         <a href="" class="btn btn-success"><i class="fas fa-phone"></i></a>
                                         <a href="" class="btn btn-dark"><i class="fas fa-phone-slash"></i></a>
                                     </td>
