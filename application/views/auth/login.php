@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/material-pro/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/images/icon-plus.png">
     <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
     <section id="wrapper">
         <div class="login-register" style="background-color: #EEF5F9">
             <div class="text-center">
-                <img style="width: 200px" src="<?= base_url(); ?>assets/material-pro/assets/images/icon-plus.png" class="img-fluid" alt="icon-plus">
+                <img style="width: 200px" src="<?= base_url(); ?>assets/images/login-logo.png" class="img-fluid m-b-20" alt="icon-plus">
             </div>
             <form action="<?= site_url('login/proses') ?>" method="post">
                 <div class="login-box card" style="background-color: #1E88E5">

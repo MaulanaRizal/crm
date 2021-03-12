@@ -7,10 +7,12 @@ class Agreement extends CI_Controller{
 	}
 	public function index()
 	{
-		$this->load->view('page/agreement/tampil');
+		$data['title'] = 'Agreement';
+		$this->load->view('page/agreement/tampil',$data);
 	}
-	public function tambahAgreement(){
-		$this->load->view('page/agreement/tambah');
+	public function tambah(){
+		$data['title'] = 'Tambah Agreement';
+		$this->load->view('page/agreement/tambah',$data);
 	}
 	public function updateAgreement(){
 		$this->load->view('page/agreemnet/update');
