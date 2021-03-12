@@ -38,6 +38,7 @@ class Target_Tahunan extends CI_Controller {
 				'CRM_STATUS'		=> "Ongoing"
 			);
 			$this->target->insert('annual_target',$data);
+			$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Target tahunan perode ".$_POST['periode']." berhasil ditambahkan </div>");                        
 			redirect('target_tahunan');
 		}else{
 			$this->session->set_flashdata('message',"<div class='alert alert-danger'><strong>Gagal!</strong>periode yang dimasukan sudah berlangsung</div>");                        

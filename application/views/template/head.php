@@ -31,4 +31,10 @@
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
 
     <link href="<?= base_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
+    <style>
+        body{
+            color: black;
+            font-size: 13px;
+        }
+    </style>
 </head>

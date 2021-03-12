@@ -19,19 +19,13 @@ Class M_pengguna extends CI_Model {
         $result = $this->db->get_where($table,$data);
         return $result;
     }
-    public function update($table,$data,$id)
+    public function update($table,$data,$where)
     {
-        $where = array(
-            'ID_USER' => $id
-        );
         $this->db->update($table,$data,$where);
     }
-    public function delete($table,$id)
+    public function delete($table,$where)
     {
-        $data = array(
-            'ID_USER' => $id
-        );
-        $this->db->delete($table,$data);
+        $this->db->delete($table,$where);
     }
 
 }

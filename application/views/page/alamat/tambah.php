@@ -48,7 +48,7 @@
                                 <div class="form-group row">
                                     <label for="pelanggan" class="col-sm-3 text-right control-label col-form-label">Pelanggan*</label>
                                     <div class="col-sm-7">
-                                        <select class="select2" style="width: 100%" id=pelanggan nama=pelanggan required>
+                                        <select class="select2" style="width: 100%" id=pelanggan name=pelanggan required>
                                             <option value="" disabled selected>Select</option>
                                             <optgroup label="Central Time Zone">
                                                 <option value="AL">Alabama</option>
@@ -95,7 +95,7 @@
                                 <div class="form-group row">
                                     <label for="koordinat" class="col-sm-3 text-right control-label col-form-label">Koordinat</label>
                                     <div class="col-sm-7">
-                                        <input type="text" id=koordinat class="form-control"  name=koordinat id="koordinat" placeholder="Koordinat alamat...">
+                                        <input type="text" id=koordinat class="form-control" name=koordinat id="koordinat" placeholder="Koordinat alamat...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -146,13 +146,13 @@
                                 <div class="form-group row">
                                     <label for="kode" class="col-sm-3 text-right control-label col-form-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control"  name=kode id="kode" placeholder="Kode pos...">
+                                        <input type="text" onkeypress="numberInput(event)" class="form-control" name=kode id="kode" placeholder="Kode pos...">
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-group m-b-0">
-                                    <div class="offset-sm-3 col-sm-7">  
-                                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>
+                                    <div class="offset-sm-3 col-sm-7">
+                                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" > Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -170,6 +170,13 @@
         <script src="<?= base_url() ?>database/wilayah.json"></script>
         <script>
             $(".select2").select2();
+
+            function numberInput(evt) {
+                var char = String.fromCharCode(evt.which);
+                if (!/[0-9]/.test(char)) {
+                    evt.preventDefault();
+                }
+            }
 
             $(function() {
                 $.ajaxSetup({
