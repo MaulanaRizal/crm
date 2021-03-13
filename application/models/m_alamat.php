@@ -10,6 +10,15 @@ Class M_alamat extends CI_Model {
         $data = $this->db->get($table);
         return $data;
     }
+    public function getTableLimit($limit,$offset)
+    {  
+
+        $this->db->select();
+        $this->db->from('addreess');
+        $this->db->join('users',"addreess.CREATED_BY=users.ID_USER");
+        $this->db->limit($limit,$offset);
+        return $this->db->get();
+    }
     public function insert($table,$data)
     {
         $this->db->insert($table,$data);
@@ -29,7 +38,12 @@ Class M_alamat extends CI_Model {
     }
     public function getAlamat()
     {
-        return $this->db->query("SELECT addreess.*,users.NAMA_LENGKAP  FROM `addreess` INNER JOIN users where addreess.CREATED_BY=users.ID_USER ORDER BY addreess.CREATED_ON DESC");
+        $db = $this->db->get('addreess');
+        if($db->num_rows()==0){
+            return $db;
+        }else{
+            return $this->db->query("SELECT addreess.*,users.NAMA_LENGKAP  FROM `addreess` INNER JOIN users where addreess.CREATED_BY=users.ID_USER ORDER BY addreess.CREATED_ON DESC");
+        }
     }
 
 }

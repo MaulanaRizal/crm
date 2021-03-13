@@ -36,7 +36,7 @@
                         <span>Table kelola alamat crm icon+</span>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table id="myTable" class="table striped m-b-20">
+                            <table  class="table striped m-b-20">
                                 <thead>
                                     <tr>
                                         <th width=50>#</th>
@@ -58,7 +58,7 @@
                                     <?php $num = 1 ?>
                                     <?php foreach ($alamats as $alamat) : ?>
                                         <tr>
-                                            <td><?= $num ?></td>
+                                            <td><?= ++$start ?></td>
                                             <td><?= $alamat->NO_ADDRESS ?></td>
                                             <td><?= $alamat->NAMA ?></td>
                                             <td><?= $alamat->KATEGORI ?></td>
@@ -113,6 +113,8 @@
                                     <?php endforeach ?>
                                 </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links(); ?>
+
                         </div>
                     </div>
 

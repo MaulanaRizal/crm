@@ -10,6 +10,16 @@ Class M_pengguna extends CI_Model {
         $data = $this->db->get($table);
         return $data;
     }
+    public function getTableLimit($limit,$offset)
+    {  
+        $this->db->select();
+        $this->db->from('users');
+        $this->db->join('sbu','users.ID_SBU=sbu.ID_SBU');
+        $this->db->join('roles','users.ID_SBU=roles.ID_ROLE');
+        $this->db->limit($limit,$offset);
+
+        return $this->db->get();
+    }
     public function insert($table,$data)
     {
         $this->db->insert($table,$data);

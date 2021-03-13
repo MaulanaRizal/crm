@@ -27,57 +27,69 @@
 
                 </div>
                 <!-- Start Content -->
-                <?php if(!empty($_SESSION['message'])){?>
-                <div class="alert alert-success">
-                    <strong> Berhasil! </strong><?= $_SESSION['message']?>.
-                </div>
-                <?php unset($_SESSION['message']) ; }?>
+                <?php if (!empty($_SESSION['message'])) { ?>
+                    <div class="alert alert-success">
+                        <strong> Berhasil! </strong><?= $_SESSION['message'] ?>.
+                    </div>
+                <?php unset($_SESSION['message']);
+                } ?>
                 <div class="card">
                     <div class="card-body">
-                        <a href="<?= base_url()?>pengguna/tambah" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                        <div class="col-sm-6 float-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                            <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-primary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                </div>
+                            </div>
+
+                        </div>
                         <h3>Table User </h3>
                         <span>Table kelola user crm icon+</span>
+
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table id="myTable" class="table striped m-b-20">
-                            <thead>
-                                <tr>
-                                    <th width=50>#</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Email</th>
-                                    <th>SBU</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php $num = 1;
-                            foreach($user as $data){ ?>
-                                <tr>
-                                    <td><?= $num ?></td>
-                                    <td><?= $data->NAMA_LENGKAP ?></td>
-                                    <td><?= $data->CRM_EMAIL?></td>
-                                    <td><?= $data->SBU_REGION?></td>
-                                    <td><?= $data->CRM_ROLE?></td>
-                                    <td><?php if($data->CRM_STATUS==1){?>
-                                        <label class="label label-success">active</label>
-                                    <?php }else{ ?>
-                                        <label class="label label-danger">non-active</label>
+                            <table class="table striped m-b-20">
+                                <thead>
+                                    <tr>
+                                        <th width=50>#</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Email</th>
+                                        <th>SBU</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($user as $data) { ?>
+                                        <tr>
+                                            <td><?= ++$start ?></td>
+                                            <td><?= $data->NAMA_LENGKAP ?></td>
+                                            <td><?= $data->CRM_EMAIL ?></td>
+                                            <td><?= $data->SBU_REGION ?></td>
+                                            <td><?= $data->CRM_ROLE ?></td>
+                                            <td><?php if ($data->CRM_STATUS == 1) { ?>
+                                                    <label class="label label-success">active</label>
+                                                <?php } else { ?>
+                                                    <label class="label label-danger">non-active</label>
 
+                                                <?php } ?>
+                                            </td>
+
+                                            <td>
+                                                <a href="<?= base_url() ?>pengguna/delete/<?= $data->ID_USER ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="<?= base_url() ?>pengguna/edit/<?= $data->ID_USER ?>" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
-                                    </td>
-                                    
-                                    <td>
-                                        <a href="<?= base_url()?>pengguna/delete/<?= $data->ID_USER ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="<?= base_url()?>pengguna/edit/<?= $data->ID_USER ?>" class="btn btn-info"><i class="fa fa-info"></i></a>
-                                    </td>
-                                </tr>
-                                <?php 
-                            $num++;
-                            }?>
-                            </tbody>
+                                </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links(); ?>
+
                         </div>
                     </div>
 

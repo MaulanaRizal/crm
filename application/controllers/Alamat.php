@@ -10,9 +10,14 @@ class Alamat extends CI_Controller {
     }
 
 	public function index()
-	{
+	{	
+        $table = $this->alamat->getAlamat();
+        $config = pagination('http://localhost/crm/alamat/index/',$table->num_rows(),20);
+
+		$this->pagination->initialize($config);
+		$data['start']	= $this->uri->segment(3);
         $data['title'] = 'Alamat';
-        $data['alamats']= $this->alamat->getAlamat()->result();
+        $data['alamats']= $this->alamat->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/alamat/tampil',$data);
 	}
 	public function tambah()

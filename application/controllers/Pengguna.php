@@ -9,9 +9,13 @@ class Pengguna extends CI_Controller {
     }
 	public function index()
 	{
-		$data['user'] = $this->model->SBUandROLE()->result();
-		$data['title'] = 'Pengguna';
+		$user =  $this->model->getTable('users');
+		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),20);
 
+		$this->pagination->initialize($config);
+		$data['start']	= $this->uri->segment(3);
+		$data['title'] 	= 'Pengguna';
+		$data['user'] 	= $this->model->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/users/tampil', $data);
 	}
 	public function tambah()

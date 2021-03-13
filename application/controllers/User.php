@@ -13,6 +13,7 @@ class User extends CI_Controller
 	public function dashboard()
 	{
         $data['title']      = 'Dashboard';
+		
 		$this->load->view('page/dashboard',$data);
 	}
 	public function opportunity()
