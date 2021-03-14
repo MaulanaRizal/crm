@@ -105,6 +105,7 @@
 
                             <h3>Table Menu</h3>
                             <hr>
+                            <div class="table-responsive">
                             <table class="table">
                                 <tr>
                                     <th>#</th>
@@ -152,6 +153,8 @@
                                 <?php $num++;
                                 endforeach ?>
                             </table>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -164,6 +167,7 @@
                                 <button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"></i> Submit</button>
                                 <h3>Tabel Akses Pengguna</h3>
                                 <hr>
+                                <div class="table-responsive">
                                 <table class="table ">
                                     <tr>
                                         <th>Menu</th>
@@ -194,6 +198,7 @@
                                     <?php endforeach ?>
 
                                 </table>
+                                </div>
 
                             </form>
                         </div>

@@ -36,16 +36,20 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-sm-6 float-right">
+                        <div class="input-group">
+                        <div class="input-group-append p-b-10">
+                        </div>
+                        </div>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="exampleInputuname3">
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                            <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-primary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                <!-- <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="fa fa-trash"></i> hapus</a> -->
                                 </div>
                             </div>
-
                         </div>
                         <h3>Table User </h3>
                         <span>Table kelola user crm icon+</span>

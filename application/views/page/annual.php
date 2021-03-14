@@ -169,6 +169,7 @@
                             <div class="card-body">
                                 <h3>Performa Sales</h3>
                                 <hr>
+                                <div class="table-responsive">
                                 <table class="table">
                                     <tr>
                                         <th>#</th>
@@ -191,6 +192,8 @@
                                         <?php $num++ ?>
                                     <?php endforeach ?>
                                 </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>

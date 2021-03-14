@@ -5,9 +5,6 @@ $('#instruksi').click(function() {
     return false;
 });
 $('#daftar').click(function() {
-    var show = "<table class='table'><thead><tr><th>#</th><th>Informasi</th></tr></thead><tbody><td><i class='fas fa-sticky-note fa-2x'></i></td><td></td></tbody></table>";
-    // console.log('instruksi');
-    $('#activityContent').html(show);
     return false;
 });
 $('#telepon').click(function() {
@@ -16,3 +13,4 @@ $('#telepon').click(function() {
     $('#activityContent').html(show);
     return false;
 });
+

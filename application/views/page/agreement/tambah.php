@@ -78,143 +78,122 @@
                                 </div>
                                 <form action="" method="post"></form>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Agreement ID</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="exampleInputuname3" disabled>
-                                        </div>
-                                    </div>
+                                    <label for="agreement_id" class="col-md-3 text-right control-label">Agreement ID</label>
+                                    <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Agreement Date *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control" id="exampleInputuname3">
-                                        </div>
-                                    </div>
+                                    <label for="agreement_date" class="col-md-3 text-right control-label">Agreement Date *</label>
+                                    <input type="date" class="col-md-3 form-control" id="agreement_date">
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Customer *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="exampleInputuname3">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="button">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Tanggal Mulai *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control" id="exampleInputuname3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Tanggal Selesai *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control" id="exampleInputuname3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Billing Agreement Type *</label>
-                                    <div class="">
-                                        <select class="custom-select col-12" id="inlineFormCustomSelect1">
-                                            <option selected="">Choose...</option>
-                                            <option value="1">jumlah penuh</option>
-                                            <option value="2">prorasi</option>
+                                    <label for="pelanggan" class="col-md-3 text-right control-label">Pelanggan*</label>
+                                    <div class="col-md-3 p-0">
+                                        <select class="select2" style="width: 100%" id=pelanggan name=pelanggan required>
+                                            <option value="" disabled selected>Select</option>
+                                            <optgroup label="Central Time Zone">
+                                                <option value="AL">Alabama</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="WI">Wisconsin</option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Cut Off Date</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="exampleInputuname3" disabled>
-                                        </div>
-                                    </div>
+                                    <label for="tanggal_mulai" class="col-md-3 text-right control-label">Tanggal Mulai *</label>
+                                    <input type="date" class="col-md-6 form-control" id="tanggal_mulai">
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Billing Type *</label>
-                                    <div class="">
-                                        <select class="custom-select col-12" id="inlineFormCustomSelect1">
-                                            <option selected="">Choose...</option>
-                                            <option value="1">Prabayar</option>
-                                            <option value="2">Pascabayar</option>
+                                    <label for="tanggal_selesai" class="col-md-3 text-right control-label">Tanggal Selesai *</label>
+                                    <input type="date" class="col-md-6 form-control" id="tanggal_selesai">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="billing_agreement" class="col-md-3 text-right control-label">Billing Agreement Type *</label>
+                                    <select class="col-md-3 form-control" id="billing_agreement">
+                                        <option selected="">Choose...</option>
+                                        <option value="1">jumlah penuh</option>
+                                        <option value="2">prorasi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cut_off" class="col-md-3 text-right control-label">Cut Off Date</label>
+                                    <input type="text" class="col-md-3 form-control" id="cut_off" disabled>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="billing_type" class="col-md-3 text-right control-label">Billing Type *</label>
+                                    <select class="col-md-3 form-control" id="billing_type">
+                                        <option selected="">Choose...</option>
+                                        <option value="1">Prabayar</option>
+                                        <option value="2">Pascabayar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="periode_type" class="col-md-3 text-right control-label">Tipe Periode *</label>
+                                    <select class="col-md-3 form-control" id="periode_type">
+                                        <option selected="">Choose...</option>
+                                        <option value="1">Bulan</option>
+                                        <option value="2">Tahun</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="jumlah_perode" class="col-md-3 text-right control-label">Jumlah Periode *</label>
+                                    <input type="number" class="col-md-3 form-control" id="jumlah_perode">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleInputuname3" class="col-md-3 text-right control-label">Tipe Faktur *</label>
+                                    <select class="col-md-3 form-control" id="inlineFormCustomSelect1">
+                                        <option selected="">Choose...</option>
+                                        <option value="1">Standar</option>
+                                        <option value="2">Dipersemakan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="jangka_waktu" class="col-md-3 text-right control-label">Jangka Waktu Pembayaran *</label>
+
+                                    <div class="col-md-3 p-0">
+                                        <select class="select2" style="width: 100%" id=jangka_waktu name=pelanggan required>
+                                            <option value="" disabled selected>Select</option>
+                                            <optgroup label="Central Time Zone">
+                                                <option value="AL">Alabama</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="WI">Wisconsin</option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Tipe Periode *</label>
-                                    <div class="">
-                                        <select class="custom-select col-12" id="inlineFormCustomSelect1">
-                                            <option selected="">Choose...</option>
-                                            <option value="1">Bulan</option>
-                                            <option value="2">Tahun</option>
-                                        </select>
-                                    </div>
+                                    <label for="task_agreement" class="col-md-3 text-right control-label">Tesk Agreement *</label>
+                                    <input type="text" class="col-md-3 form-control" id="task_agreement">
                                 </div>
                                 <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Jumlah Periode *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" id="exampleInputuname3">
-                                        </div>
-                                    </div>
+                                    <label for="hukuman" class="col-md-3 text-right control-label">Hukuman</label>
+                                    <textarea class="col-md-6 form-control" id='hukuman' cols="70" rows="10"></textarea>
+
                                 </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Tipe Faktur *</label>
-                                    <div class="">
-                                        <select class="custom-select col-12" id="inlineFormCustomSelect1">
-                                            <option selected="">Choose...</option>
-                                            <option value="1">Standar</option>
-                                            <option value="2">Dipersemakan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Jangka Waktu Pembayaran *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="exampleInputuname3">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="button">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Tesk Agreement *</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="exampleInputuname3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Penalty</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <textarea class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-sm-2 control-label">Hukuman</label>
-                                    <div class="">
-                                        <div class="input-group">
-                                            <textarea class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -227,7 +206,18 @@
                                 <hr>
                                 <div id='activityContent'>
                                     <!-- content -->
-
+                                    <table id='tampilDaftar' class='table'>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Informasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td><i class='fas fa-sticky-note fa-2x'></i></td>
+                                            <td></td>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +230,8 @@
                             <div class="card-body">
                                 <button class="btn btn-primary float-right">Tambah</button>
                                 <h4 class="card-title">Addressing Terminating & Originating</h4>
-                                    <table id="myTable" class="table striped m-b-20">
+                                <div class='table-responsive'>
+                                    <table class="table striped m-b-20">
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
@@ -273,14 +264,16 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
 
                             </div>
                         </div>
                         <div class='card'>
-                        <div class="card-body">
+                            <div class="card-body">
                                 <button class="btn btn-primary float-right">Tambah</button>
                                 <h4 class="card-title">Product Line Item</h4>
-                                    <table id="myTable" class="table striped m-b-20">
+                                <div class='table-responsive'>
+                                    <table class="table striped m-b-20">
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
@@ -313,7 +306,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -333,6 +326,14 @@
         <?php $this->load->view('template/jquery'); ?>
         <script src="<?= base_url('assets/crm-js/agreement.js') ?>"></script>
         <script>
+            $(".select2").select2();
+
+            function numberInput(evt) {
+                var char = String.fromCharCode(evt.which);
+                if (!/[0-9]/.test(char)) {
+                    evt.preventDefault();
+                }
+            }
             $(document).ready(function() {
                 $('#myTable').DataTable();
                 $(document).ready(function() {
