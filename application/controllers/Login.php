@@ -23,7 +23,8 @@ class Login extends CI_Controller {
 					'CRM_EMAIL' 	=> $data->CRM_EMAIL,
 					'NAMA_LENGKAP' 	=> $data->NAMA_LENGKAP,
 					'TELEPON' 		=> $data->TELEPON,
-					'CRM_ROLE' 		=> $data->CRM_ROLE
+					'CRM_ROLE' 		=> $data->CRM_ROLE,
+					'SBU_REGION'    => $data->SBU_REGION
 				);
 				$this->session->set_userdata($params);
 				echo "<script>

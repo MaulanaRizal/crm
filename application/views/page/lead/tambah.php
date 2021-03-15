@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="text-center">
                                             <a href="" data-toggle="modal" data-target="#telepon">Tambah Panggilan Telepon</a> | 
-                                            <a href="#">Tambah Tugas</a>
+                                            <a href="" data-toggle="modal" data-target="#tugas">Tambah Tugas</a>
                                         </div>
                                     </div>
                                 </div>
@@ -160,34 +160,92 @@
             </footer>
             <!-- End footer -->
         </div>
+        <!-- modal telepon -->
         <div class="modal fade" id="telepon" role="dialog">
-                    <div class="modal-dialog">
-                        <form method="post" action="change-goal">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Tambah Panggilan Telepon</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <input class="form-control" name="newGoal" id="newGoal">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <div class="modal-dialog">
+                <form method="post" action="change-goal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Tambah Panggilan Telepon</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Jatuh Tempo</label>
+                                <input class="form-control" type="date" name="jatuh_tempo" id="jatuh_tempo">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Telepon Dengan *</label>
+                                <input class="form-control" type="text" name="telepon_dengan" id="telepon_dengan">
+                            </div> 
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+        <!-- end modal telepon -->
+
+        <!-- modal task -->
+        <div class="modal fade" id="tugas" role="dialog">
+            <div class="modal-dialog">
+                <form method="post" action="change-goal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Tambah Tugas</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label">Subject *</label>
+                                <input class="form-control" type="text" name="subject" id="subject">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi_tugas" id="deskripsi_tugas"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Prioritas</label>
+                                <select class="form-control" name="prioritas" id="prioritas">
+                                    <option>rendah</option>
+                                    <option selected>normal</option>
+                                    <option>tinggi</option>
+                                </select>
+                            </div> 
+                            <div class="form-group">
+                                <label class="control-label">Pemilik *</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-user"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="pemilik" id="pemilik">
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                        </div>
                     </div>
+                </form>
+            </div>
         </div>
-        </div>
+        <!-- end modal task -->
+
+    </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
     <script type="text/javascript">
-        const modal = document.getElementById("modal");
-
-        function openModal(){
-            modal.setAttribute("open", true);
-        }
+        
     </script>
         <script>
             $(document).ready(function() {

@@ -31,35 +31,43 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
+                                <form class="form">
                                 <div class="float-right">
                                     <table>
                                         <tr>
-                                            <th>Category</th>
+                                            <th>Kategori</th>
                                             <th>Status</th>
                                             <th>SBU</th>
-                                            <th>Owner</th>
+                                            <th>Pemilik</th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select>
+                                                <select class="form-control" name="kategori">
                                                     <option>Jaringan</option>
                                                     <option>Aplikasi</option>
                                                     <option>Administrasi</option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <select>
+                                                <select class="form-control" name="status">
                                                     <option>Sedang Berlangsung</option>
                                                     <option>Tertahan</option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <select disabled="">
-                                                    <option selected>Jakarta</option>
+                                                <select disabled class="form-control" name="sbu">
+                                                    <option selected><?= $_SESSION['SBU_REGION'] ?></option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" value="Sigit">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="ti-user"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP'] ?>">
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>
@@ -76,45 +84,31 @@
                                         <h4 class="card-title">Summary</h4>
                                     </div>
                                 </div>
-                                <form class="form">
                                     <div class="form-group m-t-40 row">
-                                        <label for="example-text-input" class="col-2 col-form-label">Opportunity ID</label>
+                                        <label for="example-text-input" class="col-2 col-form-label">No Opportunity</label>
                                         <div class="col-10">
-                                            <fieldset disabled>
-                                                <input type="text" id="disabledTextInput" class="form-control">
-                                            </fieldset>
+                                            <input readonly type="text" name="no_opportunity" value="OPT<?php echo sprintf("%04s", $NO_OPPORTUNITY) ?>" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">Topic</label>
+                                        <label for="example-text-input" class="col-2 col-form-label">Topic *</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" id="example-text-input">
+                                            <input name="topic" class="form-control" type="text" id="example-text-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-search-input" class="col-2 col-form-label">Pelanggan</label>
-                                        <div class="col-10 input-group">
-                                            <input class="form-control" type="text">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="button">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity</label>
+                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity *</label>
                                         <div class="col-10">
                                             <input class="form-control" type="date" id="example-date-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-date-input" class="col-2 col-form-label">tanggal target penjualan</label>
+                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Target Penjualan *</label>
                                         <div class="col-10">
                                             <input class="form-control" type="date" id="example-date-input">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Tipe Opportunity</label>
                                         <div class="col-10">
                                             <select class="custom-select col-12" id="inlineFormCustomSelect1">
@@ -123,7 +117,7 @@
                                                 <option value="2">Agreement Tersedia</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Tipe Survey</label>
                                         <div class="col-10">
@@ -194,12 +188,15 @@
                                             <textarea class="form-control"></textarea>
                                         </div>
                                     </div>
+                                    <div class="form-group text-right">
+                                        <button class="btn btn-success" >Simpan</button>
+                                    </div>
                                     <button class="right-side-toggle btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                                 <h4 class="card-title">Addressing Terminating & Originating</h4>
                                 <div class="table-responsive m-t-40">
                                     <table id="" class="table striped m-b-20">
-                                        <button class="btn btn-primary float-right">Tambah</button>
+                                        <!-- <button class="btn btn-primary float-right">Tambah</button> -->
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
@@ -236,7 +233,7 @@
                                 <h4 class="card-title">Product Line Item</h4>
                                 <div class="table-responsive m-t-40">
                                     <table id="" class="table striped m-b-20">
-                                        <button class="btn btn-primary float-right">Tambah</button>
+                                        <!-- <button class="btn btn-primary float-right">Tambah</button> -->
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
