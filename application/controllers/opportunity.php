@@ -7,7 +7,7 @@ class Opportunity extends CI_Controller{
 	}
 
 	public function index(){
-		$data['opportunity'] = $this->m_opportunity->show()->result();
+		$data['opportunities'] = $this->m_opportunity->show()->result();
 		$this->load->view('page/opportunity/index', $data);
 	}
 
@@ -24,8 +24,24 @@ class Opportunity extends CI_Controller{
 			'KATEGORI' => $this->input->post('kategori'),
 			'CRM_STATUS' => $this->input->post('status'),
 			'SBU' => $this->input->post('sbu'),
-			'PEMILIK' => $this->input->post('pemilik')
-		);	
+			'PEMILIK' => $this->input->post('pemilik'),
+			'NO_OPPORTUNITY' => $this->input->post('no_opportunity'),
+			'TOPIC' => $this->input->post('topic'),
+			'TANGGAL' => $this->input->post('tanggal'),
+			'TANGGAL_TARGET' => $this->input->post('tanggal_target'),
+			'TIPE_SURVEY' => $this->input->post('tipe_survey'),
+			'WAKTU_PEMESANAN' => $this->input->post('waktu_pemesanan'),
+			'PENDAPATAN' => $this->input->post('rupiah1'),
+			'ANGGARAN' => $this->input->post('rupiah2'),
+			'PROSES_PEMESANAN' => $this->input->post('proses_pemesanan'),
+			'DESKRIPSI' => $this->input->post('deskripsi'),
+			'SITUASI_SEKARANG' => $this->input->post('situasi_sekarang'),
+			'KEBUTUHAN_PELANGGAN' => $this->input->post('kebutuhan_pelanggan'),
+			'SOLUSI' => $this->input->post('solusi')
+		);
+		$this->m_opportunity->insert('opportunities', $data);
+		$this->session->set_flashdata('message', 'Data berhasil disimpan');
+		redirect('opportunity');	
 	}
 
 	// public function tambah(){

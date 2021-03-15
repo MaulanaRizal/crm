@@ -31,7 +31,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form">
+                                <form class="form" action="<?= base_url('opportunity/simpan') ?>" method="post">
                                 <div class="float-right">
                                     <table>
                                         <tr>
@@ -55,7 +55,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select disabled class="form-control" name="sbu">
+                                                <select readonly class="form-control" name="sbu">
                                                     <option selected><?= $_SESSION['SBU_REGION'] ?></option>
                                                 </select>
                                             </td>
@@ -99,13 +99,13 @@
                                     <div class="form-group row">
                                         <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity *</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="date" id="example-date-input">
+                                            <input name="tanggal" class="form-control" type="date" id="example-date-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-date-input" class="col-2 col-form-label">Tanggal Target Penjualan *</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="date" id="example-date-input">
+                                            <input name="tanggal_target" class="form-control" type="date" id="example-date-input">
                                         </div>
                                     </div>
                                     <!-- <div class="form-group row">
@@ -121,23 +121,23 @@
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Tipe Survey</label>
                                         <div class="col-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="tipe_survey" class="custom-select col-12" id="inlineFormCustomSelect">
                                                 <option selected="">Choose...</option>
-                                                <option value="1">Jenis Survei</option>
-                                                <option value="2">On Desk</option>
+                                                <option>Detail Survei</option>
+                                                <option>On Desk</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Jangka Waktu Pembelian</label>
                                         <div class="col-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="waktu_pemesanan" class="custom-select col-12" id="inlineFormCustomSelect">
                                                 <option selected="">Choose...</option>
-                                                <option value="1">Segera</option>
-                                                <option value="2">Kuartal Ini</option>
-                                                <option value="3">Kuartal Berikutnya</option>
-                                                <option value="4">Tahun Ini</option>
-                                                <option value="5">Tidak Diketahui</option>
+                                                <option>Segera</option>
+                                                <option>Kuartal Ini</option>
+                                                <option>Kuartal Berikutnya</option>
+                                                <option>Tahun Ini</option>
+                                                <option>Tidak Diketahui</option>
                                             </select>
                                         </div>
                                     </div>
@@ -156,36 +156,36 @@
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Proses Pembelian</label>
                                         <div class="col-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="proses_pemesanan" class="custom-select col-12" id="inlineFormCustomSelect">
                                                 <option selected="">Choose...</option>
-                                                <option value="1">Individu</option>
-                                                <option value="2">komersial</option>
-                                                <option value="3">Tidak Diketahui</option>
+                                                <option>Individu</option>
+                                                <option>komersial</option>
+                                                <option>Tidak Diketahui</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label">Deskripsi</label>
                                         <div class="col-10">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea name="deskripsi" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label">Situasi Saat Ini</label>
                                         <div class="col-10">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea name="situasi_sekarang" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label">Kebutuhan Pelanggan</label>
                                         <div class="col-10">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea name="kebutuhan_pelanggan" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label">Solusi Yang Diusulkan</label>
                                         <div class="col-10">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea name="solusi" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group text-right">

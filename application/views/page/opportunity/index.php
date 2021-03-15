@@ -50,7 +50,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $num = 1;
-                                            foreach($opportunity as $data){?>
+                                            foreach($opportunities as $data){?>
                                             <tr style="text-align: left">
                                                 <td><?= $num ?></td>
                                                 <td><?= $data->TOPIC ?></td>
