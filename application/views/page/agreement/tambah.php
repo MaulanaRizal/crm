@@ -32,17 +32,18 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
-                                <div class="float-right col-md-6">
+                            <form action="<?= base_url('agreement/insert') ?>" method="post">
+                                <div class="table-responsive float-right col-lg-6">
                                     <table>
                                         <tr>
                                             <th>Status*</th>
                                             <th>SBU Owner</th>
                                             <th>Owner *</th>
-                                            <th>Description</th>
+                                            <th>Deskrisi</th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select style="width:100%">
+                                                <select name="crm_status" style="width:100%">
                                                     <option>Draft</option>
                                                     <option>Ulasan Pelanggan</option>
                                                     <option>Tinjauan Hukum</option>
@@ -51,19 +52,23 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input style="width:100%" type="text" readonly value="Jakarta">
+                                                <input style="width:100%" type="text" readonly value="<?= $_SESSION['SBU_REGION']?>">
+                                                <input type="hidden" name="crm_sbu" value="<?= $_SESSION['ID_SBU'] ?>">
                                             </td>
                                             <td>
-                                                <select name="" id="">
+                                                <input style="width:100%" type="text" readonly value="<?=$_SESSION['NAMA_LENGKAP'] ?>">
+                                                <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
+                                                <!-- <select name='crm_owner' id="">
                                                     <option value="<?= $_SESSION['ID_USER'] ?>"><?= $_SESSION['NAMA_LENGKAP'] ?></option>
-                                                </select>
+                                                </select> -->
                                             </td>
                                             <td>
-                                                <input style="width:100%" type="text" value="">
+                                                <input name='crm_deskrip'style="width:100%" type="text" value="">
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
+
                                 <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
                                     <div>
                                         <h6 class="card-subtitle">Agreement</h6>
@@ -76,124 +81,115 @@
                                         <h4 class="card-title">Summary</h4>
                                     </div>
                                 </div>
-                                <form action="" method="post"></form>
-                                <div class="form-group row">
-                                    <label for="agreement_id" class="col-md-3 text-right control-label">Agreement ID</label>
-                                    <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="agreement_date" class="col-md-3 text-right control-label">Agreement Date *</label>
-                                    <input type="date" class="col-md-3 form-control" id="agreement_date">
-                                </div>
-                                <div class="form-group row">
-                                    <label for="pelanggan" class="col-md-3 text-right control-label">Pelanggan*</label>
-                                    <div class="col-md-3 p-0">
-                                        <select class="select2" style="width: 100%" id=pelanggan name=pelanggan required>
-                                            <option value="" disabled selected>Select</option>
-                                            <optgroup label="Central Time Zone">
-                                                <option value="AL">Alabama</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="WI">Wisconsin</option>
-                                            </optgroup>
+                                    <div class="form-group row">
+                                        <label for="agreement_id" class="col-md-4 text-right control-label">Agreement ID</label>
+                                        <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="agreement_date" class="col-md-4 text-right control-label">Agreement Date *</label>
+                                        <input name=agr_date type="date" class="col-md-3 form-control" id="agreement_date">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pelanggan" class="col-md-4 text-right control-label">Pelanggan*</label>
+                                        <div class="col-md-3 p-0">
+                                            <select name='agr_pelanggan' class="select2" style="width: 100%" id=pelanggan name=pelanggan>
+                                                <option value="" disabled selected>Select</option>
+                                                <optgroup label="Central Time Zone">
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tanggal_mulai" class="col-md-4 text-right control-label">Tanggal Mulai *</label>
+                                        <input name='agr_mulai' type="date" class="col-md-3 form-control" id="tanggal_mulai">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tanggal_selesai" class="col-md-4 text-right control-label">Tanggal Selesai *</label>
+                                        <input name='agr_selesai' type="date" class="col-md-3    form-control" id="tanggal_selesai">
+                                    </div>
+                                    <div class="form-group row offset-md-3">
+                                        <input id="isRenewal" name="isRenewal" type="checkbox">
+                                        <label for="isRenewal" class="col-md-6 control-label">Pebaruhan Otomatis *</label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="billing_agreement" class="col-md-4 text-right control-label">Billing Agreement Type *</label>
+                                        <select name='agr_bill' class="col-md-3 form-control" id="billing_agreement">
+                                            <option selected="">Choose...</option>
+                                            <option value="1">jumlah penuh</option>
+                                            <option value="2">prorasi</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="tanggal_mulai" class="col-md-3 text-right control-label">Tanggal Mulai *</label>
-                                    <input type="date" class="col-md-6 form-control" id="tanggal_mulai">
-                                </div>
-                                <div class="form-group row">
-                                    <label for="tanggal_selesai" class="col-md-3 text-right control-label">Tanggal Selesai *</label>
-                                    <input type="date" class="col-md-6 form-control" id="tanggal_selesai">
-                                </div>
-                                <div class="form-group row">
-                                    <label for="billing_agreement" class="col-md-3 text-right control-label">Billing Agreement Type *</label>
-                                    <select class="col-md-3 form-control" id="billing_agreement">
-                                        <option selected="">Choose...</option>
-                                        <option value="1">jumlah penuh</option>
-                                        <option value="2">prorasi</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="cut_off" class="col-md-3 text-right control-label">Cut Off Date</label>
-                                    <input type="text" class="col-md-3 form-control" id="cut_off" disabled>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="billing_type" class="col-md-3 text-right control-label">Billing Type *</label>
-                                    <select class="col-md-3 form-control" id="billing_type">
-                                        <option selected="">Choose...</option>
-                                        <option value="1">Prabayar</option>
-                                        <option value="2">Pascabayar</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="periode_type" class="col-md-3 text-right control-label">Tipe Periode *</label>
-                                    <select class="col-md-3 form-control" id="periode_type">
-                                        <option selected="">Choose...</option>
-                                        <option value="1">Bulan</option>
-                                        <option value="2">Tahun</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="jumlah_perode" class="col-md-3 text-right control-label">Jumlah Periode *</label>
-                                    <input type="number" class="col-md-3 form-control" id="jumlah_perode">
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputuname3" class="col-md-3 text-right control-label">Tipe Faktur *</label>
-                                    <select class="col-md-3 form-control" id="inlineFormCustomSelect1">
-                                        <option selected="">Choose...</option>
-                                        <option value="1">Standar</option>
-                                        <option value="2">Dipersemakan</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="jangka_waktu" class="col-md-3 text-right control-label">Jangka Waktu Pembayaran *</label>
-
-                                    <div class="col-md-3 p-0">
-                                        <select class="select2" style="width: 100%" id=jangka_waktu name=pelanggan required>
-                                            <option value="" disabled selected>Select</option>
-                                            <optgroup label="Central Time Zone">
-                                                <option value="AL">Alabama</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="WI">Wisconsin</option>
-                                            </optgroup>
+                                    <div class="form-group row">
+                                        <label for="cut_off" class="col-md-4 text-right control-label">Tanggal Pemutusan</label>
+                                        <input name='agr_cut' type="date" class="col-md-3 form-control" id="cut_off"> 
+                                    </div>
+                                    <div class="form-group row">
+                                        <!-- kosong -->
+                                        <label for="billing_type" class="col-md-4 text-right control-label">Billing Type *</label>
+                                        <select name='agr_bill_type' class="col-md-3 form-control" id="billing_type">
+                                            <option selected="">Choose...</option>
+                                            <option value="1">Prabayar</option>
+                                            <option value="2">Pascabayar</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="task_agreement" class="col-md-3 text-right control-label">Tesk Agreement *</label>
-                                    <input type="text" class="col-md-3 form-control" id="task_agreement">
-                                </div>
-                                <div class="form-group row">
-                                    <label for="hukuman" class="col-md-3 text-right control-label">Hukuman</label>
-                                    <textarea class="col-md-6 form-control" id='hukuman' cols="70" rows="10"></textarea>
+                                    <div class="form-group row">
+                                        <label for="periode_type" class="col-md-4 text-right control-label">Tipe Periode *</label>
+                                        <select name='agr_period' class="col-md-3 form-control" id="periode_type">
+                                            <option selected="">Choose...</option>
+                                            <option value="1">Bulanan</option>
+                                            <option value="2">Tahunan</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="jumlah_perode" class="col-md-4 text-right control-label">Jumlah Periode *</label>
+                                        <input name='agr-period-jml' type="number" min="1" class="col-md-3 form-control" id="jumlah_perode">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Faktur" class="col-md-4 text-right control-label">Tipe Faktur *</label>
+                                        <select name='agr_faktur' class="col-md-3 form-control" id="Faktur">
+                                            <option selected="">Choose...</option>
+                                            <option value="1">Standar</option>
+                                            <option value="2">Dipersemakan</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="jangka_waktu" class="col-md-4 text-right control-label">Jangka Waktu Pembayaran *</label>
 
-                                </div>
-                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                        <div class="col-md-3 p-0">
+                                            <select class="select2" style="width: 100%" id=jangka_waktu name=agr_waktu>
+                                                <option value="" disabled selected>Select</option>
+                                                    <option value="5 Hari">5 Hari</option>
+                                                    <option value="7 Hari">7 Hari</option>
+                                                    <option value="10 Hari">10 Hari</option>
+                                                    <option value="30 Hari">30 Hari</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="task_agreement" class="col-md-4 text-right control-label">Isi Agreement *</label>
+                                        <input type="text" name='agr_isi' class="col-md-6 form-control" id="task_agreement">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="hukuman" class="col-md-4 text-right control-label">Hukuman</label>
+                                        <textarea name="agr_hukuman" class="col-md-6 form-control" id='hukuman' cols="70" rows="10"></textarea>
+
+                                    </div>
+                                    <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                             </div>
                         </div>
