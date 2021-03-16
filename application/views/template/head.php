@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/material-pro/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/images/icon-plus.png">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/material-pro/assets/images/favicon.png"> -->
     <title>CRM ICON+ | <?= $title ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/material-pro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">

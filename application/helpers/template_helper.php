@@ -17,17 +17,21 @@ function generateTree($data, $parent)
     }
 }
 
-function generateMenu($child)
+function generateMenu($child,$acs)
 {
     echo "<ul aria-expanded='false' class='collapse'>";
     foreach ($child as $node) {
-        if (isset($node['child'])) {
-            echo "<li><a class='has-arrow'  href=" . $node['link'] . " aria-expanded='false' >" . $node['nama'] . "</a>";
-            generateMenu($node['child']);
-            echo "</li>";
-        } else {
-            echo "<li ><a href=" . $node['link'] . " aria-expanded='false' >" . $node['nama'] . "</a></li>";
+        foreach($acs as $i){
+            if (isset($node['child']) and $i==$node['id']) {
+                echo $acs .'-'.$node['id'];
+                echo "<li><a class='has-arrow'  href=" . $node['link'] . " aria-expanded='false' >" . $node['nama'] . "</a>";
+                generateMenu($node['child'],$acs);
+                echo "</li>";
+            } elseif($i==$node['id']) {
+                echo "<li ><a href=" . $node['link'] . " aria-expanded='false' >" . $node['nama'] . "</a></li>";
+            }
         }
+        // var_dump($node);
     }
     echo '</ul>';
 }
@@ -54,7 +58,7 @@ function sideNav()
                 if ($node['id'] == $i) {
                     if ($node['child'] != null) {
                         echo "<li> <a class='has-arrow waves-effect waves-dark' href='" . $node['link'] . "' aria-expanded='false'>" . $node['icon'] . "</i><span class='hide-menu'>" . $node['nama'] . "</span></a>";
-                        generateMenu($node['child']);
+                        generateMenu($node['child'],$show);
                     } else {
                         echo "<li> <a class='waves-effect waves-dark' href='" . $node['link'] . "' aria-expanded='false'>" . $node['icon'] . "</i><span class='hide-menu'>" . $node['nama'] . "</span></a>";
                     }
@@ -107,3 +111,4 @@ function pagination($link, $rows, $page)
 
     return $config;
 }
+

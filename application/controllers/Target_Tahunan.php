@@ -7,42 +7,17 @@ class Target_Tahunan extends CI_Controller {
     {
         parent::__construct();
         check_not_login();
-        $this->load->model('m_Target_Tahunan', 'target');
+        $this->load->model('m_Target_Tahunan_Pusat', 'model');
     }
 
 	public function index()
 	{
-		$where = array (
-			'ID_SBU'	=> $_SESSION['ID_SBU'],
-			'ID_ROLE'	=> 2
-		);
-		$data['saleses'] = $this->target->getData('users',$where)->result();
-		// var_dump($data['saleses']);
-		$data['targets'] = $this->target->tampilTable($_SESSION['ID_SBU'])->result();
-		$data['title'] = "Target Tahunan";
-		$this->load->view('page/annual',$data);
+
+		$data['title'] = "Target Tahunan Pusat";
+		$this->load->view('page/target tahunan/annual',$data);
 	}
 	public function add()
 	{
-		$where = array(
-			'ID_SBU' => $_SESSION['ID_SBU'],
-			'PERIODE' => $_POST['periode']
-		);
-		$row = $this->target->getData('annual_target',$where)->num_rows();
-		// var_dump($row);
-		if($_POST['periode']>date('Y') or $row<1){
-			$data = array(
-				'ID_SBU' => $_SESSION['ID_SBU'],
-				'PERIODE' => $_POST['periode'],
-				'ANNUAL_TARGET' => $_POST['target'],
-				'CRM_STATUS'		=> "Ongoing"
-			);
-			$this->target->insert('annual_target',$data);
-			$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Target tahunan perode ".$_POST['periode']." berhasil ditambahkan </div>");                        
-			redirect('target_tahunan');
-		}else{
-			$this->session->set_flashdata('message',"<div class='alert alert-danger'><strong>Gagal!</strong>periode yang dimasukan sudah berlangsung</div>");                        
-			redirect('target_tahunan');
-		}
+
 	}
 }
