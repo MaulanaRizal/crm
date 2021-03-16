@@ -91,13 +91,15 @@
                         </div>
                         <form action="<?= base_url('sbu/tambah')?>" method="post">
                             <div class="modal-body">
-                                <div class="form-group">
+                                <div class="form-group <?=form_error('sbu_region') ? 'has-error' : null?>">
                                     <label for="recipient-name" class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
+                                    <?=form_error('sbu_region')?>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group <?=form_error('deskripsi') ? 'has-error' : null?>">
                                     <label for="message-text" class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"></textarea>
+                                    <?=form_error('deskripsi')?>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -168,6 +170,20 @@
             <!-- end modal hapus -->
 
         <?php $this->load->view('template/jquery'); ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var data = $("#tambahMenu").serialize();
+                var url = "sbu/tambah"
+                    $.ajax({
+                        type:"POST",
+                        url:"<?= base_url() ?>"+url,
+                        data:dataString,
+                        success:function (data){
+                            alert(data);
+                        }
+                    });
+            })
+        </script>
 </body>
 
 

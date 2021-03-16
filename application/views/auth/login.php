@@ -46,25 +46,22 @@
             <form action="<?= site_url('login/proses') ?>" method="post">
                 <div class="login-box card" style="background-color: #1E88E5">
                     <div class="card-body">
-                        <?php if (!empty($_SESSION['fail'])) { ?>
-                            <div class="alert alert-danger">
-                            <strong>Gagal!</strong><?= $_SESSION['fail'] ?>
-                            </div>
-                        <?php } unset($_SESSION['fail']);?>
-                        <div class="form-group ">
+                        <div class="form-group <?=form_error('email') ? 'has-error' : null?>">
                             <div class="col-sm">
                                 <label style="color: white">Email</label>
                                 <input type="email" name=email class="form-control" placeholder="Email">
+                                <?=form_error('email')?>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group <?= form_error('password') ? 'has-error' : null ?>">
                             <div class="col-sm">
                                 <label style="color: white">Password</label>
                                 <input class="form-control" name=password type="password" placeholder="Password">
+                                <?=form_error('password')?>
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-light me-md-5" name="login" type="submit">Button</button>
+                            <button class="btn btn-light me-md-5" name="login" type="submit">Login</button>
                             <!--<button class="btn btn-primary" type="button">Button</button>-->
                         </div>
             </form>

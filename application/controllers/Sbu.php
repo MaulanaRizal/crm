@@ -10,13 +10,19 @@ class SBU extends CI_Controller{
 		$this->load->view('page/sbu/tampil', $data);
 	}
 	public function tambah(){
-		$data = array(
-			'SBU_REGION' => $this->input->post('sbu_region'),
-			'DESKRIPSI' => $this->input->post('deskripsi')
-		);
-		$this->sbu->insert('sbu', $data);
-		$this->session->set_flashdata('message','Data berhasil dimasukan');
-		redirect('sbu');
+		$this->form_validation->set_rules('sbu_region', 'SBU_REGION', 'required');
+		$this->form_validation->set_rules('deskripsi', 'DESKRIPSI', 'required');
+		if($this->form_validation->run() == false){
+			echo validation_errors();
+		}
+		else{
+			$data = array(
+				'SBU_REGION' => $this->input->post('sbu_region'),
+				'DESKRIPSI' => $this->input->post('deskripsi')
+			);
+			$this->sbu->insert('sbu', $data);
+			$this->session->set_flashdata('message','Data berhasil dimasukan');
+		}
 	}
 	public function ubah(){
 		$id_sbu = $this->input->post('id_sbu');
