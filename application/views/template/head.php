@@ -32,9 +32,18 @@
 
     <link href="<?= base_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
     <style>
-        body{
+        body {
             color: black;
             font-size: 13px;
         }
+
+        .save-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 25px;
+        }
+
+
     </style>
 </head>
