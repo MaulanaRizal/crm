@@ -12,6 +12,12 @@ class M_sbu extends CI_Model{
 		$data = $this->db->query("select * from sbu");
 		return $data;
 	}
+    public function getTableLimit($limit,$offset){  
+        $this->db->select();
+        $this->db->from('sbu');
+        $this->db->limit($limit,$offset);
+        return $this->db->get();
+    }
 	public function insert($table, $data){
         $this->db->insert($table, $data);
     }

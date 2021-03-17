@@ -6,22 +6,35 @@ class SBU extends CI_Controller{
 		$this->load->model('m_sbu', 'sbu');	
 	}
 	public function index(){
-		$data["sbu"] = $this->sbu->show()->result();
+		$sbu =  $this->sbu->show();
+		// var_dump($sbu);
+		$config = pagination('http://localhost/crm/sbu/index/',$sbu->num_rows(),20);
+
+		$this->pagination->initialize($config);
+		$data['start']	= $this->uri->segment(3);
+		$data['title'] 	= 'Sbu';
+		$data['sbu'] 	= $this->sbu->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/sbu/tampil', $data);
 	}
+		// $data["sbu"] = $this->sbu->show()->result();
+		// $this->load->view('page/sbu/tampil', $data);
 	public function tambah(){
 		$this->form_validation->set_rules('sbu_region', 'SBU_REGION', 'required');
 		$this->form_validation->set_rules('deskripsi', 'DESKRIPSI', 'required');
 		if($this->form_validation->run() == false){
-			echo validation_errors();
+			$error = array(
+				'sbu_error' => form_error('sbu_region'),
+				'deskripsi_error' => form_error('deskripsi')			
+			);
+			echo json_encode(['error' => $error]);
 		}
 		else{
+			echo json_encode(['success' => 'Record added successfully.']);
 			$data = array(
 				'SBU_REGION' => $this->input->post('sbu_region'),
 				'DESKRIPSI' => $this->input->post('deskripsi')
 			);
 			$this->sbu->insert('sbu', $data);
-			$this->session->set_flashdata('message','Data berhasil dimasukan');
 		}
 	}
 	public function ubah(){
@@ -31,7 +44,6 @@ class SBU extends CI_Controller{
 			'DESKRIPSI' => $this->input->post('deskripsi') 
 		);
 		$this->sbu->update($data, $id_sbu);
-		$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 		redirect('sbu');
 	}
 	public function hapus(){
