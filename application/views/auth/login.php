@@ -50,14 +50,14 @@
                             <div class="col-sm">
                                 <label style="color: white">Email</label>
                                 <input type="email" name=email class="form-control" placeholder="Email">
-                                <?=form_error('email')?>
+                                <span style="color: white"><?=form_error('email')?></span>
                             </div>
                         </div>
                         <div class="form-group <?= form_error('password') ? 'has-error' : null ?>">
                             <div class="col-sm">
                                 <label style="color: white">Password</label>
                                 <input class="form-control" name=password type="password" placeholder="Password">
-                                <?=form_error('password')?>
+                                <span style="color: white"><?=form_error('password')?></span>
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

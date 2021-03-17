@@ -46,6 +46,8 @@
         <script src="../../../../../cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="../../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/switchery/dist/switchery.min.js"></script>
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
