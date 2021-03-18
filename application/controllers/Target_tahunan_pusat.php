@@ -66,6 +66,7 @@ class Target_tahunan_pusat extends CI_Controller
     {
         $periode = $tahun;
         $sbu = $this->model->getDaftarSBU($periode);
+        
         if(!empty($_POST['tahun_periode'])){
             $check_tahun = $this->model->getData('annual_target',array('PERIODE'=>$_POST['tahun_periode']))->num_rows();
         }
@@ -81,11 +82,14 @@ class Target_tahunan_pusat extends CI_Controller
                 $this->model->insert('annual_target', $input);
             }
             // echo 'masuk';
-            $this->session->set_flashdata('message', "<div class='alert alert-success'><strong>Berhasil!</strong>Target tahunan berhasildi tambah</div>");
+            $this->session->set_flashdata('message', "<div class='alert alert-success'><strong>Berhasil!</strong>Target tahunan berhasil di tambah</div>");
             
-            redirect('target_tahunan_pusat/periode/'.$tahun);
-        }
-        else {
+            redirect('target_tahunan_pusat/periode/'.$_POST['tahun_periode']);
+        }elseif(!empty($_POST['check']) and $check_tahun!=0 ){
+            $this->session->set_flashdata('message', "<div class='alert alert-danger'><strong>Gagal!</strong>Periode sudah tersedia</div>");
+            // echo 'masuk';
+            redirect('target_tahunan_pusat/periode/'.$_POST['tahun_periode']);
+        }else{
             // echo 'tidak masuk';
             $data['saleses'] = $this->model->getSalesSBU($periode)->result();
             $data['sbus']    = $sbu->result();
@@ -95,8 +99,20 @@ class Target_tahunan_pusat extends CI_Controller
             $this->load->view('page/target tahunan/annual_pusat', $data);
         }
     }
-    public function tambah_periode()
+    public function delete()
     {
         var_dump($_POST);
+        // form validation
+        $this->form_validation->set_rules('tahun','Tahun','required',array('required' => 'terjadi kesalahan'));
+
+        // process delete
+        if($_POST['tahun']==date('Y')){
+            $this->session->set_flashdata('message', "<div class='alert alert-danger'><strong>Gagal!</strong>Periode sedangberlangsung</div>");
+            redirect('target_tahunan_pusat');
+        }else{
+            $this->model->delete('annual_target',array ('PERIODE' => $_POST['tahun']));
+            $this->session->set_flashdata('message', "<div class='alert alert-success'><strong>Berhasil!</strong>Periode tahun ".$_POST['tahun']." berhasil di hapus</div>");
+            redirect('target_tahunan_pusat');
+        }
     }
 }

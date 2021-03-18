@@ -49,13 +49,21 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form action="<?= base_url('target_tahunan_pusat/delete') ?>" method="post">
                             <div class="modal-body">
                                 <p>Penghapusan ini akanbersifat permanen dan tidak bisa dikembalikan. Apakah anda yakin?</p>
+                                <?php if($this->uri->segment(3)==null): ?>
+                                <input type="hidden" name="tahun" value="<?= date('Y') ?>">
+                                <?php else: ?>
+                                <input type="hidden" name="tahun" value="<?= $this->uri->segment(3) ?>">
+                                <?php endif ?>
+
                             </div>
                             <div class="modal-footer">
-                                <a href="#" class='btn btn-danger'>Hapus</a>
-                                <!-- <button type="button" class="btn btn-danger">Hapus</button> -->
+                                <!-- <a href="#" class='btn btn-danger'>Hapus</a> -->
+                                <button type="submit" class="btn btn-danger">Hapus</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -63,7 +71,6 @@
 
 
                 <!-- Modal Tambah Tahun - -->
-
                 <div class="modal" tabindex="-1" role="dialog" id='hapusTahun'>
                     <div class="modal-dialog" role="document">
                         <form action="<?= base_url('target_tahunan_pusat/periode/' . date('Y')) ?>" method="post">
@@ -76,7 +83,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <label for="yearPicker">Tahun Periode</label>
-                                    <input required class='form-control' type="number" value="<?= date('Y') ?>" name="tahun_periode" id="yearPicker" oninvalid="this.setCustomValidity('Form Tahun Periode tidak boleh kosong')">
+                                    <input required class='form-control' type="number" value="<?= date('Y') ?>" name="tahun_periode" id="yearPicker" >
                                     <hr>
                                     <p>Penambahan periode target tahunan ini akan disesuaikan dengan kondisi SBU saat ini. Apakah anda yakin akan menambahkanp periode baru saat ini?</p>
                                     <input required type="checkbox" class='form-control check' name="check" id="check">
@@ -89,8 +96,8 @@
                         </form>
                     </div>
                 </div>
+                <!-- end modal -->
             </div>
-            <!-- end modal -->
             <div class=" page-titles">
                 <div class="col-md-5 col-8 align-self-center">
                     <h3 class="text-themecolor">Target SBU Pusat</h3>
@@ -147,7 +154,7 @@
                                         <th>#</th>
                                         <th>SBU Region</th>
                                         <th>Total Sales</th>
-                                        <th>Target</th>
+                                        <th>Pemasukan</th>
                                         <th>Status</th>
                                     </tr>
                                     <?php $num = 1 ?>

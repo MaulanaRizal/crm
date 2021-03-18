@@ -1,4 +1,4 @@
-<?php $this->load->view('template/head',$title); ?>
+<?php $this->load->view('template/head', $title); ?>
 
 <body class="fix-header fix-sidebar card-no-border">
     <div class="preloader">
@@ -29,7 +29,7 @@
                 <!-- START content -->
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3>Navigation</h3>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
+                                <button class="btn btn-info float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
 
                                 <div class="modal fade " id="tambahMenu" tabindex="-1" role="dialog"">
                                     <div class=" modal-dialog" role="document">
@@ -48,7 +48,6 @@
                                             <h4 class="modal-title">Tambah Menu</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
-
                                         <div class="modal-body">
                                             <form action="<?= base_url() ?>menu/tambah" method="post">
                                                 <div class="form-group">
@@ -56,12 +55,11 @@
                                                     <div class="from-group">
                                                         <select name="icon" name=icon id="icon" class="col-md-3 form-control " onchange="showIcon()">
                                                             <option value="">icon</option>
-                                                            <option value="<i class='mdi mdi-clipboard-text'>">Dokumen
-                                                            </option>
-                                                            <option value="<i class='mdi mdi-account'>">Akun</option>
-                                                            <option value="<i class='mdi mdi-chart-bar'>">Grafik
-                                                            </option>
-                                                            <option value="<i class='mdi mdi-settings'>">Gear</option>
+                                                            <option value="<i class='mdi mdi-clipboard-text'></i>">Dokumen</option>
+                                                            <option value="<i class='mdi mdi-account'></i>">Akun</option>
+                                                            <option value="<i class='mdi mdi-chart-bar'></i>">Grafik</option>
+                                                            <option value="<i class='mdi mdi-settings'></i>">Gear</option>
+                                                            <option value="<i class='fas fa-building'></i>">Building</option>
                                                         </select>
                                                         &nbsp;
                                                         <input type="text" class="form-control col-md-8" onkeyup="showMenu()" name=menu id="menu">
@@ -95,109 +93,109 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-info">Submit</button>
                                         </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
 
-                            <h3>Table Menu</h3>
+                            <h3>Tabel Menu</h3>
                             <hr>
                             <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Menu Name</th>
-                                    <th>Action</th>
-                                </tr>
-                                <?php
-                                $num = 1;
-                                foreach ($menus as $table) : ?>
+                                <table class="table">
                                     <tr>
-                                        <td><?= $num ?></td>
-                                        <td><a href="#"><?= $table->ICON . " " . $table->NAMA_MENU ?></a></td>
-                                        <td>
-                                            <?php if (empty($table->MEN_ID_MENU)) : ?>
-                                                <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                            <?php else : ?>
-                                                <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                                <button class="btn btn-danger" data-toggle="modal" data-target="#hapusMenu-<?= $table->ID_MENU ?>"><i class="fa fa-trash"></i></button>
-                                            <?php endif ?>
-                                            <!-- Modal Hapus -->
-                                            <div class="modal fade" id="hapusMenu-<?= $table->ID_MENU ?>" tabindex="-1" role="dialog">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>
-                                                                Apakah anda yakin ingin menghapus menu <strong><?= $table->NAMA_MENU ?></strong> dari sistem? penghapusan ini bersifat permanentdan tidak bisa di kembalikan.
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <a href="<?= base_url('menu/deleteMenu/' . $table->ID_MENU) ?>" class="btn btn-danger">Hapus</a>
+                                        <th>#</th>
+                                        <th>Menu Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <?php
+                                    $num = 1;
+                                    foreach ($menus as $table) : ?>
+                                        <tr>
+                                            <td><?= $num ?></td>
+                                            <td><a href="#"><?= $table->ICON . " " . $table->NAMA_MENU ?></a></td>
+                                            <td>
+                                                <?php if (empty($table->MEN_ID_MENU)) : ?>
+                                                    <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                                <?php else : ?>
+                                                    <a href="<?= base_url('menu/edit/' . $table->ID_MENU) ?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#hapusMenu-<?= $table->ID_MENU ?>"><i class="fa fa-trash"></i></button>
+                                                <?php endif ?>
+                                                <!-- Modal Hapus -->
+                                                <div class="modal fade" id="hapusMenu-<?= $table->ID_MENU ?>" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>
+                                                                    Apakah anda yakin ingin menghapus menu <strong><?= $table->NAMA_MENU ?></strong> dari sistem? penghapusan ini bersifat permanentdan tidak bisa di kembalikan.
+                                                                </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <a href="<?= base_url('menu/deleteMenu/' . $table->ID_MENU) ?>" class="btn btn-danger">Hapus</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- Modal Hapus -->
-                                        </td>
-                                    </tr>
-                                <?php $num++;
-                                endforeach ?>
-                            </table>
+                                                <!-- Modal Hapus -->
+                                            </td>
+                                        </tr>
+                                    <?php $num++;
+                                    endforeach ?>
+                                </table>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
                             <form action="<?= base_url('menu/updateAccess') ?>" method="post">
 
-                                <button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"></i> Submit</button>
+                                <button type="submit" class="btn btn-info float-right"><i class="fa fa-save"></i> Submit</button>
                                 <h3>Tabel Akses Pengguna</h3>
                                 <hr>
                                 <div class="table-responsive">
-                                <table class="table ">
-                                    <tr>
-                                        <th>Menu</th>
-                                        <?php foreach ($roles as $role) : ?>
-                                            <th><?= $role->CRM_ROLE ?></th>
-                                        <?php endforeach ?>
-                                    </tr>
-                                    <?php foreach ($menus as $menu) : ?>
+                                    <table class="table ">
                                         <tr>
-                                            <td><?= $menu->NAMA_MENU ?></td>
+                                            <th>Menu</th>
                                             <?php foreach ($roles as $role) : ?>
-                                                <td>
-                                                    <?php foreach ($accesses as $access) {
-                                                        if ($access->ID_ROLE == $role->ID_ROLE and $access->ID_MENU == $menu->ID_MENU) {
-                                                            $check = true;
-                                                        }
-                                                    } ?>
-                                                    <?php if (isset($check)) : ?>
-                                                        <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>" checked>
-                                                        <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
-                                                    <?php else : ?>
-                                                        <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>">
-                                                        <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
-                                                    <?php endif ?>
-                                                </td>
-                                            <?php unset($check);endforeach ?>
+                                                <th width=75px><?= $role->CRM_ROLE ?></th>
+                                            <?php endforeach ?>
                                         </tr>
-                                    <?php endforeach ?>
+                                        <?php foreach ($menus as $menu) : ?>
+                                            <tr>
+                                                <td><?= $menu->NAMA_MENU ?></td>
+                                                <?php foreach ($roles as $role) : ?>
+                                                    <td>
+                                                        <?php foreach ($accesses as $access) {
+                                                            if ($access->ID_ROLE == $role->ID_ROLE and $access->ID_MENU == $menu->ID_MENU) {
+                                                                $check = true;
+                                                            }
+                                                        } ?>
+                                                        <?php if (isset($check)) : ?>
+                                                            <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>" checked>
+                                                            <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
+                                                        <?php else : ?>
+                                                            <input type="checkbox" name="user[<?= $role->ID_ROLE ?>][]" id="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>" value="<?= $menu->ID_MENU ?>">
+                                                            <label for="<?= $menu->NAMA_MENU ?>_<?= $role->ID_ROLE ?>"></label>
+                                                        <?php endif ?>
+                                                    </td>
+                                                <?php unset($check);
+                                                endforeach ?>
+                                            </tr>
+                                        <?php endforeach ?>
 
-                                </table>
+                                    </table>
                                 </div>
 
                             </form>

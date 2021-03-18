@@ -13,9 +13,13 @@ Class M_Target_Tahunan extends CI_Model {
     public function getData($table,$where){
         return $this->db->get_where($table,$where);
     }
-    public function tampilTable($id)
+    public function tampilSalesSBUTarget($where)
     {
-        return $this->db->query("SELECT * FROM `annual_target` WHERE ID_SBU=$id ORDER BY `annual_target`.`PERIODE` DESC");
+        $this->db->select();
+        $this->db->from('annual_target_sbu');
+        $this->db->join('users','annual_target_sbu.ID_SALES=users.ID_USER');
+        $this->db->where($where);
+        return $this->db->get();
     }
 
 }

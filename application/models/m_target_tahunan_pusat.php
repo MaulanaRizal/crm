@@ -39,6 +39,11 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     {
         return $this->db->query("select PERIODE from annual_target GROUP BY PERIODE ORDER BY `annual_target`.`PERIODE` DESC");
     }
+    public function delete($table,$where)
+    {
+        $this->db->delete($table,$where);
+    }
+
 
 }
 ?>
