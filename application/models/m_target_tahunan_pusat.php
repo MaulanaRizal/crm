@@ -43,7 +43,5 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     {
         $this->db->delete($table,$where);
     }
-
-
 }
 ?>

@@ -50,19 +50,19 @@
                                 </button>
                             </div>
                             <form action="<?= base_url('target_tahunan_pusat/delete') ?>" method="post">
-                            <div class="modal-body">
-                                <p>Penghapusan ini akanbersifat permanen dan tidak bisa dikembalikan. Apakah anda yakin?</p>
-                                <?php if($this->uri->segment(3)==null): ?>
-                                <input type="hidden" name="tahun" value="<?= date('Y') ?>">
-                                <?php else: ?>
-                                <input type="hidden" name="tahun" value="<?= $this->uri->segment(3) ?>">
-                                <?php endif ?>
+                                <div class="modal-body">
+                                    <p>Penghapusan ini akanbersifat permanen dan tidak bisa dikembalikan. Apakah anda yakin?</p>
+                                    <?php if ($this->uri->segment(3) == null) : ?>
+                                        <input type="hidden" name="tahun" value="<?= date('Y') ?>">
+                                    <?php else : ?>
+                                        <input type="hidden" name="tahun" value="<?= $this->uri->segment(3) ?>">
+                                    <?php endif ?>
 
-                            </div>
-                            <div class="modal-footer">
-                                <!-- <a href="#" class='btn btn-danger'>Hapus</a> -->
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <a href="#" class='btn btn-danger'>Hapus</a> -->
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <label for="yearPicker">Tahun Periode</label>
-                                    <input required class='form-control' type="number" value="<?= date('Y') ?>" name="tahun_periode" id="yearPicker" >
+                                    <input required class='form-control' type="number" value="<?= date('Y') ?>" name="tahun_periode" id="yearPicker">
                                     <hr>
                                     <p>Penambahan periode target tahunan ini akan disesuaikan dengan kondisi SBU saat ini. Apakah anda yakin akan menambahkanp periode baru saat ini?</p>
                                     <input required type="checkbox" class='form-control check' name="check" id="check">
@@ -219,7 +219,7 @@
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label for="nominal" class="control-label">Nominal Target:</label>
-                                                                <input class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
+                                                                <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
                                                                 <!-- <input required type="text" class="form-control nominal" name='nominal' id="nominal"> -->
                                                                 <input type="hidden" name="sbu" value="<?= $sbu->SBU_REGION ?>">
                                                                 <input type="hidden" name="id_annual" value="<?= $sbu->ID_ANNUAL ?>">
@@ -338,8 +338,8 @@
         function cek() {
             var val = document.getElementById('check').checked;
             // console.log(val);
-            if (val==false) {
-                document.getElementById('alert').innerHTML='checkbox tidak boleh kosong.'
+            if (val == false) {
+                document.getElementById('alert').innerHTML = 'checkbox tidak boleh kosong.'
             }
         }
     </script>

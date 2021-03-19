@@ -21,6 +21,19 @@ Class M_Target_Tahunan extends CI_Model {
         $this->db->where($where);
         return $this->db->get();
     }
+    public function update($table,$data,$where)
+    {
+        $this->db->where($where);
+        $this->db->update($table,$data);
+    }
+    public function getPeriode()
+    {
+        $arr = $this->db->query("select PERIODE FROM annual_target_sbu GROUP BY PERIODE ORDER BY `annual_target_sbu`.`PERIODE` DESC")->result();
+        foreach($arr as $periode){
+            $tahun[] = $periode->PERIODE;
+        }
+        return $tahun;
+    }
 
 }
 ?>
