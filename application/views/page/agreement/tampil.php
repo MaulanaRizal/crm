@@ -30,7 +30,6 @@
 
                 <div class="card">
                     <div class="card-body">
-                        
                         <a href="<?= base_url()?>agreement/tambah" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
                         <h3>Table Agreement </h3>
                         <span>Table kelola agreement crm icon+</span>

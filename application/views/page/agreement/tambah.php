@@ -32,55 +32,55 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
-                            <form action="<?= base_url('agreement/insert') ?>" method="post">
-                                <div class="table-responsive float-right col-lg-6">
-                                    <table>
-                                        <tr>
-                                            <th>Status*</th>
-                                            <th>SBU Owner</th>
-                                            <th>Owner *</th>
-                                            <th>Deskrisi</th>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <select name="crm_status" style="width:100%">
-                                                    <option>Draft</option>
-                                                    <option>Ulasan Pelanggan</option>
-                                                    <option>Tinjauan Hukum</option>
-                                                    <option>Final</option>
-                                                    <option>Kadaluarsa</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input style="width:100%" type="text" readonly value="<?= $_SESSION['SBU_REGION']?>">
-                                                <input type="hidden" name="crm_sbu" value="<?= $_SESSION['ID_SBU'] ?>">
-                                            </td>
-                                            <td>
-                                                <input style="width:100%" type="text" readonly value="<?=$_SESSION['NAMA_LENGKAP'] ?>">
-                                                <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
-                                                <!-- <select name='crm_owner' id="">
+                                <form action="<?= base_url('agreement/insert') ?>" method="post">
+                                    <div class="table-responsive float-right col-lg-6">
+                                        <table>
+                                            <tr>
+                                                <th>Status*</th>
+                                                <th>SBU Owner</th>
+                                                <th>Owner *</th>
+                                                <th>Deskrisi</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <select name="crm_status" style="width:100%">
+                                                        <option>Draft</option>
+                                                        <option>Ulasan Pelanggan</option>
+                                                        <option>Tinjauan Hukum</option>
+                                                        <option>Final</option>
+                                                        <option>Kadaluarsa</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input style="width:100%" type="text" readonly value="<?= $_SESSION['SBU_REGION'] ?>">
+                                                    <input type="hidden" name="crm_sbu" value="<?= $_SESSION['ID_SBU'] ?>">
+                                                </td>
+                                                <td>
+                                                    <input style="width:100%" type="text" readonly value="<?= $_SESSION['NAMA_LENGKAP'] ?>">
+                                                    <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
+                                                    <!-- <select name='crm_owner' id="">
                                                     <option value="<?= $_SESSION['ID_USER'] ?>"><?= $_SESSION['NAMA_LENGKAP'] ?></option>
                                                 </select> -->
-                                            </td>
-                                            <td>
-                                                <input name='crm_deskrip'style="width:100%" type="text" value="">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                                </td>
+                                                <td>
+                                                    <input name='crm_deskrip' style="width:100%" type="text" value="">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
 
-                                <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
-                                    <div>
-                                        <h6 class="card-subtitle">Agreement</h6>
-                                        <h4 class="card-title">New Agreement</h4>
+                                    <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
+                                        <div>
+                                            <h6 class="card-subtitle">Agreement</h6>
+                                            <h4 class="card-title">New Agreement</h4>
+                                        </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex no-block align-items-center">
-                                    <div>
-                                        <h4 class="card-title">Summary</h4>
+                                    <hr>
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h4 class="card-title">Summary</h4>
+                                        </div>
                                     </div>
-                                </div>
                                     <div class="form-group row">
                                         <label for="agreement_id" class="col-md-4 text-right control-label">Agreement ID</label>
                                         <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="cut_off" class="col-md-4 text-right control-label">Tanggal Pemutusan</label>
-                                        <input name='agr_cut' type="date" class="col-md-3 form-control" id="cut_off"> 
+                                        <input name='agr_cut' type="date" class="col-md-3 form-control" id="cut_off">
                                     </div>
                                     <div class="form-group row">
                                         <!-- kosong -->
@@ -173,10 +173,10 @@
                                         <div class="col-md-3 p-0">
                                             <select class="select2" style="width: 100%" id=jangka_waktu name=agr_waktu>
                                                 <option value="" disabled selected>Select</option>
-                                                    <option value="5 Hari">5 Hari</option>
-                                                    <option value="7 Hari">7 Hari</option>
-                                                    <option value="10 Hari">10 Hari</option>
-                                                    <option value="30 Hari">30 Hari</option>
+                                                <option value="5 Hari">5 Hari</option>
+                                                <option value="7 Hari">7 Hari</option>
+                                                <option value="10 Hari">10 Hari</option>
+                                                <option value="30 Hari">30 Hari</option>
                                             </select>
                                         </div>
                                     </div>
@@ -200,8 +200,7 @@
                                 <h4>Aktivitas</h4>
                                 <span><a href="#" id='daftar'>Daftar</a></span> | <span><a id='instruksi' href="#">Instruksi</a></span> | <span><a href="#" id='telepon'>Telepon</a></span>
                                 <hr>
-                                <div id='activityContent'>
-                                    <!-- content -->
+                                <div id='tableActivity'>
                                     <table id='tampilDaftar' class='table'>
                                         <thead>
                                             <tr>
@@ -215,167 +214,183 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div id='formActivity'>
+                                    <form action='' class='form-material'><label for='subjek'>Subjek</label><input class='form-control' type='text' name='' id='subjek'><label for='deskripsi'>Deskripsi</label><textarea class=form-control class=form-control name='' id='deskripsi' cols='' 30'' rows='' 3''></textarea>
+                                        <div class=from-group><label for=''>Tenggang Waktu</label><input type='datetime-local' class=form-control name='' id=''></div><label for=''>Prioritas</label><select name='' id='' class='form-control'>
+                                            <option value='Rendah'>Rendah</option>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Tinggi'>Tinggi</option>
+                                        </select>
+                                    </form><br><br><a href='#' onclick='submitInstuksi()' class='btn-xs btn-primary'>Submit</a>
+                                </div>
+                                <div id='formTelepon'>
+                                    <form action=' class=' form-material'><label for='deskripsi'>Deskripsi</label><textarea class='form-control' name='deskripsi' id='deskripsi' cols='30' rows='3'></textarea><label for='jangka'>Jangka Waktu</label><input class='form-control' type='datetime-local' name='janka' id='jangka'><label for='penerima'>Penerima</label><input type='text' class='form-control' name=' id=' penerima'><label for='tujuan'>Tujuan</label><select class='form-control' name='tujuan' id='tujuan'>
+                                            <option value='Masuk'>Masuk</option>
+                                            <option value='Keluar'>Keluar</option>
+                                        </select><br><br><button class='btn-xs btn-primary' id='submitTelepon '>Submit</button></form>
+                                </div>
                             </div>
                         </div>
-                        <!-- End Content -->
                     </div>
+                    <!-- End Content -->
                 </div>
-                <div class="row">
-                    <div class='col-md-9'>
-                        <div class="card">
-                            <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
-                                <h4 class="card-title">Addressing Terminating & Originating</h4>
-                                <div class='table-responsive'>
-                                    <table class="table striped m-b-20">
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+            </div>
+            <div class="row">
+                <div class='col-md-9'>
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="btn btn-primary float-right">Tambah</button>
+                            <h4 class="card-title">Addressing Terminating & Originating</h4>
+                            <div class='table-responsive'>
+                                <table class="table striped m-b-20">
+                                    <thead>
+                                        <tr>
+                                            <th width=50>#</th>
+                                            <th>Address ID</th>
+                                            <th>Category</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Account</th>
+                                            <th>Region SBU</th>
+                                            <th>Country</th>
+                                            <th>Status</th>
+                                            <th>Province</th>
+                                            <th>State</th>
+                                            <th>Street</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
-                        <div class='card'>
-                            <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
-                                <h4 class="card-title">Product Line Item</h4>
-                                <div class='table-responsive'>
-                                    <table class="table striped m-b-20">
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    </div>
+                    <div class='card'>
+                        <div class="card-body">
+                            <button class="btn btn-primary float-right">Tambah</button>
+                            <h4 class="card-title">Product Line Item</h4>
+                            <div class='table-responsive'>
+                                <table class="table striped m-b-20">
+                                    <thead>
+                                        <tr>
+                                            <th width=50>#</th>
+                                            <th>Address ID</th>
+                                            <th>Category</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Account</th>
+                                            <th>Region SBU</th>
+                                            <th>Country</th>
+                                            <th>Status</th>
+                                            <th>Province</th>
+                                            <th>State</th>
+                                            <th>Street</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Container fluid  -->
+    </div>
+    <!-- End Container fluid  -->
 
-        <!-- footer -->
-        <footer class="footer">
-            © 2019 Material Pro Admin by wrappixel.com
-        </footer>
-        <!-- End footer -->
-        <!-- /content -->
+    <!-- footer -->
+    <footer class="footer">
+        © 2019 Material Pro Admin by wrappixel.com
+    </footer>
+    <!-- End footer -->
+    <!-- /content -->
 
 
-        <?php $this->load->view('template/jquery'); ?>
-        <script src="<?= base_url('assets/crm-js/agreement.js') ?>"></script>
-        <script>
-            $(".select2").select2();
+    <?php $this->load->view('template/jquery'); ?>
+    <script src="<?= base_url('assets/crm-js/activity.js') ?>"></script>
+    <script>
+        $(".select2").select2();
 
-            function numberInput(evt) {
-                var char = String.fromCharCode(evt.which);
-                if (!/[0-9]/.test(char)) {
-                    evt.preventDefault();
-                }
+        function numberInput(evt) {
+            var char = String.fromCharCode(evt.which);
+            if (!/[0-9]/.test(char)) {
+                evt.preventDefault();
             }
+        }
+        $(document).ready(function() {
+            $('#myTable').DataTable();
             $(document).ready(function() {
-                $('#myTable').DataTable();
-                $(document).ready(function() {
-                    var table = $('#example').DataTable({
-                        "columnDefs": [{
-                            "visible": false,
-                            "targets": 2
-                        }],
-                        "order": [
-                            [2, 'asc']
-                        ],
-                        "displayLength": 15,
-                        "drawCallback": function(settings) {
-                            var api = this.api();
-                            var rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            var last = null;
-                            api.column(2, {
-                                page: 'current'
-                            }).data().each(function(group, i) {
-                                if (last !== group) {
-                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                    last = group;
-                                }
-                            });
-                        }
-                    });
-                    // Order by the grouping
-                    $('#example tbody').on('click', 'tr.group', function() {
-                        var currentOrder = table.order()[0];
-                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                            table.order([2, 'desc']).draw();
-                        } else {
-                            table.order([2, 'asc']).draw();
-                        }
-                    });
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 15,
+                    "drawCallback": function(settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function(group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function() {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
                 });
             });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    </script>
 </body>
 
 
