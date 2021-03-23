@@ -47,19 +47,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $num = 1;
+                                foreach($lead as $data){ ?>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?= $num ?></td>
+                                    <td><?= $data->NAMA ?></td>
+                                    <td><?= $data->TOPIC ?></td>
+                                    <td><?= $data->CRM_STATUS ?></td>
                                     <td>
                                         <a href="" class="btn btn-info"><i class="far fa-edit"></i></a>
-                                        <a href="" class="btn btn-success"><i class="fas fa-phone"></i></a>
-                                        <a href="" class="btn btn-dark"><i class="fas fa-phone-slash"></i></a>
+                                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_LEADS;?>"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
+                                <?php 
+                                $num++;
+                                }?>
                             </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links(); ?>
                         </div>
                     </div>
 
@@ -69,6 +74,28 @@
                 © 2019 Material Pro Admin by wrappixel.com
             </footer>
         </div>
+        <?php foreach($lead as $data){ ?>
+        <div class="modal fade" id="modal_hapus<?= $data->ID_LEADS; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url('sbu/hapus')?>">
+                <div class="modal-body">
+                    <p>Anda yakin mau menghapus!</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_sbu" value="<?php echo $data->ID_LEADS?>">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    <?php } ?>
         <!-- /content -->
         <?php $this->load->view('template/jquery'); ?>
         <script>

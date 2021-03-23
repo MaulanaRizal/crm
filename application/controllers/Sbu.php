@@ -8,7 +8,7 @@ class SBU extends CI_Controller{
 	public function index(){
 		$sbu =  $this->sbu->show();
 		// var_dump($sbu);
-		$config = pagination('http://localhost/crm/sbu/index/',$sbu->num_rows(),20);
+		$config = pagination('http://localhost/crm/sbu/index/',$sbu->num_rows(),10);
 
 		$this->pagination->initialize($config);
 		$data['start']	= $this->uri->segment(3);
@@ -19,7 +19,7 @@ class SBU extends CI_Controller{
 		// $data["sbu"] = $this->sbu->show()->result();
 		// $this->load->view('page/sbu/tampil', $data);
 	public function tambah(){
-		$this->form_validation->set_rules('sbu_region', 'SBU_REGION', 'required');
+		$this->form_validation->set_rules('sbu_region', 'SBU_REGION', 'required|is_unique[sbu.SBU_REGION]');
 		$this->form_validation->set_rules('deskripsi', 'DESKRIPSI', 'required');
 		if($this->form_validation->run() == false){
 			$error = array(

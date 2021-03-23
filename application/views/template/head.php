@@ -44,6 +44,12 @@
             right: 20px;
             padding: 25px;
         }
+        .save-button1 {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 25px;
+        }
 
 
     </style>

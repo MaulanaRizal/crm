@@ -39,13 +39,13 @@ class Alamat extends CI_Controller {
     }
     public function insert()
     {
-        // var_dump($_POST);
         
         $prov = $this->alamat->getData('provinces',array('id'=>$_POST['provinsi']))->result();
         $kab = $this->alamat->getData('regencies',array('id'=>$_POST['kabupaten']))->result();
         $kec = $this->alamat->getData('districts',array('id'=>$_POST['kecamatan']))->result();
         $alamat = $this->alamat->getTable('addreess')->result();
-        $no_adr = 'ADR-'.(date('y')*10000000)+$alamat[0]->ID_ADDRESS.$_SESSION['ID_USER'] ;
+        $no = (date('y')*10000000)+$alamat[0]->ID_ADDRESS.$_SESSION['ID_USER'];
+        $no_adr = 'ADR-'.$no;
         echo $no_adr.'<br>';
         $addr = $_POST['jalan'].' , Kecamatan '.$kec[0]->name.', Kabupaten ,'.$kab[0]->name.',Provinsi '.$prov[0]->name.' , Indonesia'.' , '.$_POST['kode'];
         echo $addr;

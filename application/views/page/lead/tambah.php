@@ -26,132 +26,190 @@
                 </div>
                 <!-- Start Content -->
                 <div class="row d-flex justify-content-center">
-                         <?php if (!empty($_SESSION['message'])) { ?>
-                            <div class="alert alert-danger">
-                            <strong>Gagal!</strong><?= $_SESSION['message'] ?>
-                            </div>
-                        <?php } unset($_SESSION['message']);?>
-                    <div class="card col-lg-11">
+                    <div class="card col-md-9">
                         <div class="card-body">
-                            <div class="text-center">
-                                <h3> Form Tambah Lead Baru</h3>
-                            </div>
-                            <hr>
-                            <form method="post">
+                            <form action="<?= base_url('lead/simpan') ?>" method="post">
+                                <div class="table-responsive float-right col-lg-6">
+                                    <table>
+                                        <tr>
+                                            <th>Sumber Lead</th>
+                                            <th>Peringkat</th>
+                                            <th>Status</th>
+                                            <th>Pemilik*</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select name="sumber_lead" style="width: 100%">
+                                                    <option selected></option>
+                                                    <option>Iklan</option>
+                                                    <option>Rujukan Karyawan</option>
+                                                    <option>Rujukan Eksternal</option>
+                                                    <option>Partner</option>
+                                                    <option>Hubungan Masyarakat</option>
+                                                    <option>Seminar</option>
+                                                    <option>Pameran Dagang</option>
+                                                    <option>Web</option>
+                                                    <option>Dari Mulut ke Mulut</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="rating" style="width: 100%">
+                                                    <option selected></option>
+                                                    <option>Hot</option>
+                                                    <option>Warm</option>
+                                                    <option>Cold</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="status">
+                                                    <option selected>Baru</option>
+                                                    <option>Dihubungi</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input style="width:100%" type="text" readonly value="<?= $_SESSION['NAMA_LENGKAP'] ?>" name="pemilik">
+                                                <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle">Lead</h6>
+                                        <h4 class="card-title">New Lead</h4>
+                                    </div>
+                                </div>
+                                <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
+                                    <div class="col-md-8 offset-sm-2 text-center">
+                                        <div class="form-group row <?=form_error('topic') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Topic*</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Topic">
+                                                <input type="text" class="form-control" placeholder="Topic" name="topic">
+                                                <span class="text-danger"><?=form_error('topic')?></span>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row <?=form_error('nama') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Nama*</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Nama">
+                                                <input type="text" class="form-control" placeholder="Nama" name="nama">
+                                                <span class="text-danger"><?=form_error('nama')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Pekerjaan</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Pekerjaan">
+                                                <input type="text" class="form-control" placeholder="Pekerjaan" name="pekerjaan">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row <?=form_error('telepon') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Telepon</label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control" placeholder="Telepon">
+                                                <input type="number" class="form-control" placeholder="Telepon" name="telepon">
+                                                <span class="text-danger"><?=form_error('telepon')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Coordinat</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Coordinat">
+                                                <input type="text" class="form-control" placeholder="Coordinat" name="coordinat">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Alamat</label>
                                             <div class="col-md-9">
-                                                <a href="#"><textarea class="form-control" placeholder="Tulis Alamat Lengkap" disabled></textarea></a>
+                                                <textarea class="form-control" placeholder="Tulis Alamat Lengkap" name="alamat"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Penawaran</label>
                                             <div class="col-md-9">
-                                                <input type="date" class="form-control" placeholder="Penawaran">
+                                                <input type="date" class="form-control" placeholder="Penawaran" name="penawaran">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Penawaran Kembali</label>
                                             <div class="col-md-9">
-                                                <input type="date" class="form-control" placeholder="Penawaran Kembali">
+                                                <input type="date" class="form-control" placeholder="Penawaran Kembali" name="penawaran_kembali">
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-3">Sumber Lead</label>
-                                            <div class="col-md-9">
-                                                <select class="form-control">
-                                                    <option selected="">Pilih...</option>
-                                                    <option value="1">Iklan</option>
-                                                    <option value="2">Rujukan Karyawan</option>
-                                                    <option value="3">Rujukan Eksternal</option>
-                                                    <option value="4">Partner</option>
-                                                    <option value="5">Hubungan Masyarakat</option>
-                                                    <option value="6">Seminar</option>
-                                                    <option value="7">Pameran Dagang</option>
-                                                    <option value="8">Web</option>
-                                                    <option value="9">Dari Mulut ke Mulut</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-3">Rating</label>
-                                            <div class="col-md-9">
-                                                <select class="form-control">
-                                                    <option selected="">Pilih...</option>
-                                                    <option value="1">Hot</option>
-                                                    <option value="2">Warm</option>
-                                                    <option value="3">Cold</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-3">Status</label>
-                                            <div class="col-md-9">
-                                                <select class="form-control">
-                                                    <option selected="">Pilih...</option>
-                                                    <option value="1">New</option>
-                                                    <option value="2">Contacted</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-3">Pemilik</label>
-                                            <div class="input-group col-md-9">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="ti-user"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="Pemilik">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-center">
-                                            <h5>Aktivitas</h5>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="" data-toggle="modal" data-target="#telepon">Tambah Panggilan Telepon</a> | 
-                                            <a href="" data-toggle="modal" data-target="#tugas">Tambah Tugas</a>
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                             </form>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Aktivitas</h4>
+                                <span>
+                                    <a href="#" id="daftarActivitasLead">Daftar</a>
+                                </span> | 
+                                <span>
+                                    <a id="tambah-panggilan-telepon" href="#">Tambah Panggilan Telepon</a>
+                                </span> | 
+                                <span>
+                                    <a href="#" id="tambah-tugas">Tambah Tugas</a>
+                                </span>
+                                <hr>
+                                <div id='tableActivityLead'>
+                                    <table id='tampilDaftarLead' class='table'>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Informasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td><i class='fas fa-sticky-note fa-2x'></i></td>
+                                            <td></td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="form-tambah-panggilan-telepon">
+                                    <form action="" class="form-material">
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <textarea class="form-control" type="text" name="" id="deskripsi"></textarea>
+                                        <label for="jatuh-tempo">Jatuh Tempo</label>
+                                        <input class=form-control name="" id="jatuh-tempo" type="date">
+                                        <label for="telepon-dengan">Telepon Dengan*</label>
+                                        <input type="text" name="telepon-dengan" class="form-control">
+                                        <label for="direction">Direction</label>
+                                        <select name="direction" id="direction" class="form-control">
+                                            <option>Keluar</option>
+                                            <option>Masuk</option>
+                                        </select>
+                                        <br><br>
+                                        <button  type="submit" class="btn-xs btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                                <div id="form-tambah-tugas">
+                                    <form action="" class="form-material">
+                                        <label for="subyek">Subyek*</label>
+                                        <input type="text" name="subyek" id="subyek" class="form-control">
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <textarea class="form-control" name="deskripsi" id="deskripsi"></textarea>
+                                        <label for="jatuh-tempo">Jatuh Tempo</label>
+                                        <input type="date" name="jatuh-tempo" id="jatuh-tempo" class="form-control">
+                                        <label for="prioritas">Prioritas</label>
+                                        <select name="prioritas" id="prioritas" class="form-control"> 
+                                            <option>Low</option>
+                                            <option>Normal</option>
+                                            <option>High</option>
+                                        </select>
+                                        <label for="pemilik">Pemilik*</label>
+                                        <input readonly type="text" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP']?>" class="form-control">
+                                        <input type="hidden" name="" value="<?= $_SESSION['ID_USER'] ?>">
+                                        <br><br>
+                                        <button class="btn-xs btn-primary" type="submit">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
                 <!-- End Content -->
             </div>
             <!-- footer -->
@@ -159,94 +217,44 @@
                 © 2019 Material Pro Admin by wrappixel.com
             </footer>
             <!-- End footer -->
-        </div>
-        <!-- modal telepon -->
-        <div class="modal fade" id="telepon" role="dialog">
-            <div class="modal-dialog">
-                <form method="post" action="change-goal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tambah Panggilan Telepon</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label class="control-label">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Jatuh Tempo</label>
-                                <input class="form-control" type="date" name="jatuh_tempo" id="jatuh_tempo">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Telepon Dengan *</label>
-                                <input class="form-control" type="text" name="telepon_dengan" id="telepon_dengan">
-                            </div> 
-                        </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-                            </div>
-                        </div>
-                    </form>
-            </div>
-        </div>
-        <!-- end modal telepon -->
-
-        <!-- modal task -->
-        <div class="modal fade" id="tugas" role="dialog">
-            <div class="modal-dialog">
-                <form method="post" action="change-goal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tambah Tugas</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label class="control-label">Subject *</label>
-                                <input class="form-control" type="text" name="subject" id="subject">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi_tugas" id="deskripsi_tugas"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Prioritas</label>
-                                <select class="form-control" name="prioritas" id="prioritas">
-                                    <option>rendah</option>
-                                    <option selected>normal</option>
-                                    <option>tinggi</option>
-                                </select>
-                            </div> 
-                            <div class="form-group">
-                                <label class="control-label">Pemilik *</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="ti-user"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="form-control" name="pemilik" id="pemilik">
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- end modal task -->
+    </div>
 
     </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
     <script type="text/javascript">
-        
+        $('#daftarAktivitasLead').ready(function(){
+            // daftar = document.getElementById('activityContent');
+            $('#tableActivityLead').show();
+            $('#form-tambah-panggilan-telepon').hide();
+            $('#form-tambah-tugas').hide();
+        });
+        $('#tambah-panggilan-telepon').click(function() {
+            console.log('tambah-panggilan-telepon');
+            // $('#activityContent').html(show);
+            $('#tableActivityLead').hide();
+            $('#form-tambah-panggilan-telepon').show();
+            $('#form-tambah-tugas').hide();
+            return false;
+        });
+        $('#daftarActivitasLead').click(function() {
+            console.log('daftarActivitasLead');
+            // $('#activityContent').html(show);
+            $('#tableActivityLead').show();
+            $('#form-tambah-panggilan-telepon').hide();
+            $('#form-tambah-tugas').hide();
+            return false;
+        });
+        $('#tambah-tugas').click(function() {
+            console.log('tambah-tugas');
+            // $('#activityContent').html(show);
+            $('#tableActivityLead').hide();
+            $('#form-tambah-panggilan-telepon').hide();
+            $('#form-tambah-tugas').show();
+            return false;
+        });
     </script>
+
         <script>
             $(document).ready(function() {
                 $('#myTable').DataTable();

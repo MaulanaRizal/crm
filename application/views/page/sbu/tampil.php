@@ -33,11 +33,26 @@
                     <div class="">
                         <div class="card">
                             <div class="card-body">
-                                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahMenu"><i class="fa fa-plus"></i> Tambah</button>
-                                <h3>Daftar SBU</h3>
+                                <div class="col-sm-6 float-right">
+                                    <div class="input-group">
+                                        <div class="input-group-append p-b-10">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="exampleInputuname3">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                            <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#tambahMenu"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>Table SBU</h3>
+                                <span>Table kelola sbu crm icon+</span>
                                 <hr>
-                                <div class="table-responsive">
-                                    <table class="table striped m-b-20" id="myTable">
+                                <div class="table-responsive m-t-40">
+                                    <table class="table striped m-b-20">
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
@@ -208,9 +223,6 @@
                     });
                 });
             });
-
-
-
         </script>
 </body>
 
