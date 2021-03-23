@@ -44,6 +44,7 @@
             right: 20px;
             padding: 25px;
         }
+<<<<<<< Updated upstream
         .save-button1 {
             position: fixed;
             bottom: 20px;
@@ -52,5 +53,10 @@
         }
 
 
+=======
+        .require{
+            color: red;
+        }
+>>>>>>> Stashed changes
     </style>
 </head>

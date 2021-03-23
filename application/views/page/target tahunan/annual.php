@@ -37,8 +37,8 @@
                             </div>
                         </div>
                         <select class='form-control col-md-3 float-right' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" name="periode" id="">
-                            <?php foreach($period as $periode): ?>
-                                <?php if ($period == $periode) : ?>
+                            <?php foreach ($period as $periode) : ?>
+                                <?php if ($periode == $tahun) : ?>
                                     <option selected value="#"><?= $periode ?></option>
                                 <?php else : ?>
                                     <option value="<?= base_url('target_tahunan/periode/' . $periode) ?>"><?= $periode ?></option>
@@ -58,7 +58,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('target_tahunan_pusat/delete') ?>" method="post">
+                            <form action="<?= base_url('target_tahunan/delete') ?>" method="post">
                                 <div class="modal-body">
                                     <p>Penghapusan ini akanbersifat permanen dan tidak bisa dikembalikan. Apakah anda yakin?</p>
                                     <input required type="checkbox" class='form-control check' name="check" id="check">
@@ -96,7 +96,7 @@
                                     <label for="yearPicker">Tahun Periode</label>
                                     <input required class='form-control' type="number" value="<?= date('Y') ?>" name="tahun" id="yearPicker">
                                     <hr>
-                                    <p>Penambahan periode target tahunan ini akan disesuaikan dengan kondisi Jumlah Sales saat ini. Apakah aperiodenda yakin akan menambahkanp  baru saat ini?</p>
+                                    <p>Penambahan periode target tahunan ini akan disesuaikan dengan kondisi Jumlah Sales saat ini. Apakah aperiodenda yakin akan menambahkanp baru saat ini?</p>
                                     <input required type="checkbox" class='form-control check' name="check" id="check-periode">
                                     <label for="check-periode">Ya, saya yakin.</label><br>
                                     <small style="color: red;" class="form-control-feedback hide alert-checkbox">checkbox tidak boleh kosong.</small>
@@ -133,8 +133,9 @@
                             </div>
                         </div>
                     </div>
+
                     <h3>Daftar Target Sales </h3>
-                    <span>Daftar target sales periode <?= date('Y') ?> </span>
+                    <span>Daftar target sales periode <?= $tahun ?> </span>
                     <hr>
                     <div class="table-responsive ">
                         <table class="table striped ">
@@ -146,15 +147,15 @@
                                     <th>Target</th>
                                     <th>Successfull Rate</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Action </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $num = 1 ?>
                                 <?php foreach ($saleses as $sales) : ?>
                                     <tr>
-                                        <td><?= $num++ ?></td>
-                                        <td><?= $sales->NAMA_LENGKAP ?></td>
+                                        <td><?= $num++ ?> </td>
+                                        <td><?= $sales->NAMA_LENGKAP ?> <?= $sales->PERIODE ?></td>
                                         <td>
                                             <?php $nominal = 2000000000; ?>
                                             Rp. <?= number_format($nominal, 2, ",", ".") ?>
@@ -179,12 +180,19 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="<?= base_url('target_tahunan/insert') ?>" method="post">
+                                                <form action="<?= base_url('target_tahunan/edit_target') ?>" method="post">
                                                     <div class="modal-body">
                                                         <label for="nominal" class="control-label">Nominal Target:</label>
-                                                        <input class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
-                                                        <input type="hidden" name="sales" value="<?= $sales->ID_USER ?>">
-                                                        <input type="hidden" name="tahun" value="<?= date('Y') ?>">
+                                                        <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
+                                                        <!-- <input class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep="."> -->
+                                                        <input type="hidden" name="annual" value="<?= $sales->ID_ANNUAL ?>">
+                                                        <?php if (empty($this->uri->segment(3))) : ?>
+                                                            <input type="hidden" name="tahun" value="<?= date('Y') ?>">
+                                                            <input type="hidden" name="uri" value="true">
+                                                        <?php else : ?>
+                                                            <input type="hidden" name="tahun" value="<?= $this->uri->segment(3); ?>">
+                                                            <input type="hidden" name="uri" value="false">
+                                                        <?php endif ?>
 
                                                     </div>
                                                     <div class="modal-footer">
@@ -209,7 +217,12 @@
         <!-- /content -->
         <?php $this->load->view('template/jquery'); ?>
         <script src="<?= base_url() ?>assets/crm-js/targetTahunan.js"></script>
-
+        <script src="<?= base_url('assets/crm-js/autoNumeric.js') ?>"></script>
+        <script>
+            $(document).ready(function() {
+                $('.rupiah').autoNumeric('init');
+            });
+        </script>
 </body>
 
 

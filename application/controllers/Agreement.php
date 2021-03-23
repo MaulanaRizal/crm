@@ -19,7 +19,7 @@ class Agreement extends CI_Controller{
 	}
 	public function insert()
 	{
-
+		var_dump($_POST);
 		$data = array (
 			'NO_AGREEMENT' 		=> '',
 			'TANGGAL_AGREEMENT' => $_POST['agr_date'],
@@ -42,8 +42,8 @@ class Agreement extends CI_Controller{
 			'DESKRIPSI'			=> $_POST['crm_deskrip'],
 		);
 		var_dump($data);
-		$this->model->insert('agreements',$data);
-		$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Ageement berhasil ditambahkan</div>");                        
+		// $this->model->insert('agreements',$data);
+		// $this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Ageement berhasil ditambahkan</div>");                        
 
 	}
 	
