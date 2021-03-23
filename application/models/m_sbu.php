@@ -21,6 +21,10 @@ class M_sbu extends CI_Model{
 	public function insert($table, $data){
         $this->db->insert($table, $data);
     }
+    public function search($keyword){
+        $data = $this->db->query("select * from sbu where SBU_OWNER like '$keyword' or SBU_REGION like '$keyword'");
+        return $data;
+    }
     public function delete($id_sbu){
     	$hasil = $this->db->query("delete from sbu where ID_SBU = '$id_sbu'");
     	return $hasil;

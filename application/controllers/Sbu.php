@@ -19,10 +19,12 @@ class SBU extends CI_Controller{
 		// $data["sbu"] = $this->sbu->show()->result();
 		// $this->load->view('page/sbu/tampil', $data);
 	public function tambah(){
-		$this->form_validation->set_rules('sbu_region', 'SBU_REGION', 'required|is_unique[sbu.SBU_REGION]');
-		$this->form_validation->set_rules('deskripsi', 'DESKRIPSI', 'required');
+		$this->form_validation->set_rules('sbu_owner', 'sbu owner', 'required|is_unique[sbu.SBU_OWNER]');
+		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required|is_unique[sbu.SBU_REGION]');
+		$this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
 		if($this->form_validation->run() == false){
 			$error = array(
+				'owner_error' => form_error('sbu_owner'),
 				'sbu_error' => form_error('sbu_region'),
 				'deskripsi_error' => form_error('deskripsi')			
 			);
@@ -31,6 +33,7 @@ class SBU extends CI_Controller{
 		else{
 			echo json_encode(['success' => 'Record added successfully.']);
 			$data = array(
+				'SBU_OWNER' => $this->input->post('sbu_owner'),
 				'SBU_REGION' => $this->input->post('sbu_region'),
 				'DESKRIPSI' => $this->input->post('deskripsi')
 			);
@@ -38,14 +41,39 @@ class SBU extends CI_Controller{
 		}
 	}
 	public function ubah(){
-		$id_sbu = $this->input->post('id_sbu');
-		$data = array(
-			'SBU_REGION' => $this->input->post('sbu_region'),
-			'DESKRIPSI' => $this->input->post('deskripsi') 
-		);
-		$this->sbu->update($data, $id_sbu);
-		redirect('sbu');
+		$this->form_validation->set_rules('sbu_owner', 'sbu owner', 'required|is_unique[sbu.SBU_OWNER]');
+		$this->form_validation->set_rules('sbu_region', 'wilayah SBU', 'required|is_unique[sbu.SBU_REGION]');
+		$this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+		if($this->form_validation->run() == false){
+			$error = array(
+				'owner_error_edit' => form_error('sbu_owner'),
+				'sbu_error_edit' => form_error('sbu_region'),
+				'deskripsi_error_edit' => form_error('deskripsi')			
+			);
+			echo json_encode(['error' => $error]);
+		}
+		else{
+			echo json_encode(['success' => 'Record added successfully.']);
+			$id_sbu = $this->input->post('id_sbu');
+			$data = array(
+				'SBU_OWNER' => $this->input->post('sbu_owner'),
+				'SBU_REGION' => $this->input->post('sbu_region'),
+				'DESKRIPSI' => $this->input->post('deskripsi') 
+			);
+			$this->sbu->update($data, $id_sbu);
+		}
 	}
+
+	public function cari(){
+		$keyword = $this->input->post('keyword');
+		$data = $this->sbu->search($keyword);
+		$hasil = $this->load->view('page/sbu/view', array('sbu' => $data), true);
+		$callback = array(
+			'hasil' => $hasil
+		);
+		echo json_encode($callback);
+	}
+
 	public function hapus(){
 		$id_sbu = $this->input->post('id_sbu');
 		$this->sbu->delete($id_sbu);

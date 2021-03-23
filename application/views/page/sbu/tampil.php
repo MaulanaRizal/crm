@@ -56,6 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
+                                                <th>SBU Owner</th>
                                                 <th>Wilayah SBU</th>
                                                 <th width=500>Deskripsi</th>
                                                 <th>Aksi</th>
@@ -66,6 +67,7 @@
                                             foreach($sbu as $data){ ?>
                                             <tr>
                                                 <td><?= $num ?></td>
+                                                <td><?= $data->SBU_OWNER ?></td>
                                                 <td><?= $data->SBU_REGION ?></td>
                                                 <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
@@ -108,6 +110,11 @@
                         <form novalidate class="item" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
+                                    <label for="recipient-name" class="control-label">SBU Owner:</label>
+                                    <input type="text" class="form-control" id="recipient-name1" name="sbu_owner">
+                                    <span id="owner_error" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
                                     <label for="recipient-name" class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
                                     <span id="sbu_error" class="text-danger"></span>
@@ -137,23 +144,28 @@
                             <h4 class="modal-title" id="exampleModalLabel1">Edit Data SBU</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <form action="<?= base_url('sbu/ubah') ?>" method="post">
+                        <form class="item" novalidate method="post">
                             <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="control-label">SBU Owner:</label>
+                                    <input type="text" class="form-control" name="sbu_owner" value="<?= $data->SBU_OWNER ?>">
+                                    <span id="owner_error_edit" class="text-danger"></span>
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" name="sbu_region" value="<?= $data->SBU_REGION ?>">
-                                    <span id="sbu_error" class="text-danger"></span>
+                                    <span id="sbu_error_edit" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 name="deskripsi"><?= $data->DESKRIPSI ?></textarea>
-                                    <span id="deskripsi_error" class="text-danger"></span>
+                                    <span id="deskripsi_error_edit" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <input type="hidden" name="id_sbu" value="<?php echo $data->ID_SBU?>">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="edit" id="edit">Simpan&nbsp;</button>
+                                <button type="button" class="btn btn-primary" name="edit" id="edit">Simpan&nbsp;</button>
                             </div>
                         </form>
                     </div>
@@ -189,18 +201,6 @@
 
         <?php $this->load->view('template/jquery'); ?>
         <script type="text/javascript">
-            $(document).ready(function(){
-                var data = $("#tambahMenu").serialize();
-                var url = "sbu/tambah"
-                    $.ajax({
-                        type:"POST",
-                        url:"<?= base_url() ?>"+url,
-                        data:dataString,
-                        success:function (data){
-                            alert(data);
-                        }
-                    });
-            })
 
             $(document).ready(function(){
                 $("#tambah").click(function(e){
@@ -216,6 +216,7 @@
                                 location.href = "<?= base_url('sbu'); ?>";
                             }
                             else{
+                                $("#owner_error").html(data.error.owner_error);
                                 $("#sbu_error").html(data.error.sbu_error);
                                 $("#deskripsi_error").html(data.error.deskripsi_error);
                             }
@@ -223,6 +224,31 @@
                     });
                 });
             });
+            
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#edit").click(function(e){
+                    e.preventDefault();
+                    var data = $('.item').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "<?= base_url('sbu/ubah'); ?>",
+                        data: data,
+                        success: function(data){
+                            if ($.isEmptyObject(data.error)) {
+                                location.href = "<?= base_url('sbu'); ?>";
+                            }
+                            else{
+                                $("#owner_error_edit").html(data.error.owner_error_edit);
+                                $("#sbu_error_edit").html(data.error.sbu_error_edit);
+                                $("#deskripsi_error_edit").html(data.error.deskripsi_error_edit);
+                            }
+                        }
+                    });
+                });
+            });            
         </script>
 </body>
 
