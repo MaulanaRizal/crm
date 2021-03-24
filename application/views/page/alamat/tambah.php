@@ -40,38 +40,26 @@
                             <hr>
                             <form action="<?= base_url('alamat/insert') ?> " method="post">
                                 <div class="form-group row">
-                                    <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
+                                    <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control" required name=nama id="nama" placeholder="Nama lengkap...">
+                                        <small style="color: red;" id=nama-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="pelanggan" class="col-sm-3 text-right control-label col-form-label">Pelanggan*</label>
+                                    <label for="pelanggan" class="col-sm-3 text-right control-label col-form-label">Pelanggan <span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select class="select2" style="width: 100%" id=pelanggan name=pelanggan required>
                                             <option value="" disabled selected>Select</option>
-                                            <optgroup label="Central Time Zone">
-                                                <option value="AL">Alabama</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="WI">Wisconsin</option>
-                                            </optgroup>
+                                            <?php foreach ($pelanggan as $p) : ?>
+                                                <option value="<?= $p->ID_OPPORTUNITY ?>"><?= $p->TOPIC ?> - <?= $p->PELANGGAN ?></option>
+                                            <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=pelanggan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kategori" class="col-sm-3 text-right control-label col-form-label">Kategori*</label>
+                                    <label for="kategori" class="col-sm-3 text-right control-label col-form-label">Kategori<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required id="kategori" class="form-control" name='kategori'>
                                             <option value="" disabled selected>Select</option>
@@ -79,10 +67,11 @@
                                             <option value="Shipping">Shipping</option>
                                             <option value="Link">Link</option>
                                         </select>
+                                        <small style="color: red;" id=kategori-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="tipe" class="col-sm-3 text-right control-label col-form-label">Tipe*</label>
+                                    <label for="tipe" class="col-sm-3 text-right control-label col-form-label">Tipe<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <div class="demo-radio-button">
                                             <input required name="tipe" name=tipe value="Terminating" type="radio" id="terminating" />
@@ -90,6 +79,7 @@
                                             <input required name="tipe" name="tipe" value="Originating" type="radio" id="originating" />
                                             <label for="originating">Origninating</label>
                                         </div>
+                                        <small style="color: red;" id=tipe-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -99,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="sbu" class="col-sm-3 text-right control-label col-form-label">SBU*</label>
+                                    <label for="sbu" class="col-sm-3 text-right control-label col-form-label">SBU<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required select class='select2' style="width: 100%" name="sbu" id="sbu" class="form-control" required>
                                             <option value="" disabled selected>Select</option>
@@ -107,10 +97,11 @@
                                                 <option value="<?= $sbu->ID_SBU ?>"><?= $sbu->SBU_REGION ?></option>
                                             <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=sbu-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="provinsi" class="col-sm-3 text-right control-label col-form-label">Provinsi*</label>
+                                    <label for="provinsi" class="col-sm-3 text-right control-label col-form-label">Provinsi<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required class='select2' style="width: 100%" name="provinsi" id="provinsi" class="form-control">
                                             <option value="" disabled selected>Select</option>
@@ -118,29 +109,32 @@
                                                 <option value="<?= $provinsi->id ?>"><?= $provinsi->name ?></option>
                                             <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=provinsi-alert></small>
                                     </div>
                                 </div>
-                                <!-- <p id=kabupaten></p> -->
                                 <div class="form-group row">
-                                    <label for="kabupaten" class="col-sm-3 text-right control-label col-form-label">Kabupaten*</label>
+                                    <label for="kabupaten" class="col-sm-3 text-right control-label col-form-label">Kabupaten<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required class='select2' style="width: 100%" name="kabupaten" id="kabupaten" class="form-control">
                                             <option value="" disabled selected>Select</option>
                                         </select>
+                                        <small style="color: red;" id=kabupaten-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kecamatan" class="col-sm-3 text-right control-label col-form-label">Kecamatan*</label>
+                                    <label for="kecamatan" class="col-sm-3 text-right control-label col-form-label">Kecamatan<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required class='select2' style="width: 100%" name="kecamatan" id="kecamatan" onclick="" class="form-control">
                                             <option value="" disabled selected>Select</option>
                                         </select>
+                                        <small style="color: red;" id=kecamatan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="jalan" class="col-sm-3 text-right control-label col-form-label">Jalan*</label>
+                                    <label for="jalan" class="col-sm-3 text-right control-label col-form-label">Jalan<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <input required type="text" class="form-control" required name=jalan id="jalan" placeholder="Jalan...">
+                                        <small style="color: red;" id=jalan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -149,12 +143,12 @@
                                         <input type="text" onkeypress="numberInput(event)" class="form-control" name=kode id="kode" placeholder="Kode pos...">
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="form-group m-b-0">
-                                    <div class="offset-sm-3 col-sm-7">
-                                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" > Submit</button>
-                                    </div>
+                                <div class="form-group row offset-md-3">
+                                    
+                                    <input id="status_alamat" name="status_alamat" type="checkbox">
+                                    <label for="status_alamat" class="col-md-6 control-label">Status Aktif</label>
                                 </div>
+                                <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                             </form>
                         </div>
                     </div>
@@ -168,6 +162,8 @@
         </div>
         <?php $this->load->view('template/jquery'); ?>
         <script src="<?= base_url() ?>database/wilayah.json"></script>
+        <script src="<?= base_url('assets/crm-js/alamat.js') ?>"></script>
+
         <script>
             $(".select2").select2();
 
@@ -215,6 +211,11 @@
                 });
 
             });
+            document.addEventListener('invalid', (function() {
+                return function(e) {
+                    e.preventDefault();
+                };
+            })(), true);
         </script>
 
 </body>

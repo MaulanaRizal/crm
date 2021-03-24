@@ -41,10 +41,10 @@ class Agreement extends CI_Controller{
 			'ID_USER '			=> $_POST['crm_owner'],
 			'DESKRIPSI'			=> $_POST['crm_deskrip'],
 		);
-		var_dump($data);
-		// $this->model->insert('agreements',$data);
-		// $this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Ageement berhasil ditambahkan</div>");                        
-
+		// var_dump($data);
+		$this->model->insert('agreements',$data);
+		$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Ageement berhasil ditambahkan</div>");                        
+		// redirect('agreement');
 	}
 	
 }

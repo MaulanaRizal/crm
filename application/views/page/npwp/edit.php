@@ -38,18 +38,18 @@
                                 <span>Masukan data NPWP baru.</span>
                             </div>
                             <hr>
-                            <form action="<?= base_url('npwp/insert') ?> " method="post">
+                            <form action="<?= base_url('npwp/update/'.$data[0]->ID_NPWP) ?> " method="post">
                                 <div class="form-group row">
                                     <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama NPWP</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" name=nama id="nama" placeholder="Nama NPWP">
+                                        <input type="text" class="form-control" name=nama id="nama" placeholder="Nama NPWP" value="<?= $data[0]->NAMA_NPWP ?>">
                                         <small style="color: red;" id='nama-alert'></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="no_pajak" class="col-sm-3 text-right control-label col-form-label">Nomor Pajak <span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required name=no_pajak id="no_pajak" placeholder="Nomor pajak">
+                                        <input type="text" class="form-control" required name=no_pajak id="no_pajak" placeholder="Nomor pajak" value='<?= $data[0]->NO_PAJAK ?>'>
                                         <small style="color: red;" id='no_pajak-alert'></small>
                                     </div>
                                 </div>
@@ -58,8 +58,12 @@
                                     <div class="col-sm-7">
                                         <select required name="pemilik" class='select2' style="width:100%;" id="pemilik">
                                             <option value="" selected>Pilih...</option>
-                                            <?php foreach($opportunity as $o): ?>
-                                            <option value="<?= $o->ID_OPPORTUNITY  ?>"><?= $o->TOPIC ?> - <?= $o->PELANGGAN ?></option>
+                                            <?php foreach ($opportunity as $opp) : ?>
+                                                <?php if ($opp->ID_OPPORTUNITY == $data[0]->ID_OPPORTUNITY) : ?>
+                                                    <option value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->PELANGGAN ?></option>
+                                                <?php else : ?>
+                                                    <option selected value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->PELANGGAN ?></option>
+                                                <?php endif ?>
                                             <?php endforeach ?>
                                         </select>
                                         <small style="color: red;" id='pemilik-alert'></small>
@@ -71,28 +75,36 @@
                                         <select name="npwp_terkait" class='select2' style="width:100%;" id="npwp_terkait">
                                             <option value="" selected>Pilih...</option>
                                             <?php foreach ($npwp as $n) : ?>
-                                                <option value="<?= $n->ID_NPWP ?>"><?= $n->NAMA_NPWP ?> - <?= $n->NO_PAJAK ?></option>
+                                                <?php if ($n->ID_NPWP == $data[0]->ID_NPWP) : ?>
+                                                    <option selected value="<?= $n->ID_NPWP ?>"><?= $n->NAMA_NPWP ?> - <?= $n->NO_PAJAK ?></option>
+                                                <?php else : ?>
+                                                    <option value="<?= $n->ID_NPWP ?>"><?= $n->NAMA_NPWP ?> - <?= $n->NO_PAJAK ?></option>
+                                                <?php endif ?>
                                             <?php endforeach ?>
                                         </select>
                                         <small style="color: red;" id='npwp_terkait-alert'></small>
                                     </div>
                                 </div>
                                 <div class="form-group row offset-sm-3">
+                                <?php if($data[0]->IS_PRIMARY=='yes'): ?>
+                                    <input id="isPrimary" checked value="yes" name="isPrimary" type="checkbox">
+                                    <label for="isPrimary" class="col-md-7 control-label">NPWP Utama</label>
+                                    <?php else: ?>
                                     <input id="isPrimary" value="yes" name="isPrimary" type="checkbox">
                                     <label for="isPrimary" class="col-md-7 control-label">NPWP Utama</label>
-                                </div>
-
-                                <div class="form-group m-b-0">
-                                    <div class="offset-sm-3 col-sm-7">
-                                        <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"> <i class='fa fa-save'></i></button>
-                                    </div>
+                                <?php endif ?>
                                 </div>
                                 <div class="form-group row">
                                     <label for="alamat" class="col-sm-3 text-right control-label">Alamat <span class=require>*</span></label>
                                     <div class="col-sm-7 ">
-                                        <textarea maxlength="1000" required name="alamat" class="form-control" id="alamat" cols="70" rows="4"></textarea>
-                                        <small>Sisa karakter : <span id="char-alamat">1000</span></small><br>
+                                        <textarea maxlength="1000" required name="alamat" class="form-control" id="alamat" cols="70" rows="4"><?= $data[0]->ALAMAT ?></textarea>
+                                        <small>Sisa karakter : <span id="char-alamat"><?= 1000-strlen($data[0]->ALAMAT) ?></span></small><br>
                                         <small style="color: red;" id='alamat-alert'></small>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-0">
+                                    <div class="offset-sm-3 col-sm-7">
+                                        <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"> <i class='fa fa-save'></i></button>
                                     </div>
                                 </div>
                             </form>

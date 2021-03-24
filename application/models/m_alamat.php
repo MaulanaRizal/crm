@@ -14,8 +14,8 @@ Class M_alamat extends CI_Model {
     {  
 
         $this->db->select();
-        $this->db->from('addreess');
-        $this->db->join('users',"addreess.CREATED_BY=users.ID_USER");
+        $this->db->from('users');
+        $this->db->join('addreess',"users.ID_USER=addreess.CREATED_BY");
         $this->db->limit($limit,$offset);
         return $this->db->get();
     }
@@ -28,9 +28,9 @@ Class M_alamat extends CI_Model {
         $result = $this->db->get_where($table,$data);
         return $result;
     }
-    public function update($table,$data,$id)
+    public function update($table,$data,$where)
     {
-        $this->db->update($table,$data,$id);
+        $this->db->update($table,$data,$where);
     }
     public function delete($table,$where)
     {

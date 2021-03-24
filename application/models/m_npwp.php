@@ -27,6 +27,14 @@ Class M_npwp extends CI_Model {
     {
         $this->db->delete($table,$where);
     }
+    public function daftarNpwp($limit,$offset)
+    {
+        $this->db->select();
+        $this->db->from('npwp');
+        $this->db->join('opportunities','npwp.ID_OPPORTUNITY=opportunities.ID_OPPORTUNITY');
+        $this->db->limit($limit,$offset);
+        return $this->db->get();
+    }
     
 
 }

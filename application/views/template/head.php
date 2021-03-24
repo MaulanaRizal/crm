@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -44,19 +45,9 @@
             right: 20px;
             padding: 25px;
         }
-<<<<<<< Updated upstream
-        .save-button1 {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 25px;
-        }
 
-
-=======
-        .require{
+        .require {
             color: red;
         }
->>>>>>> Stashed changes
     </style>
 </head>

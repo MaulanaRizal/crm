@@ -31,7 +31,18 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <a href="<?= base_url('alamat/tambah') ?>" class="btn btn-primary float-right"> <i class="fa fa-plus"></i> Tambah</a>
+                    <div class="col-sm-6 float-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                <a href="<?= base_url() ?>alamat/tambah" class="btn btn-secondary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                <!-- <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="fa fa-trash"></i> hapus</a> -->
+                                </div>
+                            </div>
+                        </div>
                         <h3>Table Alamat </h3>
                         <span>Table kelola alamat crm icon+</span>
                         <hr>
@@ -48,10 +59,7 @@
                                         <th>Kabupaten</th>
                                         <th>Kecamatan</th>
                                         <th>Status</th>
-                                        <th>Created On</th>
-                                        <th>Created By</th>
                                         <th width=100>Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,10 +87,9 @@
                                                     <label class="label label-inverse">Inactive</label><br>
                                                 <?php endif?>
                                             </td>
-                                            <td><?= $alamat->CREATED_ON; ?></td>
-                                            <td><?= $alamat->NAMA_LENGKAP ; ?></td>
                                             <td>
-                                                <button class="btn btn-danger" data-toggle="modal" data-target="#hapus-<?= $alamat->ID_ADDRESS ?>"><i class="fas fa-trash"></i></button>
+                                                <a href="<?= base_url('alamat/edit/'.$alamat->ID_ADDRESS) ?>" class='btn btn-info btn-sm m-r-5'><i class='fa fa-edit'></i></a>
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus-<?= $alamat->ID_ADDRESS ?>"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
 
@@ -108,7 +115,6 @@
                                             </div>
                                         </div>
                                         <!-- end modalhapus -->
-
                                         <?php $num++ ?>
                                     <?php endforeach ?>
                                 </tbody>

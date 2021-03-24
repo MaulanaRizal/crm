@@ -59,31 +59,62 @@
                                         <th width=50>#</th>
                                         <th>Nama NPWP</th>
                                         <th>No Pajak</th>
+                                        <th>Topic</th>
+                                        <th>Pelanggan</th>
                                         <th width=50>NPWP Utama</th>
                                         <th style="width: 30%;">Alamat</th>
-                                        <th>Action</th>
+                                        <th width=100>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $num = 1 ?>
+                                    <?php $num = 0 ?>
                                     <?php foreach ($npwp as $n) : ?>
                                         <tr>
-                                            <td><?= $num++ ?></td>
+                                            <td><?= ++$num ?></td>
                                             <td><?= $n->NAMA_NPWP ?></td>
                                             <td><?= $n->NO_PAJAK ?></td>
-                                            <td>
+                                            <td><?= $n->TOPIC ?></td>
+                                            <td><?= $n->PELANGGAN ?></td>
+                                            <td class='text-center'>
                                                 <?php if ($n->IS_PRIMARY == 'yes') : ?>
                                                     <i class='fa fa-check'></i>
                                                 <?php else : ?>
-                                                    -
+                                                    <b>-</b>
                                                 <?php endif ?>
                                             </td>
                                             <td><?= $n->ALAMAT ?></td>
                                             <td>
-                                                <a href="" class='btn btn-primary btn-sm m-r-5'><i class='fa fa-edit fa-sm'></i></a>
-                                                <a href="" class='btn btn-danger btn-sm'><i class='fa fa-trash fa-sm'></i></a>
+                                                <a href="<?= base_url('npwp/edit/'.$n->ID_NPWP) ?>" class='btn btn-primary btn-sm m-r-5'><i class='fa fa-edit fa-sm'></i></a>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $num ?>"><i class='fa fa-trash fa-sm'></i></button>
                                             </td>
                                         </tr>
+
+                                        <!-- Modal Hapus -->
+                                        <div class="modal fade" id="hapus<?= $num ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Peringatan !</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                        Apakah anda yakin ingin menghapus <?= $n->NAMA_NPWP ?>dari daftar daftar NPWP?
+                                                        </p>
+                                                        <p>
+                                                        Penghapusan ini bersifat permanent dan tidak bisa dikembalikan lagi.
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="<?= base_url('npwp/delete/'.$n->ID_NPWP) ?>" class='btn btn-danger'>Hapus</a>
+                                                        <!-- <button type="button" class="btn btn-danger">Hapus</button> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     <?php endforeach ?>
                                 </tbody>
                             </table>

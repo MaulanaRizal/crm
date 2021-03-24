@@ -15,14 +15,16 @@ class Alamat extends CI_Controller {
         $config = pagination('http://localhost/crm/alamat/index/',$table->num_rows(),20);
 
 		$this->pagination->initialize($config);
-		$data['start']	= $this->uri->segment(3);
-        $data['title'] = 'Alamat';
-        $data['alamats']= $this->alamat->getTableLimit($config['per_page'],$data['start'])->result();
+		$data['start']      = $this->uri->segment(3);
+        $data['title']      = 'Alamat';
+        $data['alamats']    = $this->alamat->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/alamat/tampil',$data);
 	}
 	public function tambah()
 	{
+
         $data['title']  = 'Tambah Alamat';
+        $data['pelanggan']  = $this->alamat->getTable('opportunities')->result();
         $data['sbus']   =  $this->alamat->getTable('sbu')->result();
         $data['prov']   = $this->alamat->getTable('provinces')->result();
 		$this->load->view('page/alamat/tambah',$data);
@@ -39,38 +41,59 @@ class Alamat extends CI_Controller {
     }
     public function insert()
     {
-        
-        $prov = $this->alamat->getData('provinces',array('id'=>$_POST['provinsi']))->result();
-        $kab = $this->alamat->getData('regencies',array('id'=>$_POST['kabupaten']))->result();
-        $kec = $this->alamat->getData('districts',array('id'=>$_POST['kecamatan']))->result();
-        $alamat = $this->alamat->getTable('addreess')->result();
-        $no = (date('y')*10000000)+$alamat[0]->ID_ADDRESS.$_SESSION['ID_USER'];
-        $no_adr = 'ADR-'.$no;
-        echo $no_adr.'<br>';
-        $addr = $_POST['jalan'].' , Kecamatan '.$kec[0]->name.', Kabupaten ,'.$kab[0]->name.',Provinsi '.$prov[0]->name.' , Indonesia'.' , '.$_POST['kode'];
-        echo $addr;
-        $data = array(
-            'NO_ADDRESS'    => $no_adr,
-            // 'ID_OPPORTUNITY'=> $_POST['pelanggan'],
-            'NAMA'          => $_POST['nama'],
-            'KATEGORI'      => $_POST['kategori'],
-            'TIPE'          => $_POST['tipe'],
-            'KORDINAT'      => $_POST['koordinat'],
-            'CABANG_SBU'    => $_POST['sbu'],
-            'NEGARA'        => 'Indonesia',
-            'PROVINSI'      => $prov[0]->name,
-            'KABUPATEN'     => $kab[0]->name,
-            'KECAMATAN'     => $kec[0]->name,
-            'JALAN'         => $_POST['jalan'],
-            'KODE_POST'     => $_POST['kode'],
-            'ALAMAT'        => $addr,
-            'CRM_STATUS'    => 'Active',
-            'CREATED_BY'    => $_SESSION['ID_USER']
-        );
-        $this->alamat->insert('addreess',$data);
-		$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Alamat berhasil ditambahkan</div>");                        
+        // Form Validation
+        var_dump($_POST);
+        $this->form_validation->set_rules('nama','','required');
+        $this->form_validation->set_rules('pelanggan','','required');
+        $this->form_validation->set_rules('kategori','','required');
+        $this->form_validation->set_rules('tipe','','required');
+        $this->form_validation->set_rules('sbu','','required');
+        $this->form_validation->set_rules('provinsi','','required');
+        $this->form_validation->set_rules('kabupaten','','required');
+        $this->form_validation->set_rules('kecamatan','','required');
+        $this->form_validation->set_rules('jalan','','required');
 
-        redirect('alamat');
+        if($this->form_validation->run()==true){
+            $prov = $this->alamat->getData('provinces',array('id'=>$_POST['provinsi']))->result();
+            $kab = $this->alamat->getData('regencies',array('id'=>$_POST['kabupaten']))->result();
+            $kec = $this->alamat->getData('districts',array('id'=>$_POST['kecamatan']))->result();
+            $_POST['status_alamat'];
+            $alamat = $this->alamat->getTable('addreess')->result();
+            $no = (date('y')*10000000)+$alamat[0]->ID_ADDRESS.$_SESSION['ID_USER'];
+            $addr = $_POST['jalan'].' , Kecamatan '.$kec[0]->name.', Kabupaten ,'.$kab[0]->name.',Provinsi '.$prov[0]->name.' , Indonesia'.' , '.$_POST['kode'];
+            $no_adr = 'ADR-'.$no;
+            if(empty($_POST['status_alamat'])){
+                $status = 'Inactive';
+            }else{
+                $status = 'Active';
+            }
+            $data = array(
+                'NO_ADDRESS'    => $no_adr,
+                'ID_OPPORTUNITY'=> $_POST['pelanggan'],
+                'NAMA'          => $_POST['nama'],
+                'KATEGORI'      => $_POST['kategori'],
+                'TIPE'          => $_POST['tipe'],
+                'KORDINAT'      => $_POST['koordinat'],
+                'CABANG_SBU'    => $_POST['sbu'],
+                'NEGARA'        => 'Indonesia',
+                'PROVINSI'      => $prov[0]->name,
+                'KABUPATEN'     => $kab[0]->name,
+                'KECAMATAN'     => $kec[0]->name,
+                'JALAN'         => $_POST['jalan'],
+                'KODE_POST'     => $_POST['kode'],
+                'ALAMAT'        => $addr,
+                'CRM_STATUS'    => $status,
+                'CREATED_BY'    => $_SESSION['ID_USER'],
+                'CRM_STATUS'    => $status,
+            );
+            var_dump($data);
+            $this->alamat->insert('addreess',$data);
+            $this->session->set_flashdata('message',"<div class='alert alert-success'>Alamat berhasil ditambahkan</div>");                        
+            redirect('alamat');
+        }else{
+            $this->session->set_flashdata('message',"<div class='alert alert-danger'>Terjadi kesalahanmohon coba lagi</div>");                        
+            redirect('alamat');
+        }
     }
     public function delete($id)
     {
@@ -81,42 +104,56 @@ class Alamat extends CI_Controller {
     }
     public function edit($id)
     {
-        $data['title'] = "Edit Alamat";
-        $data['sbus']   =  $this->alamat->getTable('sbu')->result();
+        $data['title']  = "Edit Alamat";
+        $data['pelanggan']  = $this->alamat->getTable('opportunities')->result();
+        $data['sbus']   = $this->alamat->getTable('sbu')->result();
         $data['prov']   = $this->alamat->getTable('provinces')->result();
         $data['alamat'] = $this->alamat->getData('addreess',array('ID_ADDRESS'=>$id))->result();
         $this->load->view('page/alamat/edit',$data);
     }
     public function update($id)
     {
-        $date = new DateTime();
+        $this->form_validation->set_rules('nama','','required');
+        $this->form_validation->set_rules('pelanggan','','required');
+        $this->form_validation->set_rules('kategori','','required');
+        $this->form_validation->set_rules('tipe','','required');
+        $this->form_validation->set_rules('sbu','','required');
 
-        echo $date->format('Y/m/d H:i:s');
-        $prov = $this->alamat->getData('provinces',array('id'=>$_POST['provinsi']))->result();
-        $kab = $this->alamat->getData('regencies',array('id'=>$_POST['kabupaten']))->result();
-        $kec = $this->alamat->getData('districts',array('id'=>$_POST['kecamatan']))->result();
-        
-        $addr = $_POST['jalan'].' , Kecamatan '.$kec[0]->name.', Kabupaten ,'.$kab[0]->name.',Provinsi '.$prov[0]->name.' , Indonesia'.' , '.$_POST['kode'];
-        $data = array(
-            // 'ID_OPPORTUNITY'=> $_POST['pelanggan'],
-            'NAMA'          => $_POST['nama'],
-            'KATEGORI'      => $_POST['kategori'],
-            'TIPE'          => $_POST['tipe'],
-            'KORDINAT'      => $_POST['koordinat'],
-            'CABANG_SBU'    => $_POST['sbu'],
-            'NEGARA'        => 'Indonesia',
-            'PROVINSI'      => $prov,
-            'KABUPATEN'     => $kab,
-            'KECAMATAN'     => $kec,
-            'JALAN'         => $_POST['jalan'],
-            'KODE_POST'     => $_POST['kode'],
-            'ALAMAT'        => $addr,
-            'CRM_STATUS'    => 'Active',
-            'CREATED_BY'    => $_SESSION['ID_USER']
-        );
-        $this->alamat->update('addreess',$data,array('ID_ADDRESS'=>$id));
-		$this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Alamat berhasil diganti</div>");        
-        redirect('alamat');
+        if($this->form_validation->run()==true){
+            $alamat = $this->alamat->getTable('addreess')->result();
+            $no = (date('y')*10000000)+$alamat[0]->ID_ADDRESS.$_SESSION['ID_USER'];
+            $no_adr = 'ADR-'.$no;
+
+            var_dump($_POST);
+            if(empty($_POST['status_alamat'])){
+                $status = 'Inactive';
+            }else{
+                $status = 'Active';
+            }
+
+            $data = array(
+                'NO_ADDRESS'    => $no_adr,
+                'ID_OPPORTUNITY'=> $_POST['pelanggan'],
+                'NAMA'          => $_POST['nama'],
+                'KATEGORI'      => $_POST['kategori'],
+                'TIPE'          => $_POST['tipe'],
+                'KORDINAT'      => $_POST['koordinat'],
+                'CABANG_SBU'    => $_POST['sbu'],
+                'KODE_POST'     => $_POST['kode'],
+                'CRM_STATUS'    => $status,
+                'CREATED_BY'    => $_SESSION['ID_USER'],
+                'CRM_STATUS'    => $status,
+            );
+            var_dump($data);
+            echo "<br><br> $addr";
+            $this->alamat->update('addreess',$data,array('ID_ADDRESS'=>$id));
+            $this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Alamat berhasil diganti</div>");        
+            redirect('alamat');
+           
+        }else{
+            $this->session->set_flashdata('message',"<div class='alert alert-danger'>Terjadi kesalahanmohon coba lagi</div>");                        
+            redirect('alamat');
+        }
     }
     public function check()
     {
