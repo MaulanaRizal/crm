@@ -10,7 +10,7 @@ class Pengguna extends CI_Controller {
 	public function index()
 	{
 		$user =  $this->model->getTable('users');
-		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),20);
+		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),10);
 
 		$this->pagination->initialize($config);
 		$data['start']	= $this->uri->segment(3);

@@ -36,10 +36,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-sm-6 float-right">
-                        <div class="input-group">
-                        <div class="input-group-append p-b-10">
-                        </div>
-                        </div>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="exampleInputuname3">
                                 <div class="input-group-append">

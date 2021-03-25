@@ -14,6 +14,7 @@ class SBU extends CI_Controller{
 		$data['start']	= $this->uri->segment(3);
 		$data['title'] 	= 'Sbu';
 		$data['sbu'] 	= $this->sbu->getTableLimit($config['per_page'],$data['start'])->result();
+		log_message('error', 'Some variable did not contain a value.'); 
 		$this->load->view('page/sbu/tampil', $data);
 	}
 		// $data["sbu"] = $this->sbu->show()->result();

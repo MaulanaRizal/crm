@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-Class M_alamat extends CI_Model {
+Class M_npwp extends CI_Model {
 
 	public function __construct(){
 		parent::__construct();
@@ -9,15 +9,6 @@ Class M_alamat extends CI_Model {
     {
         $data = $this->db->get($table);
         return $data;
-    }
-    public function getTableLimit($limit,$offset)
-    {  
-
-        $this->db->select();
-        $this->db->from('users');
-        $this->db->join('addreess',"users.ID_USER=addreess.CREATED_BY");
-        $this->db->limit($limit,$offset);
-        return $this->db->get();
     }
     public function insert($table,$data)
     {
@@ -36,15 +27,15 @@ Class M_alamat extends CI_Model {
     {
         $this->db->delete($table,$where);
     }
-    public function getAlamat()
+    public function daftarNpwp($limit,$offset)
     {
-        $db = $this->db->get('addreess');
-        if($db->num_rows()==0){
-            return $db;
-        }else{
-            return $this->db->query("SELECT addreess.*,users.NAMA_LENGKAP  FROM `addreess` INNER JOIN users where addreess.CREATED_BY=users.ID_USER ORDER BY addreess.CREATED_ON DESC");
-        }
+        $this->db->select();
+        $this->db->from('npwp');
+        $this->db->join('opportunities','npwp.ID_OPPORTUNITY=opportunities.ID_OPPORTUNITY');
+        $this->db->limit($limit,$offset);
+        return $this->db->get();
     }
+    
 
 }
 ?>

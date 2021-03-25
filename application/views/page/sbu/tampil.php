@@ -115,6 +115,9 @@
                                 <div class="form-group">
                                     <label for="message-text" class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"></textarea>
+
+                                    <!-- <span id="deskripsi_error" class="text-danger"></span> -->
+
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -146,6 +149,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 name="deskripsi"><?= $data->DESKRIPSI ?></textarea>
+                                    <span id="deskripsi_error_edit" class="text-danger"></span>
+                                    <!-- <span id="deskripsi_error" class="text-danger"></span> -->
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -202,6 +207,9 @@
                             }
                             else{
                                 $("#sbu_error").html(data.error.sbu_error);
+
+                                // $("#deskripsi_error").html(data.error.deskripsi_error);
+
                             }
                         }
                     });

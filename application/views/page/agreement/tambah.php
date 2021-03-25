@@ -32,7 +32,7 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
-                                <form action="<?= base_url('agreement/insert') ?>" method="post">
+                                <form action="<?= base_url('agreement/insert') ?>" method="post" >
                                     <div class="table-responsive float-right col-lg-6">
                                         <table>
                                             <tr>
@@ -79,20 +79,23 @@
                                     <div class="d-flex no-block align-items-center">
                                         <div>
                                             <h4 class="card-title">Summary</h4>
+                                        </div>  
+                                    </div>
+                                    <!-- <div class="form-group row">
+                                        <label for="agreement_id" class="col-md-4 text-right control-label">Agreement ID</label>
+                                        <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
+                                    </div> -->
+                                    <div class="form-group row">
+                                        <label for="agreement_date" class="col-md-4 text-right control-label">Tanggal Agreement <span style="color: red;">*</span></label>
+                                        <div class='col-md-6 p-0'>
+                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date" ')">
+                                            <small style="color: red;" id=agreement_date-alert></small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="agreement_id" class="col-md-4 text-right control-label">Agreement ID</label>
-                                        <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="agreement_date" class="col-md-4 text-right control-label">Agreement Date *</label>
-                                        <input name=agr_date type="date" class="col-md-3 form-control" id="agreement_date">
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="pelanggan" class="col-md-4 text-right control-label">Pelanggan*</label>
-                                        <div class="col-md-3 p-0">
-                                            <select name='agr_pelanggan' class="select2" style="width: 100%" id=pelanggan name=pelanggan>
+                                        <label for="pelanggan" class="col-md-4 text-right control-label">Pelanggan<span style="color: red;">*</span></label>
+                                        <div class="col-md-6 p-0">
+                                            <select required name='agr_pelanggan' class="select2" style="width: 100%" id=pelanggan name=pelanggan onvalid="this.setCustomValidity('Form Pelanggan belum diisi')">
                                                 <option value="" disabled selected>Select</option>
                                                 <optgroup label="Central Time Zone">
                                                     <option value="AL">Alabama</option>
@@ -112,66 +115,73 @@
                                                     <option value="WI">Wisconsin</option>
                                                 </optgroup>
                                             </select>
+                                            <small style="color: red;" id=pelanggan-alert></small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tanggal_mulai" class="col-md-4 text-right control-label">Tanggal Mulai *</label>
-                                        <input name='agr_mulai' type="date" class="col-md-3 form-control" id="tanggal_mulai">
+                                        <label for="tanggal_mulai" class="col-md-4 text-right control-label">Tanggal Mulai <span style="color: red;">*</span></label>
+                                        <input required name='agr_mulai' type="date" class="col-md-6 form-control" id="tanggal_mulai" >
+                                        <small style="color: red;" id=tanggal_mulai-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tanggal_selesai" class="col-md-4 text-right control-label">Tanggal Selesai *</label>
-                                        <input name='agr_selesai' type="date" class="col-md-3    form-control" id="tanggal_selesai">
+                                        <label for="tanggal_selesai" class="col-md-4 text-right control-label">Tanggal Selesai <span style="color: red;">*</span></label>
+                                        <input required name='agr_selesai' type="date" class="col-md-6 form-control" id="tanggal_selesai" onvalid="this.setCustomValidity('Form Agreement Date belum diisi')">
+                                        <small style="color: red;" id=tanggal_selesai-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row offset-md-3">
                                         <input id="isRenewal" name="isRenewal" type="checkbox">
-                                        <label for="isRenewal" class="col-md-6 control-label">Pebaruhan Otomatis *</label>
+                                        <label for="isRenewal" class="col-md-6 control-label">Pebaruhan Otomatis</label>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="billing_agreement" class="col-md-4 text-right control-label">Billing Agreement Type *</label>
-                                        <select name='agr_bill' class="col-md-3 form-control" id="billing_agreement">
-                                            <option selected="">Choose...</option>
+                                        <label for="billing_agreement" class="col-md-4 text-right control-label">Tipe Billing Agreement <span style="color: red;">*</span></label>
+                                        <select required name='agr_bill' class="col-md-6 form-control" id="billing_agreement" onvalid="this.setCustomValidity('Form Tipe Billing Agreement belum diisi')" >
+                                            <option value='' selected="">Choose...</option>
                                             <option value="1">jumlah penuh</option>
                                             <option value="2">prorasi</option>
                                         </select>
+                                        <small style="color: red;" id=billing_agreement-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cut_off" class="col-md-4 text-right control-label">Tanggal Pemutusan</label>
-                                        <input name='agr_cut' type="date" class="col-md-3 form-control" id="cut_off">
+                                        <input name='agr_cut' type="date" class="col-md-6 form-control" id="cut_off" onvalid="this.setCustomValidity('Form Tanggal Pemutusan wajib diisi')">
                                     </div>
                                     <div class="form-group row">
                                         <!-- kosong -->
-                                        <label for="billing_type" class="col-md-4 text-right control-label">Billing Type *</label>
-                                        <select name='agr_bill_type' class="col-md-3 form-control" id="billing_type">
-                                            <option selected="">Choose...</option>
+                                        <label for="billing_type" class="col-md-4 text-right control-label">Jenis Pembayaran <span style="color: red;">*</span></label>
+                                        <select required name='agr_bill_type' class="col-md-6 form-control" id="billing_type">
+                                            <option selected value="">Choose...</option>
                                             <option value="1">Prabayar</option>
                                             <option value="2">Pascabayar</option>
                                         </select>
+                                        <small style="color: red;" id=billing_type-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="periode_type" class="col-md-4 text-right control-label">Tipe Periode *</label>
-                                        <select name='agr_period' class="col-md-3 form-control" id="periode_type">
-                                            <option selected="">Choose...</option>
+                                        <label for="periode_type" class="col-md-4 text-right control-label">Tipe Periode <span style="color: red;">*</span></label>
+                                        <select name='agr_period' class="col-md-6 form-control" id="periode_type">
+                                            <option selected value="">Choose...</option>
                                             <option value="1">Bulanan</option>
                                             <option value="2">Tahunan</option>
                                         </select>
+                                        <small style="color: red;" id=periode_type-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jumlah_perode" class="col-md-4 text-right control-label">Jumlah Periode *</label>
-                                        <input name='agr-period-jml' type="number" min="1" class="col-md-3 form-control" id="jumlah_perode">
+                                        <label for="jumlah_perode" class="col-md-4 text-right control-label">Jumlah Periode <span style="color: red;">*</span></label>
+                                        <input required name='agr-period-jml' type="number" min="1" class="col-md-3 form-control" id="jumlah_perode">
+                                        <small style="color: red;" id=jumlah_perode-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="Faktur" class="col-md-4 text-right control-label">Tipe Faktur *</label>
-                                        <select name='agr_faktur' class="col-md-3 form-control" id="Faktur">
-                                            <option selected="">Choose...</option>
+                                        <label for="Faktur" class="col-md-4 text-right control-label">Tipe Faktur <span style="color: red;">*</span></label>
+                                        <select required name='agr_faktur' class="col-md-3 form-control" id="Faktur">
+                                            <option selected value="">Choose...</option>
                                             <option value="1">Standar</option>
                                             <option value="2">Dipersemakan</option>
                                         </select>
+                                        <small style="color: red;" id=Faktur-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jangka_waktu" class="col-md-4 text-right control-label">Jangka Waktu Pembayaran *</label>
-
+                                        <label for="jangka_waktu" class="col-md-4 text-right control-label">Jangka Waktu Pembayaran <span style="color: red;">*</span></label>
                                         <div class="col-md-3 p-0">
-                                            <select class="select2" style="width: 100%" id=jangka_waktu name=agr_waktu>
+                                            <select required class="select2" style="width: 100%" id=jangka_waktu name=agr_waktu>
                                                 <option value="" disabled selected>Select</option>
                                                 <option value="5 Hari">5 Hari</option>
                                                 <option value="7 Hari">7 Hari</option>
@@ -179,15 +189,27 @@
                                                 <option value="30 Hari">30 Hari</option>
                                             </select>
                                         </div>
+                                        <small style="color: red;" id=jangka_waktu-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="task_agreement" class="col-md-4 text-right control-label">Isi Agreement *</label>
-                                        <input type="text" name='agr_isi' class="col-md-6 form-control" id="task_agreement">
+                                        <label for="task_agreement" class="col-md-4 text-right control-label">Isi Agreement <span style="color: red;">*</span></label>
+                                        <input required type="text" name='agr_isi' class="col-md-6 form-control" id="task_agreement">
+                                        <small style="color: red;" id=task_agreement-alert class='offset-md-4'></small>
                                     </div>
                                     <div class="form-group row">
                                         <label for="hukuman" class="col-md-4 text-right control-label">Hukuman</label>
-                                        <textarea name="agr_hukuman" class="col-md-6 form-control" id='hukuman' cols="70" rows="10"></textarea>
-
+                                        <textarea maxlength="1000" name="agr_hukuman" class="col-md-6 form-control" id='hukuman' cols="70" rows="10"></textarea>
+                                        <small class='offset-md-4'>Sisa karakter : <span id=char-hukuman>1000</small>
+                                    </div>
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h4 class="card-title">Detail Penagihan</h4>
+                                        </div>  
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="task_agreement" class="col-md-4 text-right control-label">Isi Agreement <span style="color: red;">*</span></label>
+                                        <input required type="text" name='agr_isi' class="col-md-6 form-control" id="task_agreement">
+                                        <small style="color: red;" id=task_agreement-alert class='offset-md-4'></small>
                                     </div>
                                     <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
@@ -261,94 +283,95 @@
                     </div>
                     <!-- End Content -->
                 </div>
-            </div>
-            <div class="row">
-                <div class='col-md-9'>
-                    <div class="card">
-                        <div class="card-body">
-                            <button class="btn btn-primary float-right">Tambah</button>
-                            <h4 class="card-title">Addressing Terminating & Originating</h4>
-                            <div class='table-responsive'>
-                                <table class="table striped m-b-20">
-                                    <thead>
-                                        <tr>
-                                            <th width=50>#</th>
-                                            <th>Address ID</th>
-                                            <th>Category</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Account</th>
-                                            <th>Region SBU</th>
-                                            <th>Country</th>
-                                            <th>Status</th>
-                                            <th>Province</th>
-                                            <th>State</th>
-                                            <th>Street</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                <div class="row">
+                    <div class='col-md-9'>
+                        <div class="card">
+                            <div class="card-body">
+                                <button class="btn btn-primary float-right">Tambah</button>
+                                <h4 class="card-title">Addressing Terminating & Originating</h4>
+                                <div class='table-responsive'>
+                                    <table class="table striped m-b-20">
+                                        <thead>
+                                            <tr>
+                                                <th width=50>#</th>
+                                                <th>Address ID</th>
+                                                <th>Category</th>
+                                                <th>Type</th>
+                                                <th>Name</th>
+                                                <th>Account</th>
+                                                <th>Region SBU</th>
+                                                <th>Country</th>
+                                                <th>Status</th>
+                                                <th>Province</th>
+                                                <th>State</th>
+                                                <th>Street</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
-                    <div class='card'>
-                        <div class="card-body">
-                            <button class="btn btn-primary float-right">Tambah</button>
-                            <h4 class="card-title">Product Line Item</h4>
-                            <div class='table-responsive'>
-                                <table class="table striped m-b-20">
-                                    <thead>
-                                        <tr>
-                                            <th width=50>#</th>
-                                            <th>Address ID</th>
-                                            <th>Category</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Account</th>
-                                            <th>Region SBU</th>
-                                            <th>Country</th>
-                                            <th>Status</th>
-                                            <th>Province</th>
-                                            <th>State</th>
-                                            <th>Street</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class='card'>
+                            <div class="card-body">
+                                <button class="btn btn-primary float-right">Tambah</button>
+                                <h4 class="card-title">Product Line Item</h4>
+                                <div class='table-responsive'>
+                                    <table class="table striped m-b-20">
+                                        <thead>
+                                            <tr>
+                                                <th width=50>#</th>
+                                                <th>Address ID</th>
+                                                <th>Category</th>
+                                                <th>Type</th>
+                                                <th>Name</th>
+                                                <th>Account</th>
+                                                <th>Region SBU</th>
+                                                <th>Country</th>
+                                                <th>Status</th>
+                                                <th>Province</th>
+                                                <th>State</th>
+                                                <th>Street</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- End Container fluid  -->
@@ -363,6 +386,8 @@
 
     <?php $this->load->view('template/jquery'); ?>
     <script src="<?= base_url('assets/crm-js/activity.js') ?>"></script>
+    <script src="<?= base_url('assets/crm-js/agreement.js') ?>"></script>
+
     <script>
         $(".select2").select2();
 
@@ -372,51 +397,12 @@
                 evt.preventDefault();
             }
         }
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-            $(document).ready(function() {
-                var table = $('#example').DataTable({
-                    "columnDefs": [{
-                        "visible": false,
-                        "targets": 2
-                    }],
-                    "order": [
-                        [2, 'asc']
-                    ],
-                    "displayLength": 15,
-                    "drawCallback": function(settings) {
-                        var api = this.api();
-                        var rows = api.rows({
-                            page: 'current'
-                        }).nodes();
-                        var last = null;
-                        api.column(2, {
-                            page: 'current'
-                        }).data().each(function(group, i) {
-                            if (last !== group) {
-                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                last = group;
-                            }
-                        });
-                    }
-                });
-                // Order by the grouping
-                $('#example tbody').on('click', 'tr.group', function() {
-                    var currentOrder = table.order()[0];
-                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                        table.order([2, 'desc']).draw();
-                    } else {
-                        table.order([2, 'asc']).draw();
-                    }
-                });
-            });
-        });
-        $('#example23').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
+        document.addEventListener('invalid', (function() {
+            return function(e) {
+                e.preventDefault();
+                document.getElementById("name").focus();
+            };
+        })(), true);
     </script>
 </body>
 

@@ -23,14 +23,14 @@
 
                 </div>
                 <!-- Start Content -->
-                <?php if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                }
-                // var_dump($alamat)
-                ?>
-                <div class="row d-flex justify-content-center">
 
+                <div class="row d-flex justify-content-center">
+                    <?php if (!empty($_SESSION['message'])) { ?>
+                        <div class="alert alert-danger">
+                            <strong>Gagal!</strong><?= $_SESSION['message'] ?>
+                        </div>
+                    <?php }
+                    unset($_SESSION['message']); ?>
                     <div class="card col-lg-8 ">
                         <div class="card-body">
                             <div class="text-center">
@@ -38,75 +38,76 @@
                                 <span>Masukan data alamat baru.</span>
                             </div>
                             <hr>
-                            <form action="<?= base_url('alamat/update/' . $alamat[0]->ID_ADDRESS) ?> " method="post">
+                            <form action="<?= base_url('alamat/update/' . $this->uri->segment(3)) ?> " method="post">
                                 <div class="form-group row">
-                                    <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
+                                    <label for="nama" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required name=nama id="nama" value="<?= $alamat[0]->NAMA ?>" placeholder="Nama lengkap...">
+                                        <input value="<?= $alamat[0]->NAMA ?>" type="text" class="form-control" required name=nama id="nama" placeholder="Nama lengkap...">
+                                        <small style="color: red;" id=nama-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="pelanggan" class="col-sm-3 text-right control-label col-form-label">Pelanggan*</label>
+                                    <label for="pelanggan" class="col-sm-3 text-right control-label col-form-label">Pelanggan <span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select class="select2" style="width: 100%" id=pelanggan name=pelanggan required>
                                             <option value="" disabled selected>Select</option>
-                                            <optgroup label="Central Time Zone">
-                                                <option value="AL">Alabama</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="WI">Wisconsin</option>
-                                            </optgroup>
+                                            <?php foreach ($pelanggan as $p) : ?>
+                                                <?php if ($alamat[0]->ID_OPPORTUNITY == $p->ID_OPPORTUNITY) : ?>
+                                                    <option selected value="<?= $p->ID_OPPORTUNITY ?>"><?= $p->TOPIC ?> - <?= $p->PELANGGAN ?></option>
+                                                <?php else : ?>
+                                                    <option value="<?= $p->ID_OPPORTUNITY ?>"><?= $p->TOPIC ?> - <?= $p->PELANGGAN ?></option>
+                                                <?php endif ?>
+                                            <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=pelanggan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kategori" class="col-sm-3 text-right control-label col-form-label">Kategori*</label>
+                                    <label for="kategori" class="col-sm-3 text-right control-label col-form-label">Kategori<span class='require'>*</span></label>
                                     <div class="col-sm-7">
+                                        <?php $kategories = ['Billing', 'Shipping', 'Link'] ?>
                                         <select required id="kategori" class="form-control" name='kategori'>
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Billing">Billing</option>
-                                            <option value="Shipping">Shipping</option>
-                                            <option value="Link">Link</option>
+                                            <?php foreach ($kategories as $kategori) : ?>
+                                                <?php if ($kategori == $alamat[0]->KATEGORI) : ?>
+                                                    <option selected value="<?= $kategori ?>"><?= $kategori ?></option>
+                                                <?php else : ?>
+                                                    <option value="<?= $kategori ?>"><?= $kategori ?></option>
+                                                <?php endif ?>
+                                            <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=kategori-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="tipe" class="col-sm-3 text-right control-label col-form-label">Tipe*</label>
+                                    <label for="tipe" class="col-sm-3 text-right control-label col-form-label">Tipe<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <div class="demo-radio-button">
-                                            <?php if ($alamat[0]->TIPE == 'Terminating') : ?>
-                                                <input required checked name=tipe value="Terminating" type="radio" id="terminating" />
-                                                <label for="terminating">Terminating</label>
+                                        <?php if ($alamat[0]->TIPE == 'Terminating') : ?>
+                                            <div class="demo-radio-button">
+                                                <input required checked name="tipe" name=tipe value="Terminating" type="radio" id="terminating" />
+                                                <label for="terminating">Termnating</label>
                                                 <input required name="tipe" name="tipe" value="Originating" type="radio" id="originating" />
                                                 <label for="originating">Origninating</label>
-                                            <?php else : ?>
-                                                <input required name=tipe value="Terminating" type="radio" id="terminating" />
-                                                <label for="terminating">Terminating</label>
+                                            </div>
+                                        <?php else : ?>
+                                            <div class="demo-radio-button">
+                                                <input required name="tipe" name=tipe value="Terminating" type="radio" id="terminating" />
+                                                <label for="terminating">Termnating</label>
                                                 <input required checked name="tipe" name="tipe" value="Originating" type="radio" id="originating" />
                                                 <label for="originating">Origninating</label>
-                                            <?php endif ?>
-                                        </div>
+                                            </div>
+                                        <?php endif ?>
+                                        <small style="color: red;" id=tipe-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="koordinat" class="col-sm-3 text-right control-label col-form-label">Koordinat</label>
                                     <div class="col-sm-7">
-                                        <input type="text" id=koordinat class="form-control" name=koordinat id="koordinat" value="<?= $alamat[0]->KORDINAT ?>" placeholder="Koordinat alamat...">
+                                        <input value="<?= $alamat[0]->KORDINAT ?>" type="text" id=koordinat class="form-control" name=koordinat id="koordinat" placeholder="Koordinat alamat...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="sbu" class="col-sm-3 text-right control-label col-form-label">SBU*</label>
+                                    <label for="sbu" class="col-sm-3 text-right control-label col-form-label">SBU<span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <select required select class='select2' style="width: 100%" name="sbu" id="sbu" class="form-control" required>
                                             <option value="" disabled selected>Select</option>
@@ -118,59 +119,67 @@
                                                 <?php endif ?>
                                             <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=sbu-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="provinsi" class="col-sm-3 text-right control-label col-form-label">Provinsi*</label>
+                                    <label for="provinsi" class="col-sm-3 text-right control-label col-form-label">Provinsi<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <select required class='select2' style="width: 100%" name="provinsi" id="provinsi" class="form-control">
+                                        <select disabled class='select2' style="width: 100%" name="provinsi" id="provinsi" class="form-control">
                                             <option value="" disabled selected>Select</option>
                                             <?php foreach ($prov as $provinsi) : ?>
-                                                <?php if ($provinsi->id == $alamat[0]->PROVINSI) : ?>
-                                                    <option selected value="<?= $provinsi->id ?>"><?= $provinsi->name ?></option>
+                                                <?php if ($alamat[0]->PROVINSI == $provinsi->name) : ?>
+                                                    <option selected value="<?= $provinsi->name ?>"><?= $provinsi->name ?></option>
                                                 <?php else : ?>
-                                                    <option value="<?= $provinsi->id ?>"><?= $provinsi->name ?></option>
+                                                    <option value="<?= $provinsi->name ?>"><?= $provinsi->name ?></option>
                                                 <?php endif ?>
                                             <?php endforeach ?>
                                         </select>
+                                        <small style="color: red;" id=provinsi-alert></small>
                                     </div>
                                 </div>
-                                <!-- <p id=kabupaten></p> -->
                                 <div class="form-group row">
-                                    <label for="kabupaten" class="col-sm-3 text-right control-label col-form-label">Kabupaten*</label>
+                                    <label for="kabupaten" class="col-sm-3 text-right control-label col-form-label">Kabupaten<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <select required class='select2' style="width: 100%" name="kabupaten" id="kabupaten" class="form-control">
-                                            <option value="" disabled selected>Select</option>
+                                        <select disabled class='select2' style="width: 100%" name="kabupaten" id="kabupaten" class="form-control">
+                                            <option value="" disabled>Select</option>
+                                            <option value="<?= $alamat[0]->KABUPATEN ?>" selected><?= $alamat[0]->KABUPATEN ?></option>
                                         </select>
+                                        <small style="color: red;" id=kabupaten-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kecamatan" class="col-sm-3 text-right control-label col-form-label">Kecamatan*</label>
+                                    <label for="kecamatan" class="col-sm-3 text-right control-label col-form-label">Kecamatan<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <select required class='select2' style="width: 100%" name="kecamatan" id="kecamatan" onclick="" class="form-control">
+                                        <select disabled class='select2' style="width: 100%" name="kecamatan" id="kecamatan" onclick="" class="form-control">
                                             <option value="" disabled selected>Select</option>
+                                            <option value="<?= $alamat[0]->KECAMATAN ?>" selected><?= $alamat[0]->KECAMATAN ?></option>
                                         </select>
+                                        <small style="color: red;" id=kecamatan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="jalan" class="col-sm-3 text-right control-label col-form-label">Jalan*</label>
+                                    <label for="jalan" class="col-sm-3 text-right control-label col-form-label">Jalan<span class='require'>*</span></label>
                                     <div class="col-sm-7">
-                                        <input required type="text" class="form-control" required name=jalan id="jalan" value="<?= $alamat[0]->JALAN ?>" placeholder="Jalan...">
+                                        <input disabled required value="<?= $alamat[0]->JALAN ?>" type="text" class="form-control" required name=jalan id="jalan" placeholder="Jalan...">
+                                        <small style="color: red;" id=jalan-alert></small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="kode" class="col-sm-3 text-right control-label col-form-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <!-- <input type="text" class="form-control" required name="telepon" onkeypress="numberInput(event)" id="" placeholder="Nomor telepon yang bisa dihubungi"> -->
-                                        <input type="text" class="form-control" name=kode id="kode" value="<?= $alamat[0]->KODE_POST ?>" onkeypress="numberInput(event)" placeholder="Kode pos...">
+                                        <input  value="<?= $alamat[0]->KODE_POST ?>" type="text" onkeypress="numberInput(event)" class="form-control" name=kode id="kode" placeholder="Kode pos...">
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="form-group m-b-0">
-                                    <div class="offset-sm-3 col-sm-7">
-                                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>
-                                    </div>
+                                <div class="form-group row offset-md-3">
+                                    <?php if ($alamat[0]->CRM_STATUS == 'Active') : ?>
+                                        <input checked id="status_alamat" name="status_alamat" type="checkbox">
+                                    <?php else : ?>
+                                        <input id="status_alamat" name="status_alamat" type="checkbox">
+                                    <?php endif ?>
+                                    <label for="status_alamat" class="col-md-6 control-label">Status Aktif</label>
                                 </div>
+                                <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                             </form>
                         </div>
                     </div>
@@ -184,6 +193,8 @@
         </div>
         <?php $this->load->view('template/jquery'); ?>
         <script src="<?= base_url() ?>database/wilayah.json"></script>
+        <script src="<?= base_url('assets/crm-js/alamat.js') ?>"></script>
+
         <script>
             $(".select2").select2();
 
@@ -193,12 +204,8 @@
                     evt.preventDefault();
                 }
             }
-            
+
             $(function() {
-
-                var kategori = '<?= $alamat[0]->KATEGORI ?>';
-                $('#kategori').val(kategori);
-
                 $.ajaxSetup({
                     type: "POST",
                     url: "<?php echo base_url('alamat/ambil_data') ?>",
@@ -235,6 +242,11 @@
                 });
 
             });
+            document.addEventListener('invalid', (function() {
+                return function(e) {
+                    e.preventDefault();
+                };
+            })(), true);
         </script>
 
 </body>

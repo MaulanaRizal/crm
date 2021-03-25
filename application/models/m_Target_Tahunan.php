@@ -34,6 +34,11 @@ Class M_Target_Tahunan extends CI_Model {
         }
         return $tahun;
     }
+    public function delete($table,$where)
+    {
+        
+        $this->db->delete($table,$where);
+    }
 
 }
 ?>
