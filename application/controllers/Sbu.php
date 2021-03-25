@@ -19,21 +19,16 @@ class SBU extends CI_Controller{
 		// $data["sbu"] = $this->sbu->show()->result();
 		// $this->load->view('page/sbu/tampil', $data);
 	public function tambah(){
-		$this->form_validation->set_rules('sbu_owner', 'sbu owner', 'required|is_unique[sbu.SBU_OWNER]');
-		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required|is_unique[sbu.SBU_REGION]');
-		$this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required');
 		if($this->form_validation->run() == false){
 			$error = array(
-				'owner_error' => form_error('sbu_owner'),
-				'sbu_error' => form_error('sbu_region'),
-				'deskripsi_error' => form_error('deskripsi')			
+				'sbu_error' => form_error('sbu_region')			
 			);
 			echo json_encode(['error' => $error]);
 		}
 		else{
 			echo json_encode(['success' => 'Record added successfully.']);
 			$data = array(
-				'SBU_OWNER' => $this->input->post('sbu_owner'),
 				'SBU_REGION' => $this->input->post('sbu_region'),
 				'DESKRIPSI' => $this->input->post('deskripsi')
 			);
@@ -41,14 +36,10 @@ class SBU extends CI_Controller{
 		}
 	}
 	public function ubah(){
-		$this->form_validation->set_rules('sbu_owner', 'sbu owner', 'required|is_unique[sbu.SBU_OWNER]');
-		$this->form_validation->set_rules('sbu_region', 'wilayah SBU', 'required|is_unique[sbu.SBU_REGION]');
-		$this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+		$this->form_validation->set_rules('sbu_region', 'wilayah SBU', 'required');
 		if($this->form_validation->run() == false){
 			$error = array(
-				'owner_error_edit' => form_error('sbu_owner'),
-				'sbu_error_edit' => form_error('sbu_region'),
-				'deskripsi_error_edit' => form_error('deskripsi')			
+				'sbu_error_edit' => form_error('sbu_region'),			
 			);
 			echo json_encode(['error' => $error]);
 		}
@@ -56,7 +47,6 @@ class SBU extends CI_Controller{
 			echo json_encode(['success' => 'Record added successfully.']);
 			$id_sbu = $this->input->post('id_sbu');
 			$data = array(
-				'SBU_OWNER' => $this->input->post('sbu_owner'),
 				'SBU_REGION' => $this->input->post('sbu_region'),
 				'DESKRIPSI' => $this->input->post('deskripsi') 
 			);
