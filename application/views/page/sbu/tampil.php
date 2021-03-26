@@ -56,7 +56,6 @@
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
-                                                <th>SBU Owner</th>
                                                 <th>Wilayah SBU</th>
                                                 <th width=500>Deskripsi</th>
                                                 <th>Aksi</th>
@@ -67,7 +66,6 @@
                                             foreach($sbu as $data){ ?>
                                             <tr>
                                                 <td><?= $num ?></td>
-                                                <td><?= $data->SBU_OWNER ?></td>
                                                 <td><?= $data->SBU_REGION ?></td>
                                                 <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
@@ -110,11 +108,6 @@
                         <form novalidate class="item" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">SBU Owner:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" name="sbu_owner">
-                                    <span id="owner_error" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
                                     <label for="recipient-name" class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
                                     <span id="sbu_error" class="text-danger"></span>
@@ -122,7 +115,9 @@
                                 <div class="form-group">
                                     <label for="message-text" class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"></textarea>
+
                                     <!-- <span id="deskripsi_error" class="text-danger"></span> -->
+
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -147,11 +142,6 @@
                         <form class="item" novalidate method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label class="control-label">SBU Owner:</label>
-                                    <input type="text" class="form-control" name="sbu_owner" value="<?= $data->SBU_OWNER ?>">
-                                    <span id="owner_error_edit" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
                                     <label class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" name="sbu_region" value="<?= $data->SBU_REGION ?>">
                                     <span id="sbu_error_edit" class="text-danger"></span>
@@ -159,11 +149,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 name="deskripsi"><?= $data->DESKRIPSI ?></textarea>
-<<<<<<< Updated upstream
                                     <span id="deskripsi_error_edit" class="text-danger"></span>
-=======
                                     <!-- <span id="deskripsi_error" class="text-danger"></span> -->
->>>>>>> Stashed changes
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -205,7 +192,6 @@
 
         <?php $this->load->view('template/jquery'); ?>
         <script type="text/javascript">
-
             $(document).ready(function(){
                 $("#tambah").click(function(e){
                     e.preventDefault();
@@ -220,15 +206,15 @@
                                 location.href = "<?= base_url('sbu'); ?>";
                             }
                             else{
-                                $("#owner_error").html(data.error.owner_error);
                                 $("#sbu_error").html(data.error.sbu_error);
+
                                 // $("#deskripsi_error").html(data.error.deskripsi_error);
+
                             }
                         }
                     });
                 });
-            });
-            
+            });    
         </script>
         <script type="text/javascript">
             $(document).ready(function(){
@@ -245,9 +231,7 @@
                                 location.href = "<?= base_url('sbu'); ?>";
                             }
                             else{
-                                $("#owner_error_edit").html(data.error.owner_error_edit);
                                 $("#sbu_error_edit").html(data.error.sbu_error_edit);
-                                $("#deskripsi_error_edit").html(data.error.deskripsi_error_edit);
                             }
                         }
                     });

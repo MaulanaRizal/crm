@@ -28,18 +28,18 @@
                 <div class="row d-flex justify-content-center">
                     <div class="card col-md-9">
                         <div class="card-body">
-                            <form action="<?= base_url('lead/simpan') ?>" method="post">
-                                <div class="table-responsive float-right col-lg-6">
+                            <form novalidate class="itemLead" method="post">
+                                <div class="float-right col-lg-9">
                                     <table>
                                         <tr>
                                             <th>Sumber Lead</th>
                                             <th>Peringkat</th>
                                             <th>Status</th>
-                                            <th>Pemilik*</th>
+                                            <th>Pemilik</th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select name="sumber_lead" style="width: 100%">
+                                                <select class="form-control" name="sumber_lead" style="width: 100%">
                                                     <option selected></option>
                                                     <option>Iklan</option>
                                                     <option>Rujukan Karyawan</option>
@@ -53,7 +53,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="rating" style="width: 100%">
+                                                <select class="form-control" name="rating" style="width: 100%">
                                                     <option selected></option>
                                                     <option>Hot</option>
                                                     <option>Warm</option>
@@ -61,22 +61,29 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="status">
+                                                <select class="form-control" name="status">
                                                     <option selected>Baru</option>
                                                     <option>Dihubungi</option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <input style="width:100%" type="text" readonly value="<?= $_SESSION['NAMA_LENGKAP'] ?>" name="pemilik">
-                                                <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="ti-user"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input readonly type="text" class="form-control" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP'] ?>">
+                                                    <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
+                                <div class="d-flex no-block align-items-center">
                                     <div>
-                                        <h6 class="card-subtitle">Lead</h6>
-                                        <h4 class="card-title">New Lead</h4>
+                                        <h6 class="card-subtitle">LEAD : ICON+ LEAD</h6>
+                                        <h4 class="card-title">Tambah Lead</h4>
                                     </div>
                                 </div>
                                 <hr>
@@ -86,14 +93,14 @@
                                             <label class="control-label text-left col-md-3">Topic*</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Topic" name="topic">
-                                                <span class="text-danger"><?=form_error('topic')?></span>
+                                                <span id="topic_error" class="text-danger"><?=form_error('topic')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row <?=form_error('nama') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Nama*</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Nama" name="nama">
-                                                <span class="text-danger"><?=form_error('nama')?></span>
+                                                <span id="nama_error" class="text-danger"><?=form_error('nama')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -106,7 +113,7 @@
                                             <label class="control-label text-left col-md-3">Telepon</label>
                                             <div class="col-md-9">
                                                 <input type="number" class="form-control" placeholder="Telepon" name="telepon">
-                                                <span class="text-danger"><?=form_error('telepon')?></span>
+                                                <span id="telepon_error" class="text-danger"><?=form_error('telepon')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -135,7 +142,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                <button type="button" id="tambahLead" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                             </form>
                         </div>
                     </div>
@@ -254,6 +261,30 @@
             return false;
         });
     </script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $("#tambahLead").click(function(e){
+                    e.preventDefault();
+                    var data = $('.itemLead').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "<?= base_url('lead/simpan'); ?>",
+                        data: data,
+                        success: function(data){
+                            if ($.isEmptyObject(data.error)) {
+                                location.href = "<?= base_url('lead'); ?>";
+                            }
+                            else{
+                                $("#topic_error").html(data.error.topic_error);
+                                $("#nama_error").html(data.error.nama_error);
+                                $("#telepon_error").html(data.error.telepon_error);
+                            }
+                        }
+                    });
+                });
+            });    
+        </script>
 
         <script>
             $(document).ready(function() {

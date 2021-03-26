@@ -40,8 +40,8 @@
                             <thead>
                                 <tr>
                                     <th width=50>#</th>
-                                    <th>Name</th>
                                     <th>Topic</th>
+                                    <th>Name</th>
                                     <th>Status Reason</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,12 +51,12 @@
                                 foreach($lead as $data){ ?>
                                 <tr>
                                     <td><?= $num ?></td>
+                                    <td><a href="<?=base_url('lead/updateLead')?>"><?= $data->TOPIC ?></a></td>
                                     <td><?= $data->NAMA ?></td>
-                                    <td><?= $data->TOPIC ?></td>
                                     <td><?= $data->CRM_STATUS ?></td>
                                     <td>
-                                        <a href="" class="btn btn-info"><i class="far fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_LEADS;?>"><i class="fa fa-trash"></i></a>
+                                        <a href="<?=base_url();?>lead/updateLead/<?=$data->ID_LEADS;?>" class="btn btn-info" title="Edit"><i class="far fa-edit"></i></a>
+                                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_LEADS;?>"><i class="fa fa-phone-slash"></i></a>
                                     </td>
                                 </tr>
                                 <?php 
