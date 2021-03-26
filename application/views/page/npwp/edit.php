@@ -60,9 +60,9 @@
                                             <option value="" selected>Pilih...</option>
                                             <?php foreach ($opportunity as $opp) : ?>
                                                 <?php if ($opp->ID_OPPORTUNITY == $data[0]->ID_OPPORTUNITY) : ?>
-                                                    <option value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->PELANGGAN ?></option>
+                                                    <option value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->NAMA_PELANGGAN ?></option>
                                                 <?php else : ?>
-                                                    <option selected value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->PELANGGAN ?></option>
+                                                    <option selected value="<?= $opp->ID_OPPORTUNITY  ?>"><?= $opp->TOPIC ?> - <?= $opp->NAMA_PELANGGAN ?></option>
                                                 <?php endif ?>
                                             <?php endforeach ?>
                                         </select>

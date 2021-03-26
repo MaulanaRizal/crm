@@ -175,7 +175,7 @@
             }
 
             $(function() {
-                $.ajaxSetup({
+                $.ajaxSetup({ 
                     type: "POST",
                     url: "<?php echo base_url('alamat/ambil_data') ?>",
                     cache: false,

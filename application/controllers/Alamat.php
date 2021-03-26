@@ -145,7 +145,6 @@ class Alamat extends CI_Controller {
                 'CRM_STATUS'    => $status,
             );
             var_dump($data);
-            echo "<br><br> $addr";
             $this->alamat->update('addreess',$data,array('ID_ADDRESS'=>$id));
             $this->session->set_flashdata('message',"<div class='alert alert-success'><strong>Berhasil!</strong>Alamat berhasil diganti</div>");        
             redirect('alamat');

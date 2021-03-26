@@ -58,7 +58,7 @@
                                     <tr>
                                         <th width=50>#</th>
                                         <th>Nama NPWP</th>
-                                        <th>No Pajak</th>
+                                        <th width=130>No Pajak</th>
                                         <th>Topic</th>
                                         <th>Pelanggan</th>
                                         <th width=50>NPWP Utama</th>
@@ -74,7 +74,7 @@
                                             <td><?= $n->NAMA_NPWP ?></td>
                                             <td><?= $n->NO_PAJAK ?></td>
                                             <td><?= $n->TOPIC ?></td>
-                                            <td><?= $n->PELANGGAN ?></td>
+                                            <td><?= $n->NAMA_PELANGGAN ?></td>
                                             <td class='text-center'>
                                                 <?php if ($n->IS_PRIMARY == 'yes') : ?>
                                                     <i class='fa fa-check'></i>
