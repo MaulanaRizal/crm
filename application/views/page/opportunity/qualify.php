@@ -27,12 +27,11 @@
 
                 </div>
                 <!-- Start Content -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
+                <div class="row d-flex justify-content-center">
+                        <div class="card col-md-10">
                             <div class="card-body">
                                 <form class="form" action="<?= base_url('opportunity/simpan') ?>" method="post">
-                                <div class="float-right">
+                                <div class="float-right col-lg-9">
                                     <table>
                                         <tr>
                                             <th>Kategori</th>
@@ -55,9 +54,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select readonly class="form-control" name="sbu">
-                                                    <option selected><?= $_SESSION['SBU_REGION'] ?></option>
-                                                </select>
+                                                <input readonly type="text" name="SBU" class="form-control" value="<?= $_SESSION['SBU_REGION'] ?>">
                                             </td>
                                             <td>
                                                 <div class="input-group">
@@ -66,7 +63,8 @@
                                                             <i class="ti-user"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" class="form-control" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP'] ?>">
+                                                    <input readonly type="text" class="form-control" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP'] ?>">
+                                                    <input type="hidden" name="crm_owner" value="<?= $_SESSION['ID_USER'] ?>">
                                                 </div>
                                             </td>
                                         </tr>
@@ -93,35 +91,31 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label">Topic *</label>
                                         <div class="col-10">
-                                            <input name="topic" class="form-control" type="text" id="example-text-input">
+                                            <input name="topic" class="form-control" type="text" value="<?=$lead->TOPIC?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-2 col-form-label">Nama Pelanggan *</label>
+                                        <div class="col-10">
+                                            <input name="nama_pelanggan" class="form-control" type="text" value="<?=$lead->NAMA?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity *</label>
                                         <div class="col-10">
-                                            <input name="tanggal" class="form-control" type="date" id="example-date-input">
+                                            <input name="tanggal" class="form-control" type="date">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-date-input" class="col-2 col-form-label">Tanggal Target Penjualan *</label>
                                         <div class="col-10">
-                                            <input name="tanggal_target" class="form-control" type="date" id="example-date-input">
+                                            <input name="tanggal_target" class="form-control" type="date">
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="example-month-input" class="col-2 col-form-label">Tipe Opportunity</label>
-                                        <div class="col-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect1">
-                                                <option selected="">Choose...</option>
-                                                <option value="1">Opportunity Baru</option>
-                                                <option value="2">Agreement Tersedia</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Tipe Survey</label>
                                         <div class="col-10">
-                                            <select name="tipe_survey" class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="tipe_survey" class="col-12 form-control">
                                                 <option selected="">Choose...</option>
                                                 <option>Detail Survei</option>
                                                 <option>On Desk</option>
@@ -131,7 +125,7 @@
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Jangka Waktu Pembelian</label>
                                         <div class="col-10">
-                                            <select name="waktu_pemesanan" class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="waktu_pemesanan" class="form-control col-12">
                                                 <option selected="">Choose...</option>
                                                 <option>Segera</option>
                                                 <option>Kuartal Ini</option>
@@ -156,7 +150,7 @@
                                     <div class="form-group row">
                                         <label for="example-month-input" class="col-2 col-form-label">Proses Pembelian</label>
                                         <div class="col-10">
-                                            <select name="proses_pemesanan" class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <select name="proses_pemesanan" class="form-control col-12" id="inlineFormCustomSelect">
                                                 <option selected="">Choose...</option>
                                                 <option>Individu</option>
                                                 <option>komersial</option>
@@ -188,89 +182,10 @@
                                             <textarea name="solusi" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group text-right">
-                                        <button class="btn btn-success" >Simpan</button>
-                                    </div>
-                                    <button class="right-side-toggle btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                    <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
-                                <h4 class="card-title">Addressing Terminating & Originating</h4>
-                                <div class="table-responsive m-t-40">
-                                    <table id="" class="table striped m-b-20">
-                                        <!-- <button class="btn btn-primary float-right">Tambah</button> -->
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <h4 class="card-title">Product Line Item</h4>
-                                <div class="table-responsive m-t-40">
-                                    <table id="" class="table striped m-b-20">
-                                        <!-- <button class="btn btn-primary float-right">Tambah</button> -->
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>ID</th>
-                                                <th>SLA</th>
-                                                <th>Account</th>
-                                                <th>Service ID</th>
-                                                <th>Product Name</th>
-                                                <th>Description</th>
-                                                <th>Bandwidth</th>
-                                                <th>HJT</th>
-                                                <th>Price Per Unit</th>
-                                                <th>Extended Amount</th>
-                                                <th>Opportunity ID</th>
-                                                <th>Opportunity ID</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <!-- End Content -->
             </div>

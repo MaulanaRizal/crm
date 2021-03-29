@@ -19,14 +19,17 @@ class Lead extends CI_Controller{
 	}
 
 	public function tambahLead(){
-		$this->load->view('page/lead/tambah');
+		$data['title'] = 'Tambah Lead';
+		$this->load->view('page/lead/tambah', $data);
 	}
 
-	public function qualify(){
+	public function qualify($id_leads){
 		$dataDB = $this->m_opportunity->cekNo_Opportunity();
 		$noUrut = substr($dataDB, 3, 4);
 		$noOpportunitySekarang = $noUrut + 1;
 		$data = array('NO_OPPORTUNITY' => $noOpportunitySekarang);
+		$data['title'] = 'Qualify';
+		$data['lead'] = $this->m_lead->getQualify($id_leads);
 		$this->load->view('page/opportunity/qualify', $data);
 	}
 
@@ -62,6 +65,7 @@ class Lead extends CI_Controller{
 	}
 
 	public function updateLead($id_leads){
+		$data['title'] = 'Update Lead';
 		$data['lead'] = $this->m_lead->getId($id_leads);
 		$this->load->view('page/lead/update', $data);
 	}

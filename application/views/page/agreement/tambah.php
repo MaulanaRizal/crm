@@ -33,17 +33,17 @@
                     unset($_SESSION['message']);
                 }
                 ?>
-                <div class="row">
-                    <div class="col-md-9">
+                <div class="">
+                    <div class="">
                         <div class="card">
                             <div class="card-body">
                                 <form action="<?= base_url('agreement/insert') ?>" method="post">
                                     <div class="table-responsive float-right col-lg-6">
                                         <table>
                                             <tr>
-                                                <th>Status*</th>
+                                            <th>Status <span class=require>*</span></th>
                                                 <th>SBU Owner</th>
-                                                <th>Owner *</th>
+                                                <th>Owner <span class=require>*</span></th>
                                                 <th>Deskrisi</th>
                                             </tr>
                                             <tr>
@@ -76,8 +76,8 @@
 
                                     <div class="d-flex p-t-20 col-md-5 no-block align-items-center">
                                         <div>
-                                            <h6 class="card-subtitle">Agreement</h6>
-                                            <h4 class="card-title">New Agreement</h4>
+                                            <h6 class="card-subtitle">OPPORTUNITY : ICON+ OPPORTUNITY</h6>
+                                            <h4 class="card-title">Tambah Agreement Baru</h4>
                                         </div>
                                     </div>
                                     <hr>
@@ -91,12 +91,9 @@
                                         <input type="text" class="col-md-6 form-control" id="agreement_id" readonly>
                                     </div> -->
                                     <div class="form-group row">
-                                        <label for="agreement_date" class="col-md-4 text-right control-label">Tanggal Agreement <span style="color: red;">*</span></label>
-                                        <div class='col-md-6 p-0'>
-                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date")>
                                         <label for="agreement_date" class="col-sm-4 text-right control-label">Tanggal Agreement <span style="color: red;">*</span></label>
                                         <div class='col-sm-6 p-0'>
-                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date")>
+                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date" ')">
                                             <small style="color: red;" id=agreement_date-alert></small>
                                         </div>
                                     </div>
@@ -237,165 +234,12 @@
                                     </div>
                                     <div id="input-address">
                                     </div>
-
                                     <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Aktivitas</h4>
-                                <span>
-                                    <a href="#" id="daftar">Daftar</a>
-                                </span> |
-                                <span>
-                                    <a id='instruksi' href="#">Instruksi</a>
-                                </span> |
-                                <span>
-                                    <a href="#" id='telepon'>Telepon</a>
-                                </span>
-                                <hr>
-                                <div id='tableActivity'>
-                                    <table id='tampilDaftar' class='table'>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Informasi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td><i class='fas fa-sticky-note fa-2x'></i></td>
-                                            <td></td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="formActivity">
-                                    <form action="" class="form-material">
-                                        <label for="subjek">Subjek</label>
-                                        <input class="form-control" type="text" name="" id="subjek">
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <textarea class=form-control class=form-control name="" id="deskripsi" cols="30" rows="3"></textarea>
-                                        <div class=from-group>
-                                            <label for="">Tenggang Waktu</label>
-                                            <input type="datetime-local" class="form-control" name="" id="">
-                                        </div>
-                                        <label for="">Prioritas</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="Rendah">Rendah</option>
-                                            <option value="Normal">Normal</option>
-                                            <option value="Tinggi">Tinggi</option>
-                                        </select>
-                                    </form><br><br><a href="#" onclick="submitInstuksi()" class="btn-xs btn-primary">Submit</a>
-                                </div>
-                                <div id="formTelepon">
-                                    <form action="" class="form-material">
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="3"></textarea>
-                                        <label for="jangka">Jangka Waktu</label>
-                                        <input class="form-control" type="datetime-local" name="janka" id="jangka">
-                                        <label for="penerima">Penerima</label>
-                                        <input type="text" class="form-control" name="" id="penerima">
-                                        <label for="tujuan">Tujuan</label>
-                                        <select class="form-control" name="tujuan" id="tujuan">
-                                            <option value="Masuk">Masuk</option>
-                                            <option value="Keluar">Keluar</option>
-                                        </select><br><br>
-                                        <button class="btn-xs btn-primary" id="submitTelepon ">Simpan</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- End Content -->
-                </div>
-                <div class="row">
-                    <div class='col-md-9'>
-                        <div class="card">
-                            <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
-                                <h4 class="card-title">Addressing Terminating & Originating</h4>
-                                <div class='table-responsive'>
-                                    <table class="table striped m-b-20">
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class='card'>
-                            <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
-                                <h4 class="card-title">Product Line Item</h4>
-                                <div class='table-responsive'>
-                                    <table class="table striped m-b-20">
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

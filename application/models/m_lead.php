@@ -25,6 +25,10 @@ class M_lead extends CI_Model{
 		return $this->db->get_where($this->table, ["ID_LEADS" => $id])->row();
 	}
 
+	public function getQualify($id){
+		return $this->db->get_where($this->table, ["ID_LEADS" => $id])->row();
+	}
+
 	public function update($data, $id_leads){
 		$this->db->where('id_leads', $id_leads);
 		$this->db->update('leads', $data);

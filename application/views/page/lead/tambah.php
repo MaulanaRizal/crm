@@ -3,7 +3,7 @@
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
+        </div>
     <div id="main-wrapper">
     <?php $this->load->view('template/navbar'); ?>
     <?php $this->load->view('template/sidenav'); ?>
@@ -143,75 +143,6 @@
                                 </div>
                                 <button type="button" id="tambahLead" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                             </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Aktivitas</h4>
-                                <span>
-                                    <a href="#" id="daftarActivitasLead">Daftar</a>
-                                </span> | 
-                                <span>
-                                    <a id="tambah-panggilan-telepon" href="#">Tambah Panggilan Telepon</a>
-                                </span> | 
-                                <span>
-                                    <a href="#" id="tambah-tugas">Tambah Tugas</a>
-                                </span>
-                                <hr>
-                                <div id='tableActivityLead'>
-                                    <table id='tampilDaftarLead' class='table'>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Informasi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td><i class='fas fa-sticky-note fa-2x'></i></td>
-                                            <td></td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="form-tambah-panggilan-telepon">
-                                    <form action="" class="form-material">
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <textarea class="form-control" type="text" name="" id="deskripsi"></textarea>
-                                        <label for="jatuh-tempo">Jatuh Tempo</label>
-                                        <input class=form-control name="" id="jatuh-tempo" type="date">
-                                        <label for="telepon-dengan">Telepon Dengan*</label>
-                                        <input type="text" name="telepon-dengan" class="form-control">
-                                        <label for="direction">Direction</label>
-                                        <select name="direction" id="direction" class="form-control">
-                                            <option>Keluar</option>
-                                            <option>Masuk</option>
-                                        </select>
-                                        <br><br>
-                                        <button  type="submit" class="btn-xs btn-primary">Submit</button>
-                                    </form>
-                                </div>
-                                <div id="form-tambah-tugas">
-                                    <form action="" class="form-material">
-                                        <label for="subyek">Subyek*</label>
-                                        <input type="text" name="subyek" id="subyek" class="form-control">
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <textarea class="form-control" name="deskripsi" id="deskripsi"></textarea>
-                                        <label for="jatuh-tempo">Jatuh Tempo</label>
-                                        <input type="date" name="jatuh-tempo" id="jatuh-tempo" class="form-control">
-                                        <label for="prioritas">Prioritas</label>
-                                        <select name="prioritas" id="prioritas" class="form-control"> 
-                                            <option>Low</option>
-                                            <option>Normal</option>
-                                            <option>High</option>
-                                        </select>
-                                        <label for="pemilik">Pemilik*</label>
-                                        <input readonly type="text" name="pemilik" value="<?= $_SESSION['NAMA_LENGKAP']?>" class="form-control">
-                                        <input type="hidden" name="" value="<?= $_SESSION['ID_USER'] ?>">
-                                        <br><br>
-                                        <button class="btn-xs btn-primary" type="submit">Simpan</button>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

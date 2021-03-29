@@ -27,7 +27,7 @@
                     <div class="col-md-7 col-4 align-self-center">
                         <div class="d-flex m-t-10 justify-content-end">
                             <div class="d-flex m-r-20 m-l-10 hidden-md-down">
-                                <a href="<?=base_url('lead/qualify')?>" class="btn waves-effect waves-light btn-info">Qualify</a>
+                                <a href="<?=base_url()?>lead/qualify/<?=$lead->ID_LEADS;?>" class="btn waves-effect waves-light btn-info">Qualify</a>
                             </div>
                         </div>
                     </div>

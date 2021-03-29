@@ -27,6 +27,7 @@ class Opportunity extends CI_Controller{
 			'PEMILIK' => $this->input->post('pemilik'),
 			'NO_OPPORTUNITY' => $this->input->post('no_opportunity'),
 			'TOPIC' => $this->input->post('topic'),
+			'NAMA_PELANGGAN' => $this->input->post('nama_pelanggan'),
 			'TANGGAL' => $this->input->post('tanggal'),
 			'TANGGAL_TARGET' => $this->input->post('tanggal_target'),
 			'TIPE_SURVEY' => $this->input->post('tipe_survey'),
