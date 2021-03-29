@@ -27,6 +27,18 @@ Class M_agreement extends CI_Model {
     {
         $this->db->delete($table,$where);
     }
+    public function getAgreementUsers()
+    {
+        $this->db->select();
+        $this->db->from('opportunities');
+        $this->db->join('agreements','opportunities.ID_OPPORTUNITY=agreements.ID_OPPORTUNITY');
+        $this->db->order_by('agreements.ID_OPPORTUNITY','asc');
+        return $this->db->get();
+    }
+    public function getLastID()
+    {
+        return $this->db->query("SELECT max(ID_AGREEMENT) as id FROM `agreements`");
+    }
 
 }
 ?>

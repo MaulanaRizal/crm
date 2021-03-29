@@ -59,7 +59,7 @@
                                         <select required name="pemilik" class='select2' style="width:100%;" id="pemilik">
                                             <option value="" selected>Pilih...</option>
                                             <?php foreach($opportunity as $o): ?>
-                                            <option value="<?= $o->ID_OPPORTUNITY  ?>"><?= $o->TOPIC ?> - <?= $o->PELANGGAN ?></option>
+                                            <option value="<?= $o->ID_OPPORTUNITY  ?>"><?= $o->TOPIC ?> - <?= $o->NAMA_PELANGGAN ?></option>
                                             <?php endforeach ?>
                                         </select>
                                         <small style="color: red;" id='pemilik-alert'></small>

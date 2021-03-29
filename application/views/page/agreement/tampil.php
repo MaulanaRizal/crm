@@ -18,50 +18,73 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Daftar Agreement</h3>
+                        <h3 class="text-themecolor"> Agreement</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-home"></i> Dashboard</a></li>
-                            <li class="breadcrumb-item active">Daftar Agreement</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active"> Agreement</li>
                         </ol>
                     </div>
-
                 </div>
                 <!-- Start Content -->
-
+                <?php 
+                if (!empty($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                } 
+                ?>
                 <div class="card">
                     <div class="card-body">
-                        <a href="<?= base_url()?>agreement/tambah" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
-                        <h3>Table Agreement </h3>
-                        <span>Table kelola agreement crm icon+</span>
+                        <div class="col-sm-6 float-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <a href="<?= base_url() ?>agreement/tambah" class="btn btn-secondary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                    <!-- <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="fa fa-trash"></i> hapus</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Tabel DaftarAgreement </h3>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table id="myTable" class="table striped m-b-20">
-                            <thead>
-                                <tr>
-                                    <th width=50>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>SBU</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Rozal</td>
-                                    <td>Rozal56@mail.com</td>
-                                    <td>Cawang</td>
-                                    <td>Sales</td>
-                                    <td><label class="label label-danger">non-active</label></td>
-                                    <td>
-                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="" class="btn btn-info"><i class="fa fa-info"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <table class="table striped m-b-20">
+                                <thead>
+                                    <tr>
+                                        <th width=50>#</th>
+                                        <th>Nomor Agreement</th>
+                                        <th>Pelanggan</th>
+                                        <th>Tipe Periode</th>
+                                        <th>Status</th>
+                                        <th>Tanggal Agreement</th>
+                                        <th>Jenis Pembayaran</th>
+                                        <th>Rekening</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $num = 0 ?>
+                                    <?php foreach ($agreement as $agr) : ?>
+                                        <tr>
+                                            <td><?= ++$num ?></td>
+                                            <td><?= $agr->NO_AGREEMENT ?></td>
+                                            <td><?= $agr->NAMA_PELANGGAN ?></td>
+                                            <td><?= $agr->TIPE_PERIODE ?></td>
+                                            <td><?= $agr->CRM_STATUS ?></td>
+                                            <td><?= $agr->TANGGAL_AGREEMENT ?></td>
+                                            <td><?= $agr->JENIS_TAGIHAN ?></td>
+                                            <td><?= $agr->REKENING ?> - <?= $agr->AKUN_BANK ?></td>
+                                            <td>
+                                                <a href=<?= base_url('agreement/edit/'.$agr->NO_AGREEMENT) ?> class="btn btn-info btn-sm"><i class='ti-marker-alt'></i></a>
+                                                <button class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links(); ?>
+
                         </div>
                     </div>
 
@@ -73,53 +96,7 @@
         </div>
         <!-- /content -->
         <?php $this->load->view('template/jquery'); ?>
-        <script>
-            $(document).ready(function() {
-                $('#myTable').DataTable();
-                $(document).ready(function() {
-                    var table = $('#example').DataTable({
-                        "columnDefs": [{
-                            "visible": false,
-                            "targets": 2
-                        }],
-                        "order": [
-                            [2, 'asc']
-                        ],
-                        "displayLength": 15,
-                        "drawCallback": function(settings) {
-                            var api = this.api();
-                            var rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            var last = null;
-                            api.column(2, {
-                                page: 'current'
-                            }).data().each(function(group, i) {
-                                if (last !== group) {
-                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                    last = group;
-                                }
-                            });
-                        }
-                    });
-                    // Order by the grouping
-                    $('#example tbody').on('click', 'tr.group', function() {
-                        var currentOrder = table.order()[0];
-                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                            table.order([2, 'desc']).draw();
-                        } else {
-                            table.order([2, 'asc']).draw();
-                        }
-                    });
-                });
-            });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
+
 </body>
 
 
