@@ -80,8 +80,7 @@ class Agreement extends CI_Controller
 			);
 			// var_dump($data);
 			$this->model->insert('agreements', $data);
-			$this->session->set_flashdata('message', "<div class='alert alert-success'><strong>Berhasil!</strong>Agreement berhasil ditambahkan</div>");
-			redirect('agreement');
+			redirect('agreement/edit/'.$no_agrt);
 		} else {
 			$this->session->set_flashdata('message', "<div class='alert alert-danger'>" . validation_errors() . "</div>");
 			redirect('agreement/tambah');
@@ -137,7 +136,11 @@ class Agreement extends CI_Controller
 		$jmlh_col = $this->model->getLastID()->result();
 		$no = $_SESSION['ID_USER'] * 10000000 + $jmlh_col[0]->id;
 		$no_agrt = "AGR-" . $no;
-		var_dump($jmlh_col);
 		echo $no_agrt;
+		return json_encode($no_agrt);
+	}
+	public function addActivity()
+	{
+		echo json_encode($_POST);
 	}
 }

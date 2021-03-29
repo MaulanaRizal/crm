@@ -38,25 +38,25 @@
                         <div class="card">
                             <div class="card-body">
                                 <form action="<?= base_url('agreement/insert') ?>" method="post">
-                                    <div class="table-responsive float-right col-lg-6">
+                                    <div class="table-responsive float-right col-md-6">
                                         <table>
                                             <tr>
-                                                <th>Status*</th>
+                                                <th>Status <span class=require>*</span></th>
                                                 <th>SBU Owner</th>
-                                                <th>Owner *</th>
-                                                <th>Deskrisi</th>
+                                                <th>Owner <span class=require>*</span></th>
+                                                <th>Deskripsi</th>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                <?php $satus = ['Draft','Ulasan Pelanggan','Tinjauan Hukum','Final','Kadaluarsa'] ?>
+                                                    <?php $satus = ['Draft', 'Ulasan Pelanggan', 'Tinjauan Hukum', 'Final', 'Kadaluarsa'] ?>
                                                     <select name="crm_status" style="width:100%">
-                                                    <?php foreach($satus as $sts): ?>
-                                                    <?php if($sts == $agreement[0]->CRM_STATUS): ?>
-                                                        <option selected ><?= $sts ?></option>
-                                                    <?php else: ?>
-                                                        <option><?= $sts ?></option>
-                                                    <?php endif ?>
-                                                    <?php endforeach ?>
+                                                        <?php foreach ($satus as $sts) : ?>
+                                                            <?php if ($sts == $agreement[0]->CRM_STATUS) : ?>
+                                                                <option selected><?= $sts ?></option>
+                                                            <?php else : ?>
+                                                                <option><?= $sts ?></option>
+                                                            <?php endif ?>
+                                                        <?php endforeach ?>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -96,7 +96,7 @@
 
                                     <div class="form-group row">
                                         <label for="agreement_date" class="col-sm-4 text-right control-label">Tanggal Agreement <span style="color: red;">*</span></label>
-                                        <div class='col-sm-6 p-0'>
+                                        <div class='col-md-6 p-0'>
                                             <input value='<?= $agreement[0]->TANGGAL_AGREEMENT ?>' required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date" ')">
                                             <small style="color: red;" id=agreement_date-alert></small>
                                         </div>
@@ -231,7 +231,7 @@
                                     <div class="form-group row">
                                         <label for="hukuman" class="col-sm-4 text-right control-label">Hukuman</label>
                                         <textarea maxlength="1000" name="agr_hukuman" class="col-sm-6 form-control" id='hukuman' cols="70" rows="10"><?= $agreement[0]->HUKUMAN ?></textarea>
-                                        <small class='offset-sm-4'>Sisa karakter : <span id=char-hukuman><?= 1000-strlen($agreement[0]->HUKUMAN) ?></small>
+                                        <small class='offset-sm-4'>Sisa karakter : <span id=char-hukuman><?= 1000 - strlen($agreement[0]->HUKUMAN) ?></small>
                                     </div>
                                     <div class="d-flex no-block align-items-center">
                                         <div>
@@ -240,7 +240,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="" class="col-sm-4 text-right control-label">Rekening Bank <span style="color: red;">*</span></label>
-                                        <input value="<?= $agreement[0]->AKUN_BANK?>" required type="text" name='rekening' class="col-sm-6 form-control" id="rekening">
+                                        <input value="<?= $agreement[0]->AKUN_BANK ?>" required type="text" name='rekening' class="col-sm-6 form-control" id="rekening">
                                         <small style="color: red;" id='rekening-alert' class='offset-sm-4'></small>
                                     </div>
                                     <div class="form-group row">
@@ -254,10 +254,10 @@
                                             <select required class="select2" style="width: 100%" id='npwp' name='npwp'>
                                                 <option value="" disabled selected>pilih...</option>
                                                 <?php foreach ($npwp as $np) : ?>
-                                                    <?php if($agreement[0]->NPWP==$np->ID_NPWP): ?>
-                                                    <option selected value="<?= $np->ID_NPWP ?>"><?= $np->NO_PAJAK ?> - <?= $np->NAMA_NPWP ?></option>
-                                                    <?php else: ?>
-                                                    <option value="<?= $np->ID_NPWP ?>"><?= $np->NO_PAJAK ?> - <?= $np->NAMA_NPWP ?></option>
+                                                    <?php if ($agreement[0]->NPWP == $np->ID_NPWP) : ?>
+                                                        <option selected value="<?= $np->ID_NPWP ?>"><?= $np->NO_PAJAK ?> - <?= $np->NAMA_NPWP ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $np->ID_NPWP ?>"><?= $np->NO_PAJAK ?> - <?= $np->NAMA_NPWP ?></option>
                                                     <?php endif ?>
                                                 <?php endforeach ?>
                                             </select>
@@ -271,10 +271,10 @@
                                             <select required class="select2" style="width: 100%" id='alamat' name='alamat'>
                                                 <option value="" disabled selected>pilih...</option>
                                                 <?php foreach ($addr as $ad) : ?>
-                                                    <?php if($agreement[0]->ALAMAT==$ad->ID_ADDRESS): ?>
-                                                    <option selected value="<?= $ad->ID_ADDRESS ?>"><?= $ad->NO_ADDRESS ?> - <?= $ad->NAMA ?></option>
-                                                    <?php else:?>
-                                                    <option value="<?= $ad->ID_ADDRESS ?>"><?= $ad->NO_ADDRESS ?> - <?= $ad->NAMA ?></option>
+                                                    <?php if ($agreement[0]->ALAMAT == $ad->ID_ADDRESS) : ?>
+                                                        <option selected value="<?= $ad->ID_ADDRESS ?>"><?= $ad->NO_ADDRESS ?> - <?= $ad->NAMA ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $ad->ID_ADDRESS ?>"><?= $ad->NO_ADDRESS ?> - <?= $ad->NAMA ?></option>
                                                     <?php endif ?>
                                                 <?php endforeach ?>
                                             </select>
@@ -302,8 +302,8 @@
                                     <a href="#" id='telepon'>Telepon</a>
                                 </span>
                                 <hr>
-                                <div id='tableActivity'>
-                                    <table id='tampilDaftar' class='table'>
+                                <div id='tableActivity' class='table-responsive'>
+                                    <table id='tampilDaftar' class='table m-0'>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -311,28 +311,78 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <td><i class='fas fa-sticky-note fa-2x'></i></td>
-                                            <td></td>
+                                            <tr>
+                                                <td>
+                                                    <br><i class='fas fa-address-book fa-2x'></i>
+                                                </td>
+                                                <td>
+                                                    <!-- <span class='float-right'><small>Tinggi </small></span> -->
+                                                    <p class='m-0'><small class='activity'>Subjek :</small></p>
+                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
+                                                    <p class='m-0'>2021-03-29 13:35</p>
+                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
+                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
+                                                    <small class='table-deskripsi'>
+                                                        <p class='activity m-t-20'>Deskripsi :</p>
+                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
+                                                    </small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><i class='fas fa-phone fa-2x'></i></td>
+                                                <td>
+                                                    <span class='float-right'><small> Masuk </small></span>
+                                                    <p class='m-0'><small class='activity'>Penerima :</small></p>
+                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
+                                                    <p class='m-0'>2021-03-29 13:35</p>
+                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
+                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
+                                                    <small class='table-deskripsi'>
+                                                        <p class='activity m-t-20'>Deskripsi :</p>
+                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
+                                                    </small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br><i class='fas fa-address-book fa-2x'></i>
+                                                </td>
+                                                <td>
+                                                    <!-- <span class='float-right'><small>Tinggi </small></span> -->
+                                                    <p class='m-0'><small class='activity'>Subjek :</small></p>
+                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
+                                                    <p class='m-0'>2021-03-29 13:35</p>
+                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
+                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
+                                                    <small class='table-deskripsi'>
+                                                        <p class='activity m-t-20'>Deskripsi :</p>
+                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
+                                                    </small>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div id="formActivity">
-                                    <form action="" class="form-material">
+                                    <form action="" class="form-material" id='form-instruksi'>
                                         <label for="subjek">Subjek</label>
-                                        <input class="form-control" type="text" name="" id="subjek">
+                                        <input class="form-control" type="text" name="in-subjek" id="in-subjek">
                                         <label for="deskripsi">Deskripsi</label>
-                                        <textarea class=form-control class=form-control name="" id="deskripsi" cols="30" rows="3"><?= $agreement[0]->HUKUMAN ?></textarea>
+                                        <textarea class=form-control class=form-control name="in-deskripsi" id="in-deskripsi" cols="30" rows="3"></textarea>
                                         <div class=from-group>
                                             <label for="">Tenggang Waktu</label>
-                                            <input type="datetime-local" class="form-control" name="" id="">
+                                            <input type="datetime-local" class="form-control" name="in-waktu" id="in-waktu">
                                         </div>
                                         <label for="">Prioritas</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="in-prioritas" id="in-prioritas" class="form-control">
                                             <option value="Rendah">Rendah</option>
                                             <option value="Normal">Normal</option>
                                             <option value="Tinggi">Tinggi</option>
                                         </select>
-                                    </form><br><br><a href="#" onclick="submitInstuksi()" class="btn-xs btn-primary">Submit</a>
+                                        <br><br>
+                                        <p id=tampil></p>
+                                        <a href="#" id=submit-instruksi class="btn-xs btn-primary">Submit</a>
+                                    </form>
                                 </div>
                                 <div id="formTelepon">
                                     <form action="" class="form-material">
@@ -459,7 +509,6 @@
     <?php $this->load->view('template/jquery'); ?>
     <script src="<?= base_url('assets/crm-js/activity.js') ?>"></script>
     <script src="<?= base_url('assets/crm-js/agreement.js') ?>"></script>
-
     <script>
         $(".select2").select2();
 
@@ -510,34 +559,94 @@
                     }
                 })
             });
+
+
+
         });
 
         $('#npwp').ready(function() {
-                $.ajax({
-                    url: "<?php echo base_url('agreement/npwp') ?>",
-                    data: {
-                        id:  <?= $agreement[0]->NPWP ?>,
-                    },
-                    success: function(respond) {
-                        // $('#input-npwp').html(respond)
-                        $('#input-npwp').html(respond);
-                    }
-                })
-            });
-        
-        $('#alamat').ready(function() {
-                $.ajax({
-                    url: "<?php echo base_url('agreement/address') ?>",
-                    data: {
-                        id: <?= $agreement[0]->ALAMAT ?>,
-                    },
-                    success: function(respond) {
-                        // $('#input-npwp').html(respond)
-                        $('#input-address').html(respond);
-                    }
-                })
-            });
+            $.ajax({
+                url: "<?php echo base_url('agreement/npwp') ?>",
+                data: {
+                    id: <?= $agreement[0]->NPWP ?>,
+                },
+                success: function(respond) {
+                    // $('#input-npwp').html(respond)
+                    $('#input-npwp').html(respond);
+                }
+            })
+        });
 
+        $('#alamat').ready(function() {
+            $.ajax({
+                url: "<?php echo base_url('agreement/address') ?>",
+                data: {
+                    id: <?= $agreement[0]->ALAMAT ?>,
+                },
+                success: function(respond) {
+                    // $('#input-npwp').html(respond)
+                    $('#input-address').html(respond);
+                }
+            })
+        });
+
+        $('#submit-instruksi').click(function() {
+            var form =
+
+                $.ajax({
+                    type: 'POST',
+                    url: "<?php echo base_url('agreement/addActivity') ?>",
+                    data: {
+                        // icon        : "<i class='fas fa-address-book fa-2x'></i>",
+                        aktifitas: "Instruksi",
+                        subjek: $('#in-subjek').val(),
+                        waktu: $('#in-waktu').val(),
+                        deskripsi: $('#in-deskripsi').val(),
+                        prioritas: $('#in-prioritas').val()
+                    },
+                    success: function(respond) {
+                        var val = respond
+                        console.log(val);
+                        $('#tampil').html(respond)
+                    }
+                });
+            return false;
+        });
+
+        // jquery panel activity
+        $(document).ready(function() {
+            $('.table-deskripsi').hide();
+            $('.show-deskripsi').click(function() {
+                var show = $(this).index('.show-deskripsi');
+                var len = $('.show-deskripsi').length;
+                for (var i = 0; i < len; i++) {
+                    if (i == show) {
+                        if (status == 'show') {
+                            $('.show-deskripsi:eq(' + i + ')').css({
+                                "transform": ""
+                            })
+                            $('.table-deskripsi:eq(' + i + ')').hide();
+                            status = '';
+                            continue;
+                        } else {
+                            $('.show-deskripsi:eq(' + i + ')').css({
+                                "transform": "rotate(180deg)"
+                            })
+                            $('.table-deskripsi:eq(' + i + ')').show();
+                            status = 'show';
+                            continue;
+                        }
+                    } else {
+                        $('.show-deskripsi:eq(' + i + ')').css({
+                            "transform": ""
+                        })
+                        $('.table-deskripsi:eq(' + i + ')').hide();
+                        continue;
+                    }
+                }
+                return false;
+            })
+        });
     </script>
 </body>
 

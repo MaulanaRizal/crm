@@ -68,7 +68,7 @@
                                     <?php foreach ($agreement as $agr) : ?>
                                         <tr>
                                             <td><?= ++$num ?></td>
-                                            <td><?= $agr->NO_AGREEMENT ?></td>
+                                            <td><a href=<?= base_url('agreement/edit/'.$agr->NO_AGREEMENT) ?>><?= $agr->NO_AGREEMENT ?></td>
                                             <td><?= $agr->NAMA_PELANGGAN ?></td>
                                             <td><?= $agr->TIPE_PERIODE ?></td>
                                             <td><?= $agr->CRM_STATUS ?></td>
@@ -76,7 +76,6 @@
                                             <td><?= $agr->JENIS_TAGIHAN ?></td>
                                             <td><?= $agr->REKENING ?> - <?= $agr->AKUN_BANK ?></td>
                                             <td>
-                                                <a href=<?= base_url('agreement/edit/'.$agr->NO_AGREEMENT) ?> class="btn btn-info btn-sm"><i class='ti-marker-alt'></i></a>
                                                 <button class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>
                                             </td>
                                         </tr>

@@ -57,5 +57,11 @@
         .require {
             color: red;
         }
+        .activity{
+            size: 8px;
+            font-weight: bold;
+            margin-bottom: 0px;
+            padding-top: 10px;
+        }
     </style>
 </head>
