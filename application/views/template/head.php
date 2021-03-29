@@ -38,13 +38,21 @@
             color: black;
             font-size: 13px;
         }
-
-        .save-button {
+        
+        .save-button{
             position: fixed;
             bottom: 20px;
             right: 20px;
             padding: 25px;
         }
+
+        .corner{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 25px;
+        }
+        
 
         .require {
             color: red;

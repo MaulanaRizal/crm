@@ -88,7 +88,7 @@
                                     <div class="form-group row">
                                         <label for="agreement_date" class="col-md-4 text-right control-label">Tanggal Agreement <span style="color: red;">*</span></label>
                                         <div class='col-md-6 p-0'>
-                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date" ')">
+                                            <input required name=agr_date type="date" data-date-format="MM/DD/YYYY" class="form-control" id="agreement_date")>
                                             <small style="color: red;" id=agreement_date-alert></small>
                                         </div>
                                     </div>

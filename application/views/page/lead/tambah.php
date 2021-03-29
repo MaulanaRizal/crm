@@ -109,11 +109,10 @@
                                                 <input type="text" class="form-control" placeholder="Pekerjaan" name="pekerjaan">
                                             </div>
                                         </div>
-                                        <div class="form-group row <?=form_error('telepon') ? 'has-error' : null?>">
+                                        <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Telepon</label>
                                             <div class="col-md-9">
                                                 <input type="number" class="form-control" placeholder="Telepon" name="telepon">
-                                                <span id="telepon_error" class="text-danger"><?=form_error('telepon')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">

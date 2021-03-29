@@ -2,7 +2,8 @@
 <body class="fix-header fix-sidebar card-no-border">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <div id="main-wrapper">
     <?php $this->load->view('template/navbar'); ?>
@@ -23,6 +24,13 @@
                             <li class="breadcrumb-item active"> Update Lead</li>
                         </ol>
                     </div>
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div class="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                <a href="<?=base_url('lead/qualify')?>" class="btn waves-effect waves-light btn-info">Qualify</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Start Page Content -->
                 <div class="row d-flex justify-content-center">
@@ -40,31 +48,34 @@
                                         </tr>
                                         <tr>
                                             <td>
+                                                <?php $leads = $lead->SUMBER_LEAD; ?>
                                                 <select class="form-control" name="sumber_lead" id="sumber_lead">
                                                     <option></option>
-                                                    <option value="iklan" <?php echo ($lead->SUMBER_LEAD ? 'iklan' : 'selected');?>>Iklan</option>
-                                                    <option value="rujukan_karyawan" <?php echo ($lead->SUMBER_LEAD ? 'rujukan_karyawan' : 'selected');?>>Rujukan Karyawan</option>
-                                                    <option value="rujukan_eksternal" <?php echo ($lead->SUMBER_LEAD ? 'rujukan_eksternal' : 'selected');?>>Rujukan Eksternal</option>
-                                                    <option value="partner" <?php echo ($lead->SUMBER_LEAD ? 'partner' : 'selected');?>>Partner</option>
-                                                    <option value="hubungan_masyarakat" <?php echo ($lead->SUMBER_LEAD ? 'hubungan_masyarakat' : 'selected');?>>Hubungan Masyarakat</option>
-                                                    <option value="seminar" <?php echo ($lead->SUMBER_LEAD ? 'seminar' : 'selected');?>>Seminar</option>
-                                                    <option value="pameran_dagang" <?php echo ($lead->SUMBER_LEAD ? 'pameran_dagang' : 'selected');?>>Pameran Dagang</option>
-                                                    <option value="web" <?php echo ($lead->SUMBER_LEAD ? 'web' : 'selected');?>>Web</option>
-                                                    <option value="mulut_ke_mulut" <?php echo ($lead->SUMBER_LEAD ? 'mulut_ke_mulut' : 'selected');?>>Dari Mulut ke Mulut</option>
+                                                    <option <?php echo ($leads == 'Iklan') ? "selected" : "" ?>>Iklan</option>
+                                                    <option <?php echo ($leads == 'Rujukan Karyawan') ? "selected" : "" ?>>Rujukan Karyawan</option>
+                                                    <option <?php echo ($leads == 'Rujukan Eksternal') ? "selected" : "" ?>>Rujukan Eksternal</option>
+                                                    <option <?php echo ($leads == 'Partner') ? "selected" : "" ?>>Partner</option>
+                                                    <option <?php echo ($leads == 'Hubungan Masyarakat') ? "selected" : "" ?>>Hubungan Masyarakat</option>
+                                                    <option <?php echo ($leads == 'Seminar') ? "selected" : "" ?>>Seminar</option>
+                                                    <option <?php echo ($leads == 'Pameran Dagang') ? "selected" : "" ?>>Pameran Dagang</option>
+                                                    <option <?php echo ($leads == 'Web') ? "selected" : "" ?>>Web</option>
+                                                    <option <?php echo ($leads == 'Dari Mulut ke Mulut') ? "selected" : "" ?>>Dari Mulut ke Mulut</option>
                                                 </select>
                                             </td>
                                             <td>
+                                                <?php $leads = $lead->RATING; ?>
                                                 <select class="form-control" name="rating">
-                                                    <option selected></option>
-                                                    <option>Hot</option>
-                                                    <option>Warm</option>
-                                                    <option>Cold</option>
+                                                    <option></option>
+                                                    <option <?php echo ($leads == 'Hot') ? "selected" : "" ?>>Hot</option>
+                                                    <option <?php echo ($leads == 'Warm') ? "selected" : "" ?>>Warm</option>
+                                                    <option <?php echo ($leads == 'Cold') ? "selected" : "" ?>>Cold</option>
                                                 </select>
                                             </td>
                                             <td>
+                                                <?php $leads = $lead->CRM_STATUS; ?>
                                                 <select class="form-control" name="status">
-                                                    <option selected>Baru</option>
-                                                    <option>Dihubungi</option>
+                                                    <option <?php echo ($leads == 'Baru') ? "selected" : "" ?>>Baru</option>
+                                                    <option <?php echo ($leads == 'Dihubungi') ? "selected" : "" ?>>Dihubungi</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -93,15 +104,14 @@
                                         <div class="form-group row <?=form_error('topic') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Topic*</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Topic" name="topic">
+                                                <input type="text" class="form-control" placeholder="Topic" name="topic" value="<?= $lead->TOPIC ?>">
                                                 <span class="text-danger"><?=form_error('topic')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row <?=form_error('nama') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Nama*</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Nama" name="nama">
-                                                <span class="text-danger"><?=form_error('nama')?></span>
+                                                <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?= $lead->NAMA ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -110,40 +120,40 @@
                                                 <input type="text" class="form-control" placeholder="Pekerjaan" name="pekerjaan" value="<?php echo $lead->PEKERJAAN; ?>">
                                             </div>
                                         </div>
-                                        <div class="form-group row <?=form_error('telepon') ? 'has-error' : null?>">
+                                        <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Telepon</label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control" placeholder="Telepon" name="telepon">
-                                                <span class="text-danger"><?=form_error('telepon')?></span>
+                                                <input type="number" class="form-control" placeholder="Telepon" name="telepon" value="<?= $lead->TELEPON ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Coordinat</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Coordinat" name="coordinat">
+                                                <input type="text" class="form-control" placeholder="Coordinat" name="coordinat" value="<?= $lead->COORDINAT ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Alamat</label>
                                             <div class="col-md-9">
-                                                <textarea class="form-control" placeholder="Tulis Alamat Lengkap" name="alamat"></textarea>
+                                                <textarea class="form-control" placeholder="Tulis Alamat Lengkap" name="alamat"><?= $lead->ALAMAT ?></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Penawaran</label>
                                             <div class="col-md-9">
-                                                <input type="date" class="form-control" placeholder="Penawaran" name="penawaran">
+                                                <input type="date" class="form-control" placeholder="Penawaran" name="penawaran" value="<?= $lead->PENAWARAN ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Penawaran Kembali</label>
                                             <div class="col-md-9">
-                                                <input type="date" class="form-control" placeholder="Penawaran Kembali" name="penawaran_kembali">
+                                                <input type="date" class="form-control" placeholder="Penawaran Kembali" name="penawaran_kembali" value="<?= $lead->PENAWARAN_KEMBALI ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                <button title="Update" type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fas fa-edit"></i></button>
+
                             </form>
                         </div>
                     </div>

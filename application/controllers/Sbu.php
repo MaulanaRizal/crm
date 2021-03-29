@@ -23,36 +23,27 @@ class SBU extends CI_Controller{
 		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required');
 		if($this->form_validation->run() == false){
 			$error = array(
-				'sbu_error' => form_error('sbu_region')			
+				'sbu_error' => form_error('sbu_region'),
 			);
 			echo json_encode(['error' => $error]);
 		}
 		else{
 			echo json_encode(['success' => 'Record added successfully.']);
-			$data = array(
-				'SBU_REGION' => $this->input->post('sbu_region'),
-				'DESKRIPSI' => $this->input->post('deskripsi')
-			);
-			$this->sbu->insert('sbu', $data);
+			$data = [
+				'SBU_REGION' => $this->input->post('sbu_region', true),
+				'DESKRIPSI' => $this->input->post('deskripsi', true)
+			];
+			$this->sbu->insert('SBU', $data);
 		}
 	}
 	public function ubah(){
-		$this->form_validation->set_rules('sbu_region', 'wilayah SBU', 'required');
-		if($this->form_validation->run() == false){
-			$error = array(
-				'sbu_error_edit' => form_error('sbu_region'),			
-			);
-			echo json_encode(['error' => $error]);
-		}
-		else{
-			echo json_encode(['success' => 'Record added successfully.']);
 			$id_sbu = $this->input->post('id_sbu');
 			$data = array(
 				'SBU_REGION' => $this->input->post('sbu_region'),
 				'DESKRIPSI' => $this->input->post('deskripsi') 
 			);
 			$this->sbu->update($data, $id_sbu);
-		}
+			redirect('sbu');
 	}
 
 	public function cari(){

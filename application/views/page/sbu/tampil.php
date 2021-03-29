@@ -107,7 +107,7 @@
                         </div>
                         <form novalidate class="item" method="post">
                             <div class="modal-body">
-                                <div class="form-group">
+                                <div class="form-group <?=form_error('sbu_region') ? 'has-error' : null?>">
                                     <label for="recipient-name" class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
                                     <span id="sbu_error" class="text-danger"></span>
@@ -115,14 +115,11 @@
                                 <div class="form-group">
                                     <label for="message-text" class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 id="message-text1" name="deskripsi"></textarea>
-
-                                    <!-- <span id="deskripsi_error" class="text-danger"></span> -->
-
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" name="tambah" id="tambah" class="btn btn-primary">Simpan&nbsp;</button>
+                                <button type="submit" name="tambah" id="tambah" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -139,24 +136,21 @@
                             <h4 class="modal-title" id="exampleModalLabel1">Edit Data SBU</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <form class="item" novalidate method="post">
+                        <form action="<?=base_url('sbu/ubah')?>" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" name="sbu_region" value="<?= $data->SBU_REGION ?>">
-                                    <span id="sbu_error_edit" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi:</label>
                                     <textarea class="form-control" rows=6 name="deskripsi"><?= $data->DESKRIPSI ?></textarea>
-                                    <span id="deskripsi_error_edit" class="text-danger"></span>
-                                    <!-- <span id="deskripsi_error" class="text-danger"></span> -->
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <input type="hidden" name="id_sbu" value="<?php echo $data->ID_SBU?>">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" name="edit" id="edit">Simpan&nbsp;</button>
+                                <button type="submit" class="btn btn-primary" name="edit" id="edit">Simpan&nbsp;</button>
                             </div>
                         </form>
                     </div>
@@ -199,7 +193,7 @@
                     $.ajax({
                         type: 'POST',
                         dataType: "json",
-                        url: "<?= base_url('sbu/tambah'); ?>",
+                        url: "<?= base_url('Sbu/tambah'); ?>",
                         data: data,
                         success: function(data){
                             if ($.isEmptyObject(data.error)) {
@@ -207,36 +201,11 @@
                             }
                             else{
                                 $("#sbu_error").html(data.error.sbu_error);
-
-                                // $("#deskripsi_error").html(data.error.deskripsi_error);
-
                             }
                         }
                     });
                 });
             });    
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("#edit").click(function(e){
-                    e.preventDefault();
-                    var data = $('.item').serialize();
-                    $.ajax({
-                        type: 'POST',
-                        dataType: "json",
-                        url: "<?= base_url('sbu/ubah'); ?>",
-                        data: data,
-                        success: function(data){
-                            if ($.isEmptyObject(data.error)) {
-                                location.href = "<?= base_url('sbu'); ?>";
-                            }
-                            else{
-                                $("#sbu_error_edit").html(data.error.sbu_error_edit);
-                            }
-                        }
-                    });
-                });
-            });            
         </script>
 </body>
 

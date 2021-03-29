@@ -51,12 +51,11 @@
                                 foreach($lead as $data){ ?>
                                 <tr>
                                     <td><?= $num ?></td>
-                                    <td><a href="<?=base_url('lead/updateLead')?>"><?= $data->TOPIC ?></a></td>
+                                    <td><a href="<?=base_url()?>lead/updateLead/<?=$data->ID_LEADS;?>"><?= $data->TOPIC ?></a></td>
                                     <td><?= $data->NAMA ?></td>
                                     <td><?= $data->CRM_STATUS ?></td>
                                     <td>
-                                        <a href="<?=base_url();?>lead/updateLead/<?=$data->ID_LEADS;?>" class="btn btn-info" title="Edit"><i class="far fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_LEADS;?>"><i class="fa fa-phone-slash"></i></a>
+                                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $data->ID_LEADS;?>" title="Disqualify"><i class="fa fa-phone-slash"></i></a>
                                     </td>
                                 </tr>
                                 <?php 
@@ -79,17 +78,17 @@
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+                <h3 class="modal-title" id="myModalLabel">Disqualify Data</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url('sbu/hapus')?>">
+            <form class="form-horizontal" method="post" action="<?php echo base_url('lead/disqualify')?>">
                 <div class="modal-body">
-                    <p>Anda yakin mau menghapus!</p>
+                    <p>Anda yakin mau disqualify data!</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id_sbu" value="<?php echo $data->ID_LEADS?>">
+                    <input type="hidden" name="id_lead" value="<?php echo $data->ID_LEADS?>">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                    <button class="btn btn-danger">Hapus</button>
+                    <button class="btn btn-danger">Disqualify</button>
                 </div>
             </form>
             </div>

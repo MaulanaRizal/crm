@@ -5,6 +5,7 @@ class Lead extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('m_lead');
+		$this->load->model('m_opportunity');
 	}
 
 	public function index(){
@@ -21,15 +22,21 @@ class Lead extends CI_Controller{
 		$this->load->view('page/lead/tambah');
 	}
 
+	public function qualify(){
+		$dataDB = $this->m_opportunity->cekNo_Opportunity();
+		$noUrut = substr($dataDB, 3, 4);
+		$noOpportunitySekarang = $noUrut + 1;
+		$data = array('NO_OPPORTUNITY' => $noOpportunitySekarang);
+		$this->load->view('page/opportunity/qualify', $data);
+	}
+
 	public function simpan(){
 		$this->form_validation->set_rules('topic', 'topic', 'required');
 		$this->form_validation->set_rules('nama', 'nama', 'required');
-		$this->form_validation->set_rules('telepon', 'telepon', 'is_unique[leads.TELEPON]');
 		if ($this->form_validation->run() == false) {
 			$error = array(
 				'topic_error' => form_error('topic'),
-				'nama_error' => form_error('nama'),
-				'telepon_error' => form_error('telepon')			
+				'nama_error' => form_error('nama')			
 			);
 			echo json_encode(['error' => $error]);
 		}
@@ -60,29 +67,29 @@ class Lead extends CI_Controller{
 	}
 
 	public function update(){
-			$id_leads = $this->input->post('id_leads');
-			$data = array(
-				'SUMBER_LEAD' => $this->input->post('sumber_lead'),
-				'RATING' => $this->input->post('rating'),
-				'CRM_STATUS' => $this->input->post('status'),
-				'ID_USER' => $this->input->post('crm_owner'),
-				'PEMILIK' => $this->input->post('pemilik'),
-				'TOPIC' => $this->input->post('topic'),
-				'NAMA' => $this->input->post('nama'),
-				'PEKERJAAN' => $this->input->post('pekerjaan'),
-				'TELEPON' => $this->input->post('telepon'),
-				'COORDINAT' => $this->input->post('coordinat'),
-				'ALAMAT' => $this->input->post('alamat'),
-				'PENAWARAN' => $this->input->post('penawaran'),
-				'PENAWARAN_KEMBALI' => $this->input->post('penawaran_kembali')	
-			);
-			$this->m_lead->update($data, $id_leads);
-			redirect('lead');
+		$id_leads = $this->input->post('id_leads');
+		$data = array(
+			'SUMBER_LEAD' => $this->input->post('sumber_lead'),
+			'RATING' => $this->input->post('rating'),
+			'CRM_STATUS' => $this->input->post('status'),
+			'ID_USER' => $this->input->post('crm_owner'),
+			'PEMILIK' => $this->input->post('pemilik'),
+			'TOPIC' => $this->input->post('topic'),
+			'NAMA' => $this->input->post('nama'),
+			'PEKERJAAN' => $this->input->post('pekerjaan'),
+			'TELEPON' => $this->input->post('telepon'),
+			'COORDINAT' => $this->input->post('coordinat'),
+			'ALAMAT' => $this->input->post('alamat'),
+			'PENAWARAN' => $this->input->post('penawaran'),
+			'PENAWARAN_KEMBALI' => $this->input->post('penawaran_kembali')	
+		);
+		$this->m_lead->update($data, $id_leads);
+		redirect('lead');
 	}
 
-	public function hapus(){
+	public function disqualify(){
 		$id_lead = $this->input->post('id_lead');
-		$this->m_lead->delete($id_lead);
+		$this->m_lead->disqualify($id_lead);
 		redirect('lead');
 	}
 }

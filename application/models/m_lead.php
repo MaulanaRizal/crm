@@ -31,8 +31,8 @@ class M_lead extends CI_Model{
 		return true;
 	}
 
-	public function delete($id_lead){
-    	$hasil = $this->db->query("delete from sbu where ID_LEADS = '$id_lead'");
+	public function disqualify($id_lead){
+    	$hasil = $this->db->query("delete from leads where ID_LEADS = '$id_lead'");
     	return $hasil;
     }
 }
