@@ -73,7 +73,7 @@ function pagination($link, $rows, $page)
     $config['base_url']     = $link;
     $config['total_rows']   = $rows;
     $config['per_page']     = $page;
-    $config['num_links']    = 3;
+    $config['num_links']    = 5;
 
     // Styling Paginatition
     // tag open and close
@@ -81,25 +81,25 @@ function pagination($link, $rows, $page)
     $config['full_tag_close']   = '</ul></nav>';
 
     // First Link
-    $config['first_link'] = false;
-    // $config['first_link']         = "First"; // edit text first
-    // $config['first_tag_open']    = "<li class='page-item'>";
-    // $config['first_tag_close']    = "</li>";
+    $config['first_link']       = true;
+    $config['first_link']         = "pertama"; // edit text first
+    $config['first_tag_open']    = "<li class='page-item'>";
+    $config['first_tag_close']    = "</li>";
 
     // Last Link
-    $config['last_link'] = false;
-    // $config['last_link']         = "last"; // edit text last
-    // $config['last_tag_open']    = "<li class='page-item'>";
-    // $config['last_tag_close']    = "</li>";
+    // $config['last_link'] = false;
+    $config['last_link']         = "last"; // edit text last
+    $config['last_tag_open']    = "<li class='page-item'>";
+    $config['last_tag_close']    = "</li>";
 
     // Next Link
-    $config['next_link']        = "&raquo"; // edit text last
+    $config['next_link']        = "next"; // edit text last
     $config['next_tag_open']    = "<li class='page-item'>";
     $config['next_tag_close']   = "</li>";
     
 
     // Previous Link
-    $config['prev_link']        = "&laquo"; // edit text last
+    $config['prev_link']        = "prev"; // edit text last
     $config['prev_tag_open']    = "<li class='page-item'>";
     $config['prev_tag_close']   = "</li>";
     

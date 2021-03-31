@@ -10,7 +10,7 @@ class Pengguna extends CI_Controller {
 	public function index()
 	{
 		$user =  $this->model->getTable('users');
-		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),10);
+		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),5);
 
 		$this->pagination->initialize($config);
 		$data['start']	= $this->uri->segment(3);
@@ -18,6 +18,7 @@ class Pengguna extends CI_Controller {
 		$data['user'] 	= $this->model->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/users/tampil', $data);
 	}
+
 	public function tambah()
 	{
 		// $data = $this->model->getTable('ROLES')->result();

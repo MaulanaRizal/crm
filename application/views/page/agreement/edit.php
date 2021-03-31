@@ -364,14 +364,16 @@
                                     </table>
                                 </div>
                                 <div id="formActivity">
-                                    <form action="" class="form-material" id='form-instruksi'>
-                                        <label for="subjek">Subjek</label>
-                                        <input class="form-control" type="text" name="in-subjek" id="in-subjek">
+                                    <form action="" class="form-material" id='form-instruksi' name="form_instruksi">
+                                        <label for="subjek">Subjek <span class='require'>*</span></label>
+                                        <input class="form-control intruksi-input" type="text" name="in-subjek" id="in-subjek">
+                                        <small class='require' id='in-subjek-alert'></small>
                                         <label for="deskripsi">Deskripsi</label>
-                                        <textarea class=form-control class=form-control name="in-deskripsi" id="in-deskripsi" cols="30" rows="3"></textarea>
+                                        <textarea class='form-control intruksi-input' name="in-deskripsi" id="in-deskripsi" maxlength="500" cols="30" rows="3"></textarea>
                                         <div class=from-group>
-                                            <label for="">Tenggang Waktu</label>
-                                            <input type="datetime-local" class="form-control" name="in-waktu" id="in-waktu">
+                                            <label for="">Tenggang Waktu <span class='require'>*</span> </label>
+                                            <input type="datetime-local" class="form-control intruksi-input" name="in-waktu" id="in-waktu">
+                                            <small class='require' id='in-waktu-alert'></small>
                                         </div>
                                         <label for="">Prioritas</label>
                                         <select name="in-prioritas" id="in-prioritas" class="form-control">
@@ -384,6 +386,7 @@
                                         <a href="#" id=submit-instruksi class="btn-xs btn-primary">Submit</a>
                                     </form>
                                 </div>
+                                
                                 <div id="formTelepon">
                                     <form action="" class="form-material">
                                         <label for="deskripsi">Deskripsi</label>
@@ -591,25 +594,46 @@
         });
 
         $('#submit-instruksi').click(function() {
-            var form =
 
-                $.ajax({
-                    type: 'POST',
-                    url: "<?php echo base_url('agreement/addActivity') ?>",
-                    data: {
-                        // icon        : "<i class='fas fa-address-book fa-2x'></i>",
-                        aktifitas: "Instruksi",
-                        subjek: $('#in-subjek').val(),
-                        waktu: $('#in-waktu').val(),
-                        deskripsi: $('#in-deskripsi').val(),
-                        prioritas: $('#in-prioritas').val()
-                    },
-                    success: function(respond) {
-                        var val = respond
-                        console.log(val);
-                        $('#tampil').html(respond)
-                    }
-                });
+            // Subjek
+            var val = $('#in-subjek').val();
+            if (val == '' || val == null) {
+                $('#in-subjek-alert').show();
+                $('#in-subjek-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#in-subjek-alert').hide();
+            }
+
+            // Tenggang Waktu
+            var val = $('#in-waktu').val();
+            if (val == '' || val == null) {
+                $('#in-waktu-alert').show();
+                $('#in-waktu-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#in-waktu-alert').hide();
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
+                data: {
+                    // icon        : "<i class='fas fa-address-book fa-2x'></i>",
+                    aktifitas: "Instruksi",
+                    subjek: $('#in-subjek').val(),
+                    waktu: $('#in-waktu').val(),
+                    deskripsi: $('#in-deskripsi').val(),
+                    prioritas: $('#in-prioritas').val(),
+                },
+                success: function(respond) {
+                    var val = respond;
+                    console.log(val);
+                }
+            });
+            if (!($('#in-subjek').val() == '' || $('#in-waktu').val() == '')) {
+                $('.intruksi-input').val('');
+                $('#tableActivity').show();
+                $('#formActivity').hide();
+                $('#formTelepon').hide();
+            }
             return false;
         });
 
@@ -647,6 +671,7 @@
                 return false;
             })
         });
+        
     </script>
 </body>
 

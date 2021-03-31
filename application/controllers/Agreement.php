@@ -139,8 +139,35 @@ class Agreement extends CI_Controller
 		echo $no_agrt;
 		return json_encode($no_agrt);
 	}
-	public function addActivity()
+	public function addActivity($id)
 	{
-		echo json_encode($_POST);
-	}
+		// echo $id;
+		$dar = array(
+			'DATA' => 'Suam',
+			'LEAK' => 12
+		);
+
+		$this->form_validation->set_rules('subjek','Subjek','required');
+		$this->form_validation->set_rules('waktu','Waktu','required');
+		if($this->form_validation->run()==false){
+			echo 'Berhasil : ';
+			$agr = $this->model->getData('agreements',array('NO_AGREEMENT' => $id))->result();
+			$data = json_decode($agr[0]->AGR_AKTIVITAS);
+			if(empty($data)){
+				$data = json_encode($_POST);
+				$this->model->update('agreements',array('AGR_AKTIVITAS' => $data), array('NO_AGREEMENT' => $id ));
+			}else{
+				echo 'berisi';
+				// $data[] = $_POST;
+				foreach($data as $i){
+					echo $i.'<br>';
+				} 
+				// array_push($data,$arr);
+				// $this->model->update('agreements',array('AGR_AKTIVITAS' => json_encode($data)), array('NO_AGREEMENT' => $id ));
+			}		
+			var_dump($agr[0]->AGR_AKTIVITAS);
+		}else{
+			echo 'salah';
+		}
+	} 		
 }
