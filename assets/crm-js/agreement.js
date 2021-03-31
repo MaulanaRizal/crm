@@ -167,4 +167,3 @@ $('#submit-instruksi').click(function () {
 	}
 });
 
-
