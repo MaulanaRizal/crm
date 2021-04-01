@@ -103,7 +103,7 @@
                                                 <span id="nama_error" class="text-danger"><?=form_error('nama')?></span>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group">
                                             <label class="control-label text-left col-md-3">Pekerjaan</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Pekerjaan" name="pekerjaan">
@@ -192,29 +192,29 @@
         });
     </script>
     <script type="text/javascript">
-            $(document).ready(function(){
-                $("#tambahLead").click(function(e){
-                    e.preventDefault();
-                    var data = $('.itemLead').serialize();
-                    $.ajax({
-                        type: 'POST',
-                        dataType: "json",
-                        url: "<?= base_url('lead/simpan'); ?>",
-                        data: data,
-                        success: function(data){
-                            if ($.isEmptyObject(data.error)) {
-                                location.href = "<?= base_url('lead'); ?>";
-                            }
-                            else{
-                                $("#topic_error").html(data.error.topic_error);
-                                $("#nama_error").html(data.error.nama_error);
-                                $("#telepon_error").html(data.error.telepon_error);
-                            }
+        $(document).ready(function(){
+            $("#tambahLead").click(function(e){
+                e.preventDefault();
+                var data = $('.itemLead').serialize();
+                $.ajax({
+                    type: 'POST',
+                    dataType: "json",
+                    url: "<?= base_url('lead/simpan'); ?>",
+                    data: data,
+                    success: function(data){
+                        if ($.isEmptyObject(data.error)) {
+                            location.href = "<?= base_url('lead'); ?>";
                         }
-                    });
+                        else{
+                            $("#topic_error").html(data.error.topic_error);
+                            $("#nama_error").html(data.error.nama_error);
+                            $("#telepon_error").html(data.error.telepon_error);
+                        }
+                    }
                 });
-            });    
-        </script>
+            });
+        });    
+    </script>
 
         <script>
             $(document).ready(function() {

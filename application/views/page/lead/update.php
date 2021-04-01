@@ -36,7 +36,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="card col-md-9">
                         <div class="card-body">
-                            <form action="<?= base_url('lead/update') ?>" method="post">
+                            <form novalidate class="itemLead" method="post">
                                 <input type="hidden" name="id_leads" value="<?php echo $lead->ID_LEADS; ?>">
                                 <div class="table-responsive float-right col-lg-9">
                                     <table>
@@ -105,13 +105,14 @@
                                             <label class="control-label text-left col-md-3">Topic*</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Topic" name="topic" value="<?= $lead->TOPIC ?>">
-                                                <span class="text-danger"><?=form_error('topic')?></span>
+                                                <span id="topic_error" class="text-danger"><?=form_error('topic')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row <?=form_error('nama') ? 'has-error' : null?>">
                                             <label class="control-label text-left col-md-3">Nama*</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?= $lead->NAMA ?>">
+                                                <span id="nama_error" class="text-danger"><?=form_error('nama')?></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -152,7 +153,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button title="Update" type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fas fa-edit"></i></button>
+                                <button title="Update" type="button" id="updateLead" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fas fa-edit"></i></button>
 
                             </form>
                         </div>
@@ -269,5 +270,28 @@
             $('#form-tambah-tugas').show();
             return false;
         });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#updateLead").click(function(e){
+                e.preventDefault();
+                var data = $('.itemLead').serialize();
+                $.ajax({
+                    type: 'POST',
+                    dataType: "json",
+                    url: "<?= base_url('lead/update'); ?>",
+                    data: data,
+                    success: function(data){
+                        if ($.isEmptyObject(data.error)) {
+                            location.href = "<?= base_url('lead'); ?>";
+                        }
+                        else{
+                            $("#topic_error").html(data.error.topic_error);
+                            $("#nama_error").html(data.error.nama_error);
+                        }
+                    }
+                });
+            });
+        });    
     </script>
 </body>

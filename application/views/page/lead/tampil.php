@@ -30,13 +30,22 @@
 
                 <div class="card">
                     <div class="card-body">
-                        
-                        <a href="<?= base_url()?>lead/tambahLead" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                        <div class="col-sm-6 float-right">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <a href="<?= base_url()?>lead/tambahLead" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                </div>
+                            </div>
+                        </div>
                         <h3>Table Lead </h3>
                         <span>Table kelola lead crm icon+</span>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table style="text-align: left" id="myTable" class="table striped m-b-20">
+                            <table style="text-align: left" class="table striped m-b-20">
                             <thead>
                                 <tr>
                                     <th width=50>#</th>

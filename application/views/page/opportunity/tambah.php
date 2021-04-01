@@ -30,7 +30,7 @@
                 <div class="row d-flex justify-content-center">
                         <div class="card col-md-10">
                             <div class="card-body">
-                                <form class="form" action="<?= base_url('opportunity/simpan') ?>" method="post">
+                                <form class="itemLead" novalidate method="post">
                                 <div class="float-right col-lg-9">
                                     <table>
                                         <tr>
@@ -55,6 +55,7 @@
                                             </td>
                                             <td>
                                                 <input readonly type="text" name="SBU" class="form-control" value="<?= $_SESSION['SBU_REGION'] ?>">
+                                                <input type="hidden" name="id_sbu" value="<?= $_SESSION['ID_SBU'] ?>">
                                             </td>
                                             <td>
                                                 <div class="input-group">
@@ -85,31 +86,35 @@
                                     <div class="form-group m-t-40 row">
                                         <label for="example-text-input" class="col-2 col-form-label">No Opportunity</label>
                                         <div class="col-10">
-                                            <input readonly type="text" name="no_opportunity" value="OPT<?php echo sprintf("%04s", $NO_OPPORTUNITY) ?>" class="form-control">
+                                            <input readonly type="text" name="no_opportunity" value="OPT/<?php echo $no_opportunity;?>" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">Topic *</label>
+                                    <div class="form-group row <?=form_error('topic') ? 'has-error' : null?>">
+                                        <label for="example-text-input" class="col-2 col-form-label">Topic <span style="color: red">*</span></label>
                                         <div class="col-10">
                                             <input name="topic" class="form-control" type="text">
+                                            <span id="topic_error" class="text-danger"><?=form_error('topic')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">Nama Pelanggan *</label>
+                                    <div class="form-group row <?=form_error('nama_pelanggan') ? 'has-error' : null?>">
+                                        <label for="example-text-input" class="col-2 col-form-label">Nama Pelanggan <span style="color: red">*</span></label>
                                         <div class="col-10">
                                             <input name="nama_pelanggan" class="form-control" type="text">
+                                            <span id="nama_pelanggan_error" class="text-danger"><?=form_error('nama_pelanggan')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity *</label>
+                                    <div class="form-group row <?=form_error('tanggal') ? 'has-error' : null?>">
+                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Opportunity <span style="color: red">*</span></label>
                                         <div class="col-10">
                                             <input name="tanggal" class="form-control" type="date">
+                                            <span id="tanggal_error" class="text-danger"><?=form_error('tanggal')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Target Penjualan *</label>
+                                    <div class="form-group row <?=form_error('tanggal_target') ? 'has-error' : null?>">
+                                        <label for="example-date-input" class="col-2 col-form-label">Tanggal Target Penjualan <span style="color: red">*</span></label>
                                         <div class="col-10">
                                             <input name="tanggal_target" class="form-control" type="date">
+                                            <span id="tanggal_target_error" class="text-danger"><?=form_error('tanggal_target')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -182,7 +187,7 @@
                                             <textarea name="solusi" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                    <button type="submit" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                    <button type="submit" id="tambahOpportunity" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -198,6 +203,55 @@
     </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#tambahLead").click(function(e){
+                e.preventDefault();
+                var data = $('.itemLead').serialize();
+                $.ajax({
+                    type: 'POST',
+                    dataType: "json",
+                    url: "<?= base_url('lead/simpan'); ?>",
+                    data: data,
+                    success: function(data){
+                        if ($.isEmptyObject(data.error)) {
+                            location.href = "<?= base_url('lead'); ?>";
+                        }
+                        else{
+                            $("#topic_error").html(data.error.topic_error);
+                            $("#nama_error").html(data.error.nama_error);
+                            $("#telepon_error").html(data.error.telepon_error);
+                        }
+                    }
+                });
+            });
+        });    
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#tambahOpportunity").click(function(e){
+                e.preventDefault();
+                var data = $('.itemOpportunity').serialize();
+                $.ajax({
+                    type: 'POST',
+                    dataType: "json",
+                    url: "<?= base_url('opportunity/simpan') ?>",
+                    data: data,
+                    success: function(data){
+                        if($.isEmptyObject(data.error)){
+                            location.href = "<?= base_url('opportunity') ?>";
+                        }
+                        else{
+                            $("#topic_error").html(data.error.topic_error);
+                            $("#nama_pelanggan_error").html(data.error.nama_pelanggan_error);
+                            $("#tanggal_error").html(data.error.tanggal_error);
+                            $('#tanggal_target_error').html(data.error.tanggal_target_error);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();

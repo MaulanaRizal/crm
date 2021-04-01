@@ -81,12 +81,15 @@ function pagination($link, $rows, $page)
     $config['full_tag_close']   = '</ul></nav>';
 
     // First Link
+    $config['first_link'] = false;
+    $config['first_link']         = "First"; // edit text first
     $config['first_link']       = true;
     $config['first_link']         = "pertama"; // edit text first
     $config['first_tag_open']    = "<li class='page-item'>";
     $config['first_tag_close']    = "</li>";
 
     // Last Link
+    $config['last_link'] = false;
     // $config['last_link'] = false;
     $config['last_link']         = "last"; // edit text last
     $config['last_tag_open']    = "<li class='page-item'>";
