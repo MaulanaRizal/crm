@@ -311,59 +311,6 @@
                                             </tr>
                                         </thead>
                                         <tbody id=show-activity>
-                                            <tr>
-                                                <td>
-                                                    <br><i class='fas fa-address-book fa-2x'></i>
-                                                </td>
-                                                <td>
-                                                    <!-- <span class='float-right'><small>Tinggi </small></span> -->
-                                                    <a href="#" class="float-right"><i class='ti-trash text-dark' id='delete-activity'></i></a>
-                                                    <p class='m-0'><small class='activity'>Subjek :</small></p>
-                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
-                                                    <p class='m-0'>2021-03-29 13:35</p>
-                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
-                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
-                                                    <small class='table-deskripsi'>
-                                                        <p class='activity m-t-20'>Deskripsi :</p>
-                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
-                                                    </small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class='text-center'><br>
-                                                    <i class='fas fa-phone fa-2x'></i>
-                                                    <i class='fas fa-arrow-right fa-sm'></i>
-                                                </td>
-                                                <td>
-                                                    <span class='float-right'><small> Masuk </small></span>
-                                                    <p class='m-0'><small class='activity'>Penerima :</small></p>
-                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
-                                                    <p class='m-0'>2021-03-29 13:35</p>
-                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
-                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
-                                                    <small class='table-deskripsi'>
-                                                        <p class='activity m-t-20'>Deskripsi :</p>
-                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
-                                                    </small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <br><i class='fas fa-address-book fa-2x'></i>
-                                                </td>
-                                                <td>
-                                                    <!-- <span class='float-right'><small>Tinggi </small></span> -->
-                                                    <p class='m-0'><small class='activity'>Subjek :</small></p>
-                                                    <p class='m-0'><small> Iman Handoko Budiaman</small></p>
-                                                    <p class='m-0'>2021-03-29 13:35</p>
-                                                    <a href="#" style="color: black;"><i class='ti-angle-down float-right show-deskripsi'></i></a>
-                                                    <small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
-                                                    <small class='table-deskripsi'>
-                                                        <p class='activity m-t-20'>Deskripsi :</p>
-                                                        <p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
-                                                    </small>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -394,17 +341,19 @@
                                 <div id="formTelepon">
                                     <form action="" class="form-material">
                                         <label for="deskripsi">Deskripsi</label>
-                                        <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="3"></textarea>
-                                        <label for="jangka">Jangka Waktu</label>
-                                        <input class="form-control" type="datetime-local" name="janka" id="jangka">
-                                        <label for="penerima">Penerima</label>
-                                        <input type="text" class="form-control" name="" id="penerima">
+                                        <textarea class="form-control" name="deskripsi" id="tel-deskripsi" cols="30" rows="3"></textarea>
+                                        <label for="jangka">Jangka Waktu <span class='require'>*</span> </label>
+                                        <input class="form-control" type="datetime-local" name="janka" id="tel-jangka">
+                                        <small class='require' id='tel-jangka-alert'></small>
+                                        <label for="penerima">Penerima <span class='require'>*</span> </label>
+                                        <input type="text" class="form-control" name="" id="tel-penerima">
+                                        <small class='require' id='tel-penerima-alert'></small>
                                         <label for="tujuan">Tujuan</label>
-                                        <select class="form-control" name="tujuan" id="tujuan">
+                                        <select class="form-control" name="tujuan" id="tel-tujuan">
                                             <option value="Masuk">Masuk</option>
                                             <option value="Keluar">Keluar</option>
                                         </select><br><br>
-                                        <button class="btn-xs btn-primary" id="submitTelepon ">Simpan</button>
+                                        <a href="#" id=submit-telepon class="btn-xs btn-primary">Submit</a>
                                     </form>
                                 </div>
                             </div>
@@ -598,7 +547,6 @@
         });
 
         $('#submit-instruksi').click(function() {
-
             // Subjek
             var val = $('#in-subjek').val();
             if (val == '' || val == null) {
@@ -619,8 +567,9 @@
             $.ajax({
                 type: 'POST',
                 url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
+                cache:false,
                 data: {
-                    // icon        : "<i class='fas fa-address-book fa-2x'></i>",
+                    icon        : "<i class='fas fa-address-book fa-2x'></i>",
                     aktifitas: "Instruksi",
                     subjek: $('#in-subjek').val(),
                     waktu: $('#in-waktu').val(),
@@ -630,10 +579,57 @@
                 success: function(respond) {
                     var val = respond;
                     console.log(val);
+                    readActivity();
                 }
             });
             if (!($('#in-subjek').val() == '' || $('#in-waktu').val() == '')) {
                 $('.intruksi-input').val('');
+                $('#in-prioritas').val('Rendah');
+                $('#tableActivity').show();
+                $('#formActivity').hide();
+                $('#formTelepon').hide();
+            }
+            return false;
+        });
+        
+        $('#submit-telepon').click(function() {
+            // Subjek
+            var val = $('#tel-jangka').val();
+            if (val == '' || val == null) {
+                $('#tel-jangka-alert').show();
+                $('#tel-jangka-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#tel-jangka-alert').hide();
+            }
+            // Tenggang Waktu
+            var val = $('#tel-penerima').val();
+            if (val == '' || val == null) {
+                $('#tel-penerima-alert').show();
+                $('#tel-penerima-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#tel-penerima-alert').hide();
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
+                cache:false,
+                data: {
+                    icon        : "<i class='fas fa-phone fa-2x'></i>",
+                    aktifitas   : "Telepon",
+                    deskripsi   : $('#tel-deskripsi').val(),
+                    waktu       : $('#tel-jangka').val(),
+                    penerima    : $('#tel-penerima').val(),
+                    tujuan      : $('#tel-tujuan').val(),
+                },
+                success: function(respond) {
+                    var val = respond;
+                    console.log(val);
+                    readActivity();
+                }
+            });
+            if (!($('#tel-jangka').val() == '' || $('#tel-penerima').val() == '')) {
+                $('.intruksi-input').val('');
+                $('#tel-tujuan').val('Masuk');
                 $('#tableActivity').show();
                 $('#formActivity').hide();
                 $('#formTelepon').hide();
@@ -641,11 +637,13 @@
             return false;
         });
 
-        $(document).ready(function() {
+        readActivity();
+        function readActivity(){
             $.ajax({
                 url: "<?= base_url('agreement/getActivity/' . $this->uri->segment(3)) ?>",
                 cache: false,
                 success: function(respond) {
+                    // console.log(respond);
                     $('#show-activity').html(respond);
                     $('.table-deskripsi').hide();
                     var status = [];
@@ -677,11 +675,10 @@
 
                 }
             });
-        });
+        }
         
         </script>
 </body>
-
 
 <!-- Mirrored from www.wrappixel.com/demos/admin-templates/material-pro/minisidebar/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Feb 2019 11:12:10 GMT -->
 

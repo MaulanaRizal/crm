@@ -141,11 +141,14 @@ class Agreement extends CI_Controller
 	}
 	public function addActivity($id)
 	{
-		// echo $id;
-		// $_POST = '{"aktifitas":"Instruksi","subjek":"Sindra","waktu":"2021-03-30T17:51","deskripsi":"","prioritas":"Tinggi"}';
-		// $_POST = json_decode($_POST,true);
-		$this->form_validation->set_rules('subjek', 'Subjek', 'required');
-		$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+		if($_POST['aktifitas']=='Instruksi'){
+			$this->form_validation->set_rules('subjek', 'Subjek', 'required');
+			$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+		}elseif($_POST['aktifitas']=='Telepon'){
+			$this->form_validation->set_rules('penerima', 'Tujuan', 'required');
+			$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+		}
+
 		if ($this->form_validation->run()) {
 			// echo 'Berhasil : ';
 			$agr = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
@@ -171,34 +174,71 @@ class Agreement extends CI_Controller
 	{
 		$agr = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
 		$data = json_decode($agr[0]->AGR_AKTIVITAS, true);
-		$link = $id.'/1';
-		foreach($data as $agr){
-			var_dump($agr);
-			echo '<br>';
-
-		}
-		echo "
-		<tr>
-		<td class='text-center'>
-			<br><i class='fas fa-address-book fa-2x'></i>
-		</td>
-		<td>
-			<!-- <span class='float-right'><small>Tinggi </small></span> -->
-			<a href='".base_url("agreement/delete_activity/$link")."' class='float-right'><i class='ti-trash text-dark'></i></a>
-			<p class='m-0'><small class='activity'>Subjek :</small></p>
-			<p class='m-0'><small> Iman Handoko Budiaman</small></p>
-			<p class='m-0'>2021-03-29 13:35</p>
-			<a href='#' style='color: black;'><i class='ti-angle-down float-right show-deskripsi'></i></a>
-			<small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
-			<small class='table-deskripsi'>
-				<p class='activity m-t-20'>Deskripsi :</p>
-				<p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
-			</small>
-		</td>
-	</tr>";
+			// var_dump($data);
+			if(empty($data)){
+				// echo "<small class='text-secondary'>masih belum ada aktivitas</small>";
+				echo "  
+				<tr>
+				<td></td>
+				<td class='text-secondary'><small>masih belum ada aktivitas</small></td>
+				</tr>";
+			}else{
+				var_dump($data[0]['icon']);
+				for ($i=count($data)-1; $i >= 0 ; $i--) { 
+					$link = $id.'/'.$i;
+					if($data[$i]['aktifitas']=='Instruksi'){
+						echo "
+							<tr>
+							<td class='text-center'>
+								<br>".$data[$i]['icon']."
+							</td>
+							<td>
+								<!-- <span class='float-right'><small>Tinggi </small></span> -->
+								<a href='".base_url("agreement/delete_activity/$link")."' class='float-right'><i class='ti-trash text-dark'></i></a>
+								<p class='m-0'><small class='activity'>Subjek :</small></p>
+								<p class='m-0'><small> ".$data[$i]['subjek']."</small></p>
+								<p class='m-0'>".date('Y-m-d H:i', strtotime($data[$i]['waktu']))."</p>
+								<a href='#' style='color: black;'><i class='ti-angle-down float-right show-deskripsi'></i></a>
+								<small class='float-left'><span class='activity'>Prioritas :</span>".$data[$i]['prioritas']."</small>
+								<small class='table-deskripsi'>
+									<p class='activity m-t-20'>Deskripsi :</p>
+									<p class='text-justify'>".$data[$i]['deskripsi']."</p>
+								</small>
+							</td>
+						</tr>";
+					}elseif($data[$i]['aktifitas']=='Telepon'){
+						var_dump($data[$i]);
+						echo "                                            
+						<tr>
+						<td class='text-center'><br>
+							".$data[$i]['icon']."</i>
+						</td>
+						<td>
+							<a href='".base_url("agreement/delete_activity/$link")."' class='float-right'><i class='ti-trash text-dark' id='delete-activity'></i></a>
+							<p class='m-0'><small class='activity'>Penerima :</small></p>
+							<p class='m-0'><small> ".$data[$i]['penerima']."</small></p>
+							<p class='m-0'>".date('Y-m-d H:i', strtotime($data[$i]['waktu']))."</p>
+							<a href='#' style='color: black;'><i class='ti-angle-down float-right show-deskripsi'></i></a>
+							<small class='float-left'><span class='activity'>Tujuan :</span>".$data[$i]['tujuan']."</small>
+							<small class='table-deskripsi'>
+								<p class='activity m-t-20'>Deskripsi :</p>
+								<p class='text-justify'>".$data[$i]['deskripsi']."</p>
+							</small>
+						</td>
+					</tr>";
+					}
+				}
+			}
+				
 	}
 	public function delete_activity($id,$index)
 	{
-		echo $id.'<br>'.$index;
+		// echo $id.'<br>'.$index;
+		$agr = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
+		$data = json_decode($agr[0]->AGR_AKTIVITAS, true);
+		unset($data[$index]);
+		$data = array_values($data);	
+		$this->model->update('agreements', array('AGR_AKTIVITAS' => json_encode($data)), array('NO_AGREEMENT' => $id));
+		redirect("agreement/edit/$id");
 	}
 }
