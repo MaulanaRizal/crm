@@ -306,17 +306,18 @@
                                     <table id='tampilDaftar' class='table m-0'>
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th width=70px>#</th>
                                                 <th>Informasi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id=show-activity>
                                             <tr>
                                                 <td>
                                                     <br><i class='fas fa-address-book fa-2x'></i>
                                                 </td>
                                                 <td>
                                                     <!-- <span class='float-right'><small>Tinggi </small></span> -->
+                                                    <a href="#" class="float-right"><i class='ti-trash text-dark' id='delete-activity'></i></a>
                                                     <p class='m-0'><small class='activity'>Subjek :</small></p>
                                                     <p class='m-0'><small> Iman Handoko Budiaman</small></p>
                                                     <p class='m-0'>2021-03-29 13:35</p>
@@ -329,7 +330,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><br><i class='fas fa-phone fa-2x'></i></td>
+                                                <td class='text-center'><br>
+                                                    <i class='fas fa-phone fa-2x'></i>
+                                                    <i class='fas fa-arrow-right fa-sm'></i>
+                                                </td>
                                                 <td>
                                                     <span class='float-right'><small> Masuk </small></span>
                                                     <p class='m-0'><small class='activity'>Penerima :</small></p>
@@ -364,14 +368,16 @@
                                     </table>
                                 </div>
                                 <div id="formActivity">
-                                    <form action="" class="form-material" id='form-instruksi'>
-                                        <label for="subjek">Subjek</label>
-                                        <input class="form-control" type="text" name="in-subjek" id="in-subjek">
+                                    <form action="" class="form-material" id='form-instruksi' name="form_instruksi">
+                                        <label for="subjek">Subjek <span class='require'>*</span></label>
+                                        <input class="form-control intruksi-input" type="text" name="in-subjek" id="in-subjek">
+                                        <small class='require' id='in-subjek-alert'></small>
                                         <label for="deskripsi">Deskripsi</label>
-                                        <textarea class=form-control class=form-control name="in-deskripsi" id="in-deskripsi" cols="30" rows="3"></textarea>
+                                        <textarea class='form-control intruksi-input' name="in-deskripsi" id="in-deskripsi" maxlength="500" cols="30" rows="3"></textarea>
                                         <div class=from-group>
-                                            <label for="">Tenggang Waktu</label>
-                                            <input type="datetime-local" class="form-control" name="in-waktu" id="in-waktu">
+                                            <label for="">Tenggang Waktu <span class='require'>*</span> </label>
+                                            <input type="datetime-local" class="form-control intruksi-input" name="in-waktu" id="in-waktu">
+                                            <small class='require' id='in-waktu-alert'></small>
                                         </div>
                                         <label for="">Prioritas</label>
                                         <select name="in-prioritas" id="in-prioritas" class="form-control">
@@ -384,6 +390,7 @@
                                         <a href="#" id=submit-instruksi class="btn-xs btn-primary">Submit</a>
                                     </form>
                                 </div>
+
                                 <div id="formTelepon">
                                     <form action="" class="form-material">
                                         <label for="deskripsi">Deskripsi</label>
@@ -591,63 +598,88 @@
         });
 
         $('#submit-instruksi').click(function() {
-            var form =
 
-                $.ajax({
-                    type: 'POST',
-                    url: "<?php echo base_url('agreement/addActivity') ?>",
-                    data: {
-                        // icon        : "<i class='fas fa-address-book fa-2x'></i>",
-                        aktifitas: "Instruksi",
-                        subjek: $('#in-subjek').val(),
-                        waktu: $('#in-waktu').val(),
-                        deskripsi: $('#in-deskripsi').val(),
-                        prioritas: $('#in-prioritas').val()
-                    },
-                    success: function(respond) {
-                        var val = respond
-                        console.log(val);
-                        $('#tampil').html(respond)
-                    }
-                });
+            // Subjek
+            var val = $('#in-subjek').val();
+            if (val == '' || val == null) {
+                $('#in-subjek-alert').show();
+                $('#in-subjek-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#in-subjek-alert').hide();
+            }
+
+            // Tenggang Waktu
+            var val = $('#in-waktu').val();
+            if (val == '' || val == null) {
+                $('#in-waktu-alert').show();
+                $('#in-waktu-alert').html("form tidak boleh kosong.<br>");
+            } else {
+                $('#in-waktu-alert').hide();
+            }
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
+                data: {
+                    // icon        : "<i class='fas fa-address-book fa-2x'></i>",
+                    aktifitas: "Instruksi",
+                    subjek: $('#in-subjek').val(),
+                    waktu: $('#in-waktu').val(),
+                    deskripsi: $('#in-deskripsi').val(),
+                    prioritas: $('#in-prioritas').val(),
+                },
+                success: function(respond) {
+                    var val = respond;
+                    console.log(val);
+                }
+            });
+            if (!($('#in-subjek').val() == '' || $('#in-waktu').val() == '')) {
+                $('.intruksi-input').val('');
+                $('#tableActivity').show();
+                $('#formActivity').hide();
+                $('#formTelepon').hide();
+            }
             return false;
         });
 
-        // jquery panel activity
         $(document).ready(function() {
-            $('.table-deskripsi').hide();
-            $('.show-deskripsi').click(function() {
-                var show = $(this).index('.show-deskripsi');
-                var len = $('.show-deskripsi').length;
-                for (var i = 0; i < len; i++) {
-                    if (i == show) {
-                        if (status == 'show') {
-                            $('.show-deskripsi:eq(' + i + ')').css({
-                                "transform": ""
-                            })
-                            $('.table-deskripsi:eq(' + i + ')').hide();
-                            status = '';
-                            continue;
-                        } else {
-                            $('.show-deskripsi:eq(' + i + ')').css({
-                                "transform": "rotate(180deg)"
-                            })
-                            $('.table-deskripsi:eq(' + i + ')').show();
-                            status = 'show';
-                            continue;
+            $.ajax({
+                url: "<?= base_url('agreement/getActivity/' . $this->uri->segment(3)) ?>",
+                cache: false,
+                success: function(respond) {
+                    $('#show-activity').html(respond);
+                    $('.table-deskripsi').hide();
+                    var status = [];
+                    $('.show-deskripsi').click(function() {
+                        var show = $(this).index('.show-deskripsi');
+                        var len = $('.show-deskripsi').length;
+                        for (var i = 0; i < len; i++) {
+                            if (i == show) {
+                                console.log(i)
+                                if (status[i] == 'show') {
+                                    $('.show-deskripsi:eq(' + i + ')').css({
+                                        "transform": ""
+                                    })
+                                    $('.table-deskripsi:eq(' + i + ')').hide();
+                                    status[i] = '';
+                                    continue;
+                                } else {
+                                    $('.show-deskripsi:eq(' + i + ')').css({
+                                        "transform": "rotate(180deg)"
+                                    })
+                                    $('.table-deskripsi:eq(' + i + ')').show();
+                                    status[i] = 'show';
+                                    continue;
+                                }
+                            }
                         }
-                    } else {
-                        $('.show-deskripsi:eq(' + i + ')').css({
-                            "transform": ""
-                        })
-                        $('.table-deskripsi:eq(' + i + ')').hide();
-                        continue;
-                    }
+                        return false;
+                    });
+
                 }
-                return false;
-            })
+            });
         });
-    </script>
+        
+        </script>
 </body>
 
 

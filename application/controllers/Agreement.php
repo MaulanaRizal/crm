@@ -80,7 +80,7 @@ class Agreement extends CI_Controller
 			);
 			// var_dump($data);
 			$this->model->insert('agreements', $data);
-			redirect('agreement/edit/'.$no_agrt);
+			redirect('agreement/edit/' . $no_agrt);
 		} else {
 			$this->session->set_flashdata('message', "<div class='alert alert-danger'>" . validation_errors() . "</div>");
 			redirect('agreement/tambah');
@@ -124,7 +124,7 @@ class Agreement extends CI_Controller
 	}
 	public function edit($id)
 	{
-		$data['agreement'] = $this->model->getData('agreements',array ('NO_AGREEMENT' => $id))->result();
+		$data['agreement'] = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
 		$data['title'] = 'Edit Agreement';
 		$data['npwp']  = $this->model->getTable('npwp')->result();
 		$data['addr']  = $this->model->getTable('addreess')->result();
@@ -139,8 +139,66 @@ class Agreement extends CI_Controller
 		echo $no_agrt;
 		return json_encode($no_agrt);
 	}
-	public function addActivity()
+	public function addActivity($id)
 	{
-		echo json_encode($_POST);
+		// echo $id;
+		// $_POST = '{"aktifitas":"Instruksi","subjek":"Sindra","waktu":"2021-03-30T17:51","deskripsi":"","prioritas":"Tinggi"}';
+		// $_POST = json_decode($_POST,true);
+		$this->form_validation->set_rules('subjek', 'Subjek', 'required');
+		$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+		if ($this->form_validation->run()) {
+			// echo 'Berhasil : ';
+			$agr = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
+			$data = json_decode($agr[0]->AGR_AKTIVITAS, true);
+			if (empty($data)) {
+				$arr[0] = $_POST;
+				$data = json_encode($arr);
+				$this->model->update('agreements', array('AGR_AKTIVITAS' => $data), array('NO_AGREEMENT' => $id));
+			} else {
+				// echo 'berisi ';
+				$data[count($data)] = $_POST;
+				header('Content-type: application/json');
+				echo json_encode($data);
+				$this->model->update('agreements', array('AGR_AKTIVITAS' => json_encode($data)), array('NO_AGREEMENT' => $id));
+			}
+			// var_dump($data);
+		} else {
+			echo 'salah';
+		}
+	}
+
+	public function getActivity($id)
+	{
+		$agr = $this->model->getData('agreements', array('NO_AGREEMENT' => $id))->result();
+		$data = json_decode($agr[0]->AGR_AKTIVITAS, true);
+		$link = $id.'/1';
+		foreach($data as $agr){
+			var_dump($agr);
+			echo '<br>';
+
+		}
+		echo "
+		<tr>
+		<td class='text-center'>
+			<br><i class='fas fa-address-book fa-2x'></i>
+		</td>
+		<td>
+			<!-- <span class='float-right'><small>Tinggi </small></span> -->
+			<a href='".base_url("agreement/delete_activity/$link")."' class='float-right'><i class='ti-trash text-dark'></i></a>
+			<p class='m-0'><small class='activity'>Subjek :</small></p>
+			<p class='m-0'><small> Iman Handoko Budiaman</small></p>
+			<p class='m-0'>2021-03-29 13:35</p>
+			<a href='#' style='color: black;'><i class='ti-angle-down float-right show-deskripsi'></i></a>
+			<small class='float-left'><span class='activity'>Prioritas :</span> Rendah </small>
+			<small class='table-deskripsi'>
+				<p class='activity m-t-20'>Deskripsi :</p>
+				<p class='text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, obcaecati recusandae impedit, facere accusantium nobis reprehenderit modi, error voluptatum necessitatibus doloremque corporis similique officia tempore ab veritatis facilis fuga maiores!</p>
+			</small>
+		</td>
+	</tr>";
+	}
+	public function delete_activity($id,$index)
+	{
+		echo $id.'<br>'.$index;
 	}
 }

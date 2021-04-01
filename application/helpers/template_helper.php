@@ -73,7 +73,7 @@ function pagination($link, $rows, $page)
     $config['base_url']     = $link;
     $config['total_rows']   = $rows;
     $config['per_page']     = $page;
-    $config['num_links']    = 3;
+    $config['num_links']    = 5;
 
     // Styling Paginatition
     // tag open and close
@@ -83,11 +83,14 @@ function pagination($link, $rows, $page)
     // First Link
     $config['first_link'] = false;
     $config['first_link']         = "First"; // edit text first
+    $config['first_link']       = true;
+    $config['first_link']         = "pertama"; // edit text first
     $config['first_tag_open']    = "<li class='page-item'>";
     $config['first_tag_close']    = "</li>";
 
     // Last Link
     $config['last_link'] = false;
+    // $config['last_link'] = false;
     $config['last_link']         = "last"; // edit text last
     $config['last_tag_open']    = "<li class='page-item'>";
     $config['last_tag_close']    = "</li>";

@@ -18,6 +18,7 @@ class Pengguna extends CI_Controller {
 		$data['user'] 	= $this->model->getTableLimit($config['per_page'],$data['start'])->result();
 		$this->load->view('page/users/tampil', $data);
 	}
+
 	public function tambah()
 	{
 		// $data = $this->model->getTable('ROLES')->result();
