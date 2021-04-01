@@ -44,7 +44,7 @@
                                             <button class="btn btn-secondary" type="button">
                                                 <i class="fa fa-search"></i>
                                             </button>
-                                            <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#tambahMenu"> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#tambahMenu"> <i class="mdi mdi-account-plus"></i> Tambah</a>
                                         </div>
                                     </div>
                                 </div>

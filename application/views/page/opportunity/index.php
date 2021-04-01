@@ -29,11 +29,22 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="<?= base_url()?>opportunity/tambahOpportunity" class="btn waves-effect waves-light btn-primary float-right"><i class="mdi mdi-account-plus"></i> Tambah</a>
-                                    <h3>Daftar Opportunity</h3>
+                                <div class="col-sm-6 float-right">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="exampleInputuname3">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" name="button">
+                                                <i class="fa fa search"></i>
+                                            </button>
+                                            <a href="<?= base_url()?>opportunity/tambahOpportunity" class="btn waves-effect waves-light btn-primary float-right"><i class="mdi mdi-account-plus"></i> Tambah</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <h3>Table Opportunity</h3>
+                                    <span>Table kelola opportunity crm icon+</span>
                                     <hr>
                                     <div class="table-responsive">
-                                    <table width="1800px" class="table striped m-b-20" id="myTable">
+                                    <table class="table striped m-b-20">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
