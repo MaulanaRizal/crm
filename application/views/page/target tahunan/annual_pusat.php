@@ -116,6 +116,7 @@
                 unset($_SESSION['message']);
             }
             ?>
+
             <div class="row">
                 <div class="col-lg-7 col-md-7">
                     <div class="card">
@@ -179,11 +180,69 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
+                    <?php if (empty($target)) : ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Target Periode Periode Ini</h4>
+                                <hr class=m-t-0>
+                                <div>
+                                    <label for="input-target">Masukan Nominal Target <span class=require>*</span>:</label>
+                                    <input required class="rupiah form-control m-b-10" name='target' id="input-target" type="text" data-a-dec="," data-a-sep="." data-a-sign="Rp. ">
+                                    <small class='require' id="input-target-alert"></small>
+                                    <p id='input-terbilang' class=m-0></p>
+                                    <button class='btn btn-info btn-xs float-right' id='submit-target'>Submit</button>
+                                </div>
+
+                                <!-- modal -->
+                                <div class="modal fade" id="modal-target" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan !</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="<?php base_url('target_tahunan_pusat/add_periode') ?>" method="post">
+                                                <div class="modal-body">
+                                                    <p>Nominal yang sudah diinputkan akan bersifat permanen dan tidak bisa diubah maupun dihapus. Pastikan Nominal Tartget sudah benar dan sesuai.</p>
+                                                    <label for="target">Nominal :</label>
+                                                    <input required class="rupiah form-control" name='target' id="target" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep="." readonly>
+                                                    <label for="terbilang">Terbilang :</label>
+                                                    <input type="text" class='form-control' name=terbilang id="terbilang" readonly>
+                                                    <!-- <input type="checkbox"' name="check-target" id="check-target"> -->
+                                                    <br><br>
+                                                    <input required type="checkbox" id="check-target" name="check-target">
+                                                    <label for="check-target">Nominal target sudah benar.</label><br>
+                                                    <small class='require' id="check-target-alert"></small>
+                                                    <input type="hidden" name="periode" value="<?= date('Y') ?>">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" id='modal-submit-target' class="btn btn-info">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end modal -->
+
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Target Periode Periode Ini</h4>
+                                <hr class=m-0>
+                                <h2 class='text-primary text-center m-t-10'>Rp 1.0000.0000.0000.000,00 </h2>
+                                <p class='text-center'>(Satu Trilyun Rupiah)</p>
+                            </div>
+                        </div>
+                    <?php endif ?>
+
                     <div class="card">
                         <div class="card-body">
-                            <h3>Daftar SBU</h3>
-
-                            <hr>
+                            <h4>Daftar SBU</h4>
+                            <hr class='m-0'>
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
@@ -262,6 +321,7 @@
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
     <script src="<?= base_url('assets/crm-js/autoNumeric.js') ?>"></script>
+    <script src="<?= base_url('assets/crm-js/annual_pusat.js') ?>"></script>
 
     <script>
         $(document).ready(function() {

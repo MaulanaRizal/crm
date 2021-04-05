@@ -869,7 +869,7 @@
                          * dGroup: '3', results in 999,999,999 default
                          * dGroup: '4', results in 9999,9999,9999 used in some Asian countries
                          */
-                        dGroup: '3',
+                        dGroup: '4',
                         /** allowed decimal separator characters
                          * period "full stop" = '.'
                          * comma = ','
@@ -893,7 +893,7 @@
                          * value must be enclosed in quotes and use the period for the decimal point
                          * value must be larger than vMin
                          */
-                        vMax: '9999999999999.99',
+                        vMax: '9999999999999999.99',
                         /** minimum possible value
                          * value must be enclosed in quotes and use the period for the decimal point
                          * value must be smaller than vMax
