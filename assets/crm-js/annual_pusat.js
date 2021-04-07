@@ -8,13 +8,12 @@ $('#submit-target').click(function () {
 	} else {
 		$('#input-target-alert').hide();
 		$('#modal-target').modal('show');
-		$('#target').val(val)
+		$('#target').val(val);
 		$('#terbilang').val($('#input-terbilang').text())
 	}
 });
-
+	
 $('#modal-submit-target').click(function () {
-	var val = $('#check-target').val();
 	console.log($('#check-target').is(':checked'));
 	if (!($('#check-target').is(':checked'))) {
 		$('#check-target-alert').show();
@@ -39,8 +38,6 @@ $('#input-target').keyup(function () {
         $('#input-terbilang').html('');
     }
 });
-
-
 
 function terbilang(a) {
 	var bilangan = ['', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan', 'Sembilan', 'Sepuluh', 'Sebelas'];

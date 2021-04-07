@@ -180,7 +180,10 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
+
                     <?php if (empty($target)) : ?>
+                    <?php $target_periode = 0 ?>
+                    
                         <div class="card">
                             <div class="card-body">
                                 <h4>Target Periode Periode Ini</h4>
@@ -203,13 +206,13 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="<?php base_url('target_tahunan_pusat/add_periode') ?>" method="post">
+                                            <form action="<?= base_url('target_tahunan_pusat/add_periode') ?>" method="post">
                                                 <div class="modal-body">
                                                     <p>Nominal yang sudah diinputkan akan bersifat permanen dan tidak bisa diubah maupun dihapus. Pastikan Nominal Tartget sudah benar dan sesuai.</p>
                                                     <label for="target">Nominal :</label>
-                                                    <input required class="rupiah form-control" name='target' id="target" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep="." readonly>
+                                                    <input class="rupiah form-control" name='target' id="target" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep="." readonly>
                                                     <label for="terbilang">Terbilang :</label>
-                                                    <input type="text" class='form-control' name=terbilang id="terbilang" readonly>
+                                                    <input required type="text" class='form-control' name=terbilang id="terbilang" readonly>
                                                     <!-- <input type="checkbox"' name="check-target" id="check-target"> -->
                                                     <br><br>
                                                     <input required type="checkbox" id="check-target" name="check-target">
@@ -229,12 +232,13 @@
                             </div>
                         </div>
                     <?php else : ?>
+                        <?php $target_periode = $target[0]->NOMINAL ?>
                         <div class="card">
                             <div class="card-body">
                                 <h4>Target Periode Periode Ini</h4>
                                 <hr class=m-0>
-                                <h2 class='text-primary text-center m-t-10'>Rp 1.0000.0000.0000.000,00 </h2>
-                                <p class='text-center'>(Satu Trilyun Rupiah)</p>
+                                <h2 class='text-primary text-center m-t-10'>Rp. <?= number_format($target[0]->NOMINAL, 2, ",", ".") ?></h2>
+                                <p class='text-center'>( <?= $target[0]->TERBILANG ?> )</p>
                             </div>
                         </div>
                     <?php endif ?>
@@ -244,7 +248,7 @@
                             <h4>Daftar SBU</h4>
                             <hr class='m-0'>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table m-0">
                                     <tr>
                                         <th width=50>#</th>
                                         <th>SBU</th>
@@ -252,6 +256,7 @@
                                         <th width=50>Aksi</th>
                                     </tr>
                                     <?php $num = 0;
+                                    $sum = 0;
                                     foreach ($sbus as $sbu) : ?>
                                         <tr>
                                             <td><?= ++$num; ?></td>
@@ -259,9 +264,10 @@
                                             <td><?= $sbu->SBU_REGION ?></td>
                                             <td>
                                                 Rp. <?= number_format($sbu->ANNUAL_TARGET, 2, ",", ".") ?>
+                                                <?php $sum = $sum + $sbu->ANNUAL_TARGET ?>
                                             </td>
                                             <td>
-                                                <button class="btn btn-info" data-toggle="modal" data-target="#editTarget<?= $num ?>"><i class="fas fa-edit fa-sm"></i></button>
+                                                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#editTarget<?= $num ?>"><i class="fas fa-edit fa-sm"></i></button>
                                             </td>
                                         </tr>
 
@@ -277,8 +283,10 @@
                                                     <form action="<?= base_url('target_tahunan_pusat/insert') ?>" method="post">
                                                         <div class="modal-body">
                                                             <div class="form-group">
+                                                                <label for="">Akumulasi Target</label>
+                                                                <h3 class='text-center akumulasi' data-decimal="," id='akumulasi'></h3>
                                                                 <label for="nominal" class="control-label">Nominal Target:</label>
-                                                                <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
+                                                                <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
                                                                 <!-- <input required type="text" class="form-control nominal" name='nominal' id="nominal"> -->
                                                                 <input type="hidden" name="sbu" value="<?= $sbu->SBU_REGION ?>">
                                                                 <input type="hidden" name="id_annual" value="<?= $sbu->ID_ANNUAL ?>">
@@ -297,6 +305,21 @@
                                         <!-- End Model -->
 
                                     <?php endforeach ?>
+                                    <?php $aku = $sum - $target_periode ?>
+                                    <tr>
+                                        <td>#</td>
+                                        <?php if ($aku < 0) : ?>
+                                            <td><strong> Jumlah <br> Kekurangan</strong></td>
+                                        <?php else : ?>
+                                            <td><strong> Jumlah </strong></td>
+                                        <?php endif ?>
+                                        <td>
+                                            <strong> Rp. <?= number_format($sum, 2, ",", ".") ?> </strong><br>
+                                            <?php if ($aku < 0) : ?>
+                                                <strong class='require'>Rp. <?= number_format($aku, 2, ",", ".") ?></strong>
+                                            <?php endif ?>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -389,11 +412,6 @@
         $(document).ready(function() {
             $('.rupiah').autoNumeric('init');
         });
-        $("#yearPicker").datepicker({
-            format: "yyyy",
-            viewMode: "years",
-            minViewMode: "years"
-        });
 
         function cek() {
             var val = document.getElementById('check').checked;
@@ -402,6 +420,29 @@
                 document.getElementById('alert').innerHTML = 'checkbox tidak boleh kosong.'
             }
         }
+
+        $('.akumulasi').text('Rp. '+akumulasi(<?= $aku ?>));
+
+        function akumulasi(num) {
+            var aku = (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&:');
+            aku = aku.replace('.', ',');
+            aku = aku.replace(/:/g, '.');
+            console.log(aku);
+            return aku;
+            // $('#akumulasi').text(aku);            
+        }
+        $('#nominal').keyup(function() {
+            nom = parseInt(<?= $aku ?>);
+            val = $(this).val();
+            val = val.replace('Rp. ', '');
+            val = val.replace(',00', '');
+            val = val.replaceAll('.', '');
+            aku = parseInt(val) + nom;
+            // console.log(aku);
+            $('.akumulasi').text('Rp. '+akumulasi(aku));
+        });
+
+
     </script>
 </body>
 

@@ -20,7 +20,7 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('annual_target');
-        $this->db->join('sbu','ANNUAL_TARGET.ID_SBU=sbu.ID_SBU');
+        $this->db->join('sbu','sbu.ID_SBU=ANNUAL_TARGET.ID_SBU','left');
         $this->db->where('PERIODE',$period);
         return $this->db->get();
         // $this->db->query("SELECT * from ANNUAL_TARGET JOIN sbu on ANNUAL_TARGET.ID_SBU=sbu.ID_SBU");
@@ -33,7 +33,7 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     public function getSalesSBU($periode)
     {
         // mengambil banyak sales padasetiap SBU dan mengambil targetsbu pada periode tertentu
-        return $this->db->query("SELECT * from sbu join (SELECT count(ID_ROLE=2) as sales, ID_SBU from users group by ID_SBU) as sales on sales.id_sbu=sbu.ID_SBU join annual_target on annual_target.ID_SBU=sbu.ID_SBU where annual_target.PERIODE=$periode");
+        return $this->db->query("SELECT * from sbu join (SELECT count(ID_ROLE=2) as sales, ID_SBU from users group by ID_SBU) as sales on sales.id_sbu=sbu.ID_SBU join annual_target on annual_target.SBU=sbu.ID_SBU where annual_target.PERIODE=$periode");
     }
     public function getPeriode()
     {
@@ -42,6 +42,10 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     public function delete($table,$where)
     {
         $this->db->delete($table,$where);
+    }
+    public function sbuannual($periode)
+    {
+        return $this->db->query("SELECT * FROM sbu LEFT JOIN (SELECT * FROM annual_target WHERE periode=$periode) as annual ON annual.SBU=sbu.ID_SBU");
     }
 }
 ?>

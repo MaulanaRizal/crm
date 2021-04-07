@@ -12,22 +12,23 @@ class Target_tahunan_pusat extends CI_Controller
     public function index()
     {
         $periode = date('Y');
-        $sbu = $this->model->getDaftarSBU($periode);
-        // echo $data['target']->num_rows();
-        if (empty($sbu->num_rows())) {
-            $sbus = $this->model->getTable('sbu')->result();
-            foreach ($sbus as $sbu) {
-                // echo $sbu->SBU_REGION;
-                $input = array(
-                    'ID_SBU'    => $sbu->ID_SBU,
-                    'PERIODE'   => $periode
-                );
-                $this->model->insert('annual_target', $input);
+        $SBU = $this->model->getTable('sbu');
+        $ANNUAL = $this->model->getData('annual_target', array('PERIODE' => $periode));
+        if (!($SBU->num_rows() == $ANNUAL->num_rows())) {
+            $tables = $this->model->sbuannual($periode)->result();
+            foreach ($tables as $table) {
+                if (!isset($table->ANNUAL_TARGET)) {
+                    $data = array(
+                        'PERIODE'=> $periode,
+                        'SBU'    => $table->ID_SBU
+                    );
+                    $this->model->insert('annual_target',$data);
+                }
             }
-            redirect('target_tahunan_pusat');
         } else {
+            // echo 'sudah jadi';
             $data['saleses'] = $this->model->getSalesSBU($periode)->result();
-            $data['sbus']    = $sbu->result();
+            $data['sbus']    = $tables = $this->model->sbuannual($periode)->result();
             $data['target']  = $this->model->getData('target_periode',array('PERIODE'=>$periode))->result();
             $data['annual']  = $this->model->getPeriode()->result();
             $data['title']   = 'Target Tahunan SB Pusat Periode' . $periode;
@@ -94,6 +95,7 @@ class Target_tahunan_pusat extends CI_Controller
             // echo 'tidak masuk';
             $data['saleses'] = $this->model->getSalesSBU($periode)->result();
             $data['sbus']    = $sbu->result();
+            $data['target']  = $this->model->getData('target_periode', array('PERIODE' => $periode))->result();
             $data['annual']  = $this->model->getPeriode()->result();
             $data['title']   = 'Target Tahunan SB Pusat Periode' . $periode;
             $data['period'] = $periode;
@@ -121,6 +123,29 @@ class Target_tahunan_pusat extends CI_Controller
     {
         # code...
         var_dump($_POST);
+        // form_validation
+        $this->form_validation->set_rules('target', 'Nominal Target', 'required');
+        $this->form_validation->set_rules('terbilang', 'Terbilang ', 'required');
+        $this->form_validation->set_rules('check-target', 'Check Nominal Sudah Benar', 'required');
+        if ($this->form_validation->run()) {
+            $nom = $_POST['target'];
+            echo '<br><br><br>';
+            $nom = str_replace('Rp. ', '', $nom);
+            $nom = str_replace(',00', '', $nom);
+            $nom = str_replace('.', '', $nom);
+            var_dump(intval($nom));
+            $data = array(
+                'NOMINAL'   => $nom,
+                'TERBILANG' => $_POST['terbilang'],
+                'PERIODE'   => intval($_POST['periode'])
+            );
+            $this->session->set_flashdata('message', "<div class='alert alert-success'>Target berhasil ditetapkan.</div>");
+            $this->model->insert('target_periode', $data);
+            redirect('target_tahunan_pusat');
+            // echo ' Berhasil Masuk';
+        } else {
+            $this->session->set_flashdata('message', "<div class='alert alert-danger'>Terjadi kesalahan, silahkan coba input kembali.</div>");
+            redirect('target_tahunan_pusat');
+        }
     }
-
 }
