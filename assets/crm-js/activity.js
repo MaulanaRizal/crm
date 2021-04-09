@@ -64,5 +64,3 @@ $('#telepon').click(function () {
 // 		return false;
 // 	})
 // });
-
-

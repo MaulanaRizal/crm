@@ -28,7 +28,7 @@
                         </div>
                         <!-- <button class='btn btn-info float-right m-l-10' data-toggle="modal" data-target="#tambahTahun"><i class='fa fa-plus'></i></button> -->
                         <select class='form-control col-md-2 float-right' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" name="periode" id="">
-                            <?php foreach ($annual as $periode) : ?>
+                            <?php foreach ($list as $periode) : ?>
                                 <?php if ($period == $periode->PERIODE) : ?>
                                     <option selected value="#"><?= $periode->PERIODE ?></option>
                                 <?php else : ?>
