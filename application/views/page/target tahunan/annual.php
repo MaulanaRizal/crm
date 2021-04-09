@@ -134,7 +134,7 @@
                         </div>
                     </div>
 
-                    <h3>Daftar Target Sales </h3>
+                    <h3>Daftar Target Sales <?=$saleses[0]->SBU_REGION ?></h3>
                     <span>Daftar target sales periode <?= $tahun ?> </span>
                     <hr>
                     <div class="table-responsive ">

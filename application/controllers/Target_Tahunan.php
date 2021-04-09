@@ -37,6 +37,7 @@ class Target_Tahunan extends CI_Controller
 			$data['saleses'] = $this->model->tampilSalesSBUTarget(array('PERIODE'=> $per[0]))->result();
 			$this->load->view('page/target tahunan/annual', $data);
 		}else {
+			// $data['sbu']	= $this->model->;
 			$data['period'] = $this->model->getPeriode();
 			$data['tahun'] = date('Y');
 			$data['title']	 = 'Target Tahunan';

@@ -18,6 +18,7 @@ Class M_Target_Tahunan extends CI_Model {
         $this->db->select();
         $this->db->from('annual_target_sbu');
         $this->db->join('users','annual_target_sbu.ID_SALES=users.ID_USER');
+        $this->db->join('sbu','users.ID_SBU=sbu.ID_SBU');
         $this->db->where($where);
         return $this->db->get();
     }
