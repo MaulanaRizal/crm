@@ -67,7 +67,7 @@
                                 <tbody>
                                     <?php foreach ($user as $data) { ?>
                                         <tr>
-                                            <td><?= ++$start ?></td>
+                                            <td><a href="<?= base_url() ?>pengguna/edit/<?= $data->ID_USER ?>"><?= ++$start ?></a></td>
                                             <td><?= $data->NAMA_LENGKAP ?></td>
                                             <td><?= $data->CRM_EMAIL ?></td>
                                             <td><?= $data->SBU_REGION ?></td>
@@ -81,8 +81,7 @@
                                             </td>
 
                                             <td>
-                                                <a href="<?= base_url() ?>pengguna/delete/<?= $data->ID_USER ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                                <a href="<?= base_url() ?>pengguna/edit/<?= $data->ID_USER ?>" class="btn btn-info"><i class="fa fa-info"></i></a>
+                                                <a href="<?= base_url() ?>pengguna/delete/<?= $data->ID_USER ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

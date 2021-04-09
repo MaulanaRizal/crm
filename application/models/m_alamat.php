@@ -45,6 +45,24 @@ Class M_alamat extends CI_Model {
             return $this->db->query("SELECT addreess.*,users.NAMA_LENGKAP  FROM `addreess` INNER JOIN users where addreess.CREATED_BY=users.ID_USER ORDER BY addreess.CREATED_ON DESC");
         }
     }
-
+    public function search($key)
+    {
+        
+        $this->db->select();
+        $this->db->from('addreess ');
+        $this->db->like('NAMA',$key,'both');
+        $this->db->or_like('NO_ADDRESS ', $key);
+        $this->db->or_like('KATEGORI ', $key);
+        $this->db->or_like('TIPE ', $key);
+        $this->db->or_like('PROVINSI ', $key);
+        $this->db->or_like('KABUPATEN ', $key);
+        $this->db->or_like('KECAMATAN ', $key);
+        $this->db->or_like('CRM_STATUS ', $key);
+        return $this->db->get();
+    }
+    public function getLastID()
+    {
+        return $this->db->query("SELECT max(ID_ADDRESS) as id FROM `addreess`");
+    }
 }
 ?>

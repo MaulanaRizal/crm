@@ -25,6 +25,7 @@ class Target_tahunan_pusat extends CI_Controller
                     $this->model->insert('annual_target',$data);
                 }
             }
+            redirect('target_tahunan_pusat');
         } else {
             // echo 'sudah jadi';
             $data['saleses'] = $this->model->getSalesSBU($periode)->result();
@@ -78,7 +79,7 @@ class Target_tahunan_pusat extends CI_Controller
             foreach ($sbus as $sbu) {
                 // echo $sbu->SBU_REGION;
                 $input = array(
-                    'ID_SBU'    => $sbu->ID_SBU,
+                    'SBU'    => $sbu->ID_SBU,
                     'PERIODE'   => $_POST['tahun_periode']
                 );
                 $this->model->insert('annual_target', $input);
@@ -113,7 +114,8 @@ class Target_tahunan_pusat extends CI_Controller
             $this->session->set_flashdata('message', "<div class='alert alert-danger'><strong>Gagal!</strong>Periode sedangberlangsung</div>");
             redirect('target_tahunan_pusat');
         } else {
-            $this->model->delete('annual_target', array('PERIODE' => $_POST['tahun']));
+            // $this->model->delete('annual_target', array('PERIODE' => $_POST['tahun']));
+            $this->model->delete('target_periode', array('PERIODE' => $_POST['tahun']));
             $this->session->set_flashdata('message', "<div class='alert alert-success'><strong>Berhasil!</strong>Periode tahun " . $_POST['tahun'] . " berhasil di hapus</div>");
             redirect('target_tahunan_pusat');
         }
@@ -137,11 +139,11 @@ class Target_tahunan_pusat extends CI_Controller
             $data = array(
                 'NOMINAL'   => $nom,
                 'TERBILANG' => $_POST['terbilang'],
-                'PERIODE'   => intval($_POST['periode'])
+                'PERIODE'   => $_POST['periode']
             );
             $this->session->set_flashdata('message', "<div class='alert alert-success'>Target berhasil ditetapkan.</div>");
             $this->model->insert('target_periode', $data);
-            redirect('target_tahunan_pusat');
+            redirect('target_tahunan_pusat/periode/'.$_POST['periode']);
             // echo ' Berhasil Masuk';
         } else {
             $this->session->set_flashdata('message', "<div class='alert alert-danger'>Terjadi kesalahan, silahkan coba input kembali.</div>");

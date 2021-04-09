@@ -365,49 +365,29 @@
                     <div class='col-md-9'>
                         <div class="card">
                             <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
-                                <h4 class="card-title">Addressing Terminating & Originating</h4>
-                                <div class='table-responsive'>
-                                    <table class="table striped m-b-20">
-                                        <thead>
-                                            <tr>
-                                                <th width=50>#</th>
-                                                <th>Address ID</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Name</th>
-                                                <th>Account</th>
-                                                <th>Region SBU</th>
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Province</th>
-                                                <th>State</th>
-                                                <th>Street</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+                                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#tambahAlamat">Tambah</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="tambahAlamat" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >Tambah Alamat Pemasangan</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                            </div>
-                        </div>
-                        <div class='card'>
-                            <div class="card-body">
-                                <button class="btn btn-primary float-right">Tambah</button>
                                 <h4 class="card-title">Product Line Item</h4>
                                 <div class='table-responsive'>
                                     <table class="table striped m-b-20">
@@ -567,9 +547,9 @@
             $.ajax({
                 type: 'POST',
                 url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
-                cache:false,
+                cache: false,
                 data: {
-                    icon        : "<i class='fas fa-address-book fa-2x'></i>",
+                    icon: "<i class='fas fa-address-book fa-2x'></i>",
                     aktifitas: "Instruksi",
                     subjek: $('#in-subjek').val(),
                     waktu: $('#in-waktu').val(),
@@ -591,7 +571,7 @@
             }
             return false;
         });
-        
+
         $('#submit-telepon').click(function() {
             // Subjek
             var val = $('#tel-jangka').val();
@@ -612,14 +592,14 @@
             $.ajax({
                 type: 'POST',
                 url: "<?php echo base_url('agreement/addActivity/' . $this->uri->segment(3)) ?>",
-                cache:false,
+                cache: false,
                 data: {
-                    icon        : "<i class='fas fa-phone fa-2x'></i>",
-                    aktifitas   : "Telepon",
-                    deskripsi   : $('#tel-deskripsi').val(),
-                    waktu       : $('#tel-jangka').val(),
-                    penerima    : $('#tel-penerima').val(),
-                    tujuan      : $('#tel-tujuan').val(),
+                    icon: "<i class='fas fa-phone fa-2x'></i>",
+                    aktifitas: "Telepon",
+                    deskripsi: $('#tel-deskripsi').val(),
+                    waktu: $('#tel-jangka').val(),
+                    penerima: $('#tel-penerima').val(),
+                    tujuan: $('#tel-tujuan').val(),
                 },
                 success: function(respond) {
                     var val = respond;
@@ -638,7 +618,8 @@
         });
 
         readActivity();
-        function readActivity(){
+
+        function readActivity() {
             $.ajax({
                 url: "<?= base_url('agreement/getActivity/' . $this->uri->segment(3)) ?>",
                 cache: false,
@@ -676,8 +657,7 @@
                 }
             });
         }
-        
-        </script>
+    </script>
 </body>
 
 <!-- Mirrored from www.wrappixel.com/demos/admin-templates/material-pro/minisidebar/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Feb 2019 11:12:10 GMT -->

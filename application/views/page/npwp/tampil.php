@@ -71,7 +71,7 @@
                                     <?php foreach ($npwp as $n) : ?>
                                         <tr>
                                             <td><?= ++$num ?></td>
-                                            <td><?= $n->NAMA_NPWP ?></td>
+                                            <td><a href="<?= base_url('npwp/edit/'.$n->ID_NPWP) ?>"><?= $n->NAMA_NPWP ?></a></td>
                                             <td><?= $n->NO_PAJAK ?></td>
                                             <td><?= $n->TOPIC ?></td>
                                             <td><?= $n->NAMA_PELANGGAN ?></td>
@@ -84,7 +84,6 @@
                                             </td>
                                             <td><?= $n->ALAMAT ?></td>
                                             <td>
-                                                <a href="<?= base_url('npwp/edit/'.$n->ID_NPWP) ?>" class='btn btn-primary btn-sm m-r-5'><i class='fa fa-edit fa-sm'></i></a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $num ?>"><i class='fa fa-trash fa-sm'></i></button>
                                             </td>
                                         </tr>

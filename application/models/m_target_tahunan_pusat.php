@@ -20,7 +20,7 @@ Class M_Target_Tahunan_Pusat extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('annual_target');
-        $this->db->join('sbu','sbu.ID_SBU=ANNUAL_TARGET.ID_SBU','left');
+        $this->db->join('sbu','sbu.ID_SBU=ANNUAL_TARGET.SBU','left');
         $this->db->where('PERIODE',$period);
         return $this->db->get();
         // $this->db->query("SELECT * from ANNUAL_TARGET JOIN sbu on ANNUAL_TARGET.ID_SBU=sbu.ID_SBU");

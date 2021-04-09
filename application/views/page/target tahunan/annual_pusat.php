@@ -119,32 +119,54 @@
 
             <div class="row">
                 <div class="col-lg-7 col-md-7">
+                <?php if(empty($target)): ?>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex flex-wrap">
-                                        <div>
-                                            <h3 class="card-title">SBU Overview</h3>
-                                            <h6 class="card-subtitle">Ample Admin Vs Pixel Admin</h6>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <ul class="list-inline">
-                                                <?php foreach ($sbus as $sbu) : ?>
-                                                    <li>
-                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
-                                                    </li>
-                                                <?php endforeach ?>
-                                            </ul>
-                                        </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <h3 class="card-title">SBU Overview</h3>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="amp-pxl" id=chat style="height: 360px;"></div>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline">
+                                            <?php foreach ($sbus as $sbu) : ?>
+                                                <li>
+                                                    <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
+                                                </li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php else : ?>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <h3 class="card-title">SBU Overview</h3>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline">
+                                            <?php foreach ($sbus as $sbu) : ?>
+                                                <li>
+                                                    <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
+                                                </li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 m-0">
+                                <div class="amp-pxl" id=chat style="height: 360px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif ?>
+
                     <div class="card">
                         <div class="card-body">
                             <h3>Performa SBU</h3>
@@ -180,10 +202,9 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
-
                     <?php if (empty($target)) : ?>
-                    <?php $target_periode = 0 ?>
-                    
+                        <?php $target_periode = 0 ?>
+
                         <div class="card">
                             <div class="card-body">
                                 <h4>Target Periode Periode Ini</h4>
@@ -218,7 +239,11 @@
                                                     <input required type="checkbox" id="check-target" name="check-target">
                                                     <label for="check-target">Nominal target sudah benar.</label><br>
                                                     <small class='require' id="check-target-alert"></small>
-                                                    <input type="hidden" name="periode" value="<?= date('Y') ?>">
+                                                    <?php if (empty($this->uri->segment(3))) : ?>
+                                                        <input type="hidden" name="periode" value="<?= date('Y') ?>">
+                                                    <?php else : ?>
+                                                        <input type="hidden" name="periode" value="<?= $this->uri->segment(3) ?>">
+                                                    <?php endif ?>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" id='modal-submit-target' class="btn btn-info">Submit</button>
@@ -242,88 +267,89 @@
                             </div>
                         </div>
                     <?php endif ?>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h4>Daftar SBU</h4>
-                            <hr class='m-0'>
-                            <div class="table-responsive">
-                                <table class="table m-0">
-                                    <tr>
-                                        <th width=50>#</th>
-                                        <th>SBU</th>
-                                        <th>Target</th>
-                                        <th width=50>Aksi</th>
-                                    </tr>
-                                    <?php $num = 0;
-                                    $sum = 0;
-                                    foreach ($sbus as $sbu) : ?>
+                    <?php if (!(empty($target))) : ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Daftar SBU</h4>
+                                <hr class='m-0'>
+                                <div class="table-responsive">
+                                    <table class="table m-0">
                                         <tr>
-                                            <td><?= ++$num; ?></td>
-
-                                            <td><?= $sbu->SBU_REGION ?></td>
-                                            <td>
-                                                Rp. <?= number_format($sbu->ANNUAL_TARGET, 2, ",", ".") ?>
-                                                <?php $sum = $sum + $sbu->ANNUAL_TARGET ?>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#editTarget<?= $num ?>"><i class="fas fa-edit fa-sm"></i></button>
-                                            </td>
+                                            <th width=50>#</th>
+                                            <th>SBU</th>
+                                            <th>Target</th>
+                                            <th width=50>Aksi</th>
                                         </tr>
+                                        <?php $num = 0;
+                                        $sum = 0;
+                                        foreach ($sbus as $sbu) : ?>
+                                            <tr>
+                                                <td><?= ++$num; ?></td>
 
-                                        <!-- Start Model -->
+                                                <td><?= $sbu->SBU_REGION ?></td>
+                                                <td>
+                                                    Rp. <?= number_format($sbu->ANNUAL_TARGET, 2, ",", ".") ?>
+                                                    <?php $sum = $sum + $sbu->ANNUAL_TARGET ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#editTarget<?= $num ?>"><i class="fas fa-edit fa-sm"></i></button>
+                                                </td>
+                                            </tr>
 
-                                        <div class="modal fade" id="editTarget<?= $num ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="exampleModalLabel1">Edit Target <?= $sbu->SBU_REGION ?></h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    </div>
-                                                    <form action="<?= base_url('target_tahunan_pusat/insert') ?>" method="post">
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="">Akumulasi Target</label>
-                                                                <h3 class='text-center akumulasi' data-decimal="," id='akumulasi'></h3>
-                                                                <label for="nominal" class="control-label">Nominal Target:</label>
-                                                                <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
-                                                                <!-- <input required type="text" class="form-control nominal" name='nominal' id="nominal"> -->
-                                                                <input type="hidden" name="sbu" value="<?= $sbu->SBU_REGION ?>">
-                                                                <input type="hidden" name="id_annual" value="<?= $sbu->ID_ANNUAL ?>">
-                                                                <input type="hidden" name="periode" value="<?= $this->uri->segment(3); ?>">
+                                            <!-- Start Model -->
+
+                                            <div class="modal fade" id="editTarget<?= $num ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLabel1">Edit Target <?= $sbu->SBU_REGION ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <form action="<?= base_url('target_tahunan_pusat/insert') ?>" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="">Akumulasi Target</label>
+                                                                    <h3 class='text-center akumulasi' data-decimal="," id='akumulasi'></h3>
+                                                                    <label for="nominal" class="control-label">Nominal Target:</label>
+                                                                    <input required oninvalid="this.setCustomValidity('Form nominal tidak boleh kosong')" class="rupiah form-control" name='nominal' id="nominal" type="text" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
+                                                                    <!-- <input required type="text" class="form-control nominal" name='nominal' id="nominal"> -->
+                                                                    <input type="hidden" name="sbu" value="<?= $sbu->SBU_REGION ?>">
+                                                                    <input type="hidden" name="id_annual" value="<?= $sbu->ID_ANNUAL ?>">
+                                                                    <input type="hidden" name="periode" value="<?= $this->uri->segment(3); ?>">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-info">Submit</button>
-                                                        </div>
-                                                    </form>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-info">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- End Model -->
+                                            <!-- End Model -->
 
-                                    <?php endforeach ?>
-                                    <?php $aku = $sum - $target_periode ?>
-                                    <tr>
-                                        <td>#</td>
-                                        <?php if ($aku < 0) : ?>
-                                            <td><strong> Jumlah <br> Kekurangan</strong></td>
-                                        <?php else : ?>
-                                            <td><strong> Jumlah </strong></td>
-                                        <?php endif ?>
-                                        <td>
-                                            <strong> Rp. <?= number_format($sum, 2, ",", ".") ?> </strong><br>
+                                        <?php endforeach ?>
+                                        <?php $aku = $sum - $target_periode ?>
+                                        <tr>
+                                            <td>#</td>
                                             <?php if ($aku < 0) : ?>
-                                                <strong class='require'>Rp. <?= number_format($aku, 2, ",", ".") ?></strong>
+                                                <td><strong> Jumlah <br> Kekurangan</strong></td>
+                                            <?php else : ?>
+                                                <td><strong> Jumlah </strong></td>
                                             <?php endif ?>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            <td>
+                                                <strong> Rp. <?= number_format($sum, 2, ",", ".") ?> </strong><br>
+                                                <?php if ($aku < 0) : ?>
+                                                    <strong class='require'>Rp. <?= number_format($aku, 2, ",", ".") ?></strong>
+                                                <?php endif ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif ?>
                 </div>
                 <!-- Start Modal -->
 
@@ -421,7 +447,7 @@
             }
         }
 
-        $('.akumulasi').text('Rp. '+akumulasi(<?= $aku ?>));
+        $('.akumulasi').text('Rp. ' + akumulasi(<?= $aku ?>));
 
         function akumulasi(num) {
             var aku = (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&:');
@@ -439,10 +465,8 @@
             val = val.replaceAll('.', '');
             aku = parseInt(val) + nom;
             // console.log(aku);
-            $('.akumulasi').text('Rp. '+akumulasi(aku));
+            $('.akumulasi').text('Rp. ' + akumulasi(aku));
         });
-
-
     </script>
 </body>
 

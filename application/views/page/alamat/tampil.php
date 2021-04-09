@@ -31,15 +31,15 @@
 
                 <div class="card">
                     <div class="card-body">
-                    <div class="col-sm-6 float-right">
+                        <div class="col-sm-6 float-right">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <input type="text" class="form-control" id="table-tampil">
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                <a href="<?= base_url() ?>alamat/tambah" class="btn btn-secondary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
-                                <!-- <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="fa fa-trash"></i> hapus</a> -->
+                                    <a href="<?= base_url() ?>alamat/tambah" class="btn btn-secondary "> <i class="mdi mdi-account-plus"></i> Tambah</a>
+                                    <!-- <a href="<?= base_url() ?>pengguna/tambah" class="btn btn-secondary "> <i class="fa fa-trash"></i> hapus</a> -->
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         <span>Table kelola alamat crm icon+</span>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <table  class="table striped m-b-20">
+                            <table class="table striped m-b-20">
                                 <thead>
                                     <tr>
                                         <th width=50>#</th>
@@ -62,12 +62,12 @@
                                         <th width=100>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id='table-content'>
                                     <?php $num = 1 ?>
                                     <?php foreach ($alamats as $alamat) : ?>
                                         <tr>
                                             <td><?= ++$start ?></td>
-                                            <td><?= $alamat->NO_ADDRESS ?></td>
+                                            <td> <a href="<?= base_url('alamat/edit/' . $alamat->ID_ADDRESS) ?>"><?= $alamat->NO_ADDRESS ?></a> </td>
                                             <td><?= $alamat->NAMA ?></td>
                                             <td><?= $alamat->KATEGORI ?></td>
                                             <td>
@@ -81,14 +81,13 @@
                                             <td><?= $alamat->KABUPATEN; ?></td>
                                             <td><?= $alamat->KECAMATAN; ?></td>
                                             <td>
-                                                <?php if($alamat->CRM_STATUS=='Active'):?>
+                                                <?php if ($alamat->CRM_STATUS == 'Active') : ?>
                                                     <label class="label label-primary">Active</label><br>
-                                                    <?php else: ?>
+                                                <?php else : ?>
                                                     <label class="label label-inverse">Inactive</label><br>
-                                                <?php endif?>
+                                                <?php endif ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('alamat/edit/'.$alamat->ID_ADDRESS) ?>" class='btn btn-info btn-sm m-r-5'><i class='fa fa-edit'></i></a>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus-<?= $alamat->ID_ADDRESS ?>"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
@@ -134,50 +133,18 @@
         </div>
         <?php $this->load->view('template/jquery'); ?>
         <script>
-            $(document).ready(function() {
-                $('#myTable').DataTable();
-                $(document).ready(function() {
-                    var table = $('#example').DataTable({
-                        "columnDefs": [{
-                            "visible": false,
-                            "targets": 2
-                        }],
-                        "order": [
-                            [2, 'asc']
-                        ],
-                        "displayLength": 15,
-                        "drawCallback": function(settings) {
-                            var api = this.api();
-                            var rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            var last = null;
-                            api.column(2, {
-                                page: 'current'
-                            }).data().each(function(group, i) {
-                                if (last !== group) {
-                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                    last = group;
-                                }
-                            });
-                        }
-                    });
-                    // Order by the grouping
-                    $('#example tbody').on('click', 'tr.group', function() {
-                        var currentOrder = table.order()[0];
-                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                            table.order([2, 'desc']).draw();
-                        } else {
-                            table.order([2, 'asc']).draw();
-                        }
-                    });
+            $('#table-tampil').keyup(function() {
+                $.ajax({
+                    url: '<?= base_url('alamat/search') ?>',
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        input: $(this).val(),
+                    },
+                    success: function(show) {
+                        $('#table-content').html(show);
+                    }
                 });
-            });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
             });
         </script>
 </body>
