@@ -8,7 +8,7 @@ class Opportunity extends CI_Controller{
 
 	public function index(){
 		$opportunity = $this->m_opportunity->show();
-		$config = pagination('http://localhost/crm/opportunity/index/', $opportunity->num_rows(),20);
+		$config = pagination('http://localhost/crm/opportunity/index/', $opportunity->num_rows(),10);
 		$this->pagination->initialize($config);
 		$data['start'] = $this->uri->segment(3);
 		$data['title'] = 'Opportunity';

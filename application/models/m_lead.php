@@ -39,5 +39,14 @@ class M_lead extends CI_Model{
     	$hasil = $this->db->query("delete from leads where ID_LEADS = '$id_lead'");
     	return $hasil;
     }
+
+    public function search($keyword){
+    	$this->db->like('TOPIC', $keyword);
+    	$this->db->or_like('NAMA', $keyword);
+    	$this->db->or_like('CRM_STATUS', $keyword);
+
+    	$result = $this->db->get('leads')->result();
+    	return $result;
+    }
 }
 ?>

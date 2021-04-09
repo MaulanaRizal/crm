@@ -30,7 +30,7 @@
                 <div class="row d-flex justify-content-center">
                         <div class="card col-md-10">
                             <div class="card-body">
-                                <form class="itemLead" novalidate method="post">
+                                <form class="itemOpportunity" novalidate method="post">
                                 <div class="float-right col-lg-9">
                                     <table>
                                         <tr>
@@ -187,7 +187,7 @@
                                             <textarea name="solusi" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                    <button type="submit" id="tambahOpportunity" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
+                                    <button type="button" id="tambahOpportunity" class="save-button waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="fa fa-save"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -201,32 +201,7 @@
             <!-- End footer -->
         </div>
     </div>
-    <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#tambahLead").click(function(e){
-                e.preventDefault();
-                var data = $('.itemLead').serialize();
-                $.ajax({
-                    type: 'POST',
-                    dataType: "json",
-                    url: "<?= base_url('lead/simpan'); ?>",
-                    data: data,
-                    success: function(data){
-                        if ($.isEmptyObject(data.error)) {
-                            location.href = "<?= base_url('lead'); ?>";
-                        }
-                        else{
-                            $("#topic_error").html(data.error.topic_error);
-                            $("#nama_error").html(data.error.nama_error);
-                            $("#telepon_error").html(data.error.telepon_error);
-                        }
-                    }
-                });
-            });
-        });    
-    </script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#tambahOpportunity").click(function(e){
@@ -252,52 +227,6 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-            $(document).ready(function() {
-                var table = $('#example').DataTable({
-                    "columnDefs": [{
-                        "visible": false,
-                        "targets": 2
-                    }],
-                    "order": [
-                        [2, 'asc']
-                    ],
-                    "displayLength": 15,
-                    "drawCallback": function(settings) {
-                        var api = this.api();
-                        var rows = api.rows({
-                            page: 'current'
-                        }).nodes();
-                        var last = null;
-                        api.column(2, {
-                            page: 'current'
-                        }).data().each(function(group, i) {
-                            if (last !== group) {
-                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                last = group;
-                            }
-                        });
-                    }
-                });
-                // Order by the grouping
-                $('#example tbody').on('click', 'tr.group', function() {
-                    var currentOrder = table.order()[0];
-                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                        table.order([2, 'desc']).draw();
-                    } else {
-                        table.order([2, 'asc']).draw();
-                    }
-                });
-            });
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
     <script type="text/javascript">
         var dengan_rupiah1 = document.getElementById('rupiah1');
         dengan_rupiah1.addEventListener('keyup', function(e) {

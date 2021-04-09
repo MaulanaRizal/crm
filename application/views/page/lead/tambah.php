@@ -103,7 +103,7 @@
                                                 <span id="nama_error" class="text-danger"><?=form_error('nama')?></span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group row">
                                             <label class="control-label text-left col-md-3">Pekerjaan</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" placeholder="Pekerjaan" name="pekerjaan">

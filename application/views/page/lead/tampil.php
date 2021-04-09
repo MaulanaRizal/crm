@@ -1,11 +1,11 @@
 <?php $this->load->view('template/head'); ?>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!-- <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
         </svg>
-    </div>
+    </div> -->
     <div id="main-wrapper">
         <?php $this->load->view('template/navbar'); ?>
         <?php $this->load->view('template/sidenav'); ?>
@@ -32,9 +32,9 @@
                     <div class="card-body">
                         <div class="col-sm-6 float-right">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputuname3">
+                                <input type="text" class="form-control" id="keyword" name="keyword">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="button">
+                                    <button class="btn btn-secondary" type="button" id="btn-search">
                                         <i class="fa fa-search"></i>
                                     </button>
                                     <a href="<?= base_url()?>lead/tambahLead" class="btn btn-primary float-right"> <i class="mdi mdi-account-plus"></i> Tambah</a>
@@ -44,18 +44,18 @@
                         <h3>Table Lead </h3>
                         <span>Table kelola lead crm icon+</span>
                         <hr>
-                        <div class="table-responsive m-t-40">
+                        <div class="view">
                             <table style="text-align: left" class="table striped m-b-20">
-                            <thead>
-                                <tr>
-                                    <th width=50>#</th>
-                                    <th>Topic</th>
-                                    <th>Name</th>
-                                    <th>Status Reason</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <thead>
+                                    <tr>
+                                        <th width=50>#</th>
+                                        <th>Topic</th>
+                                        <th>Name</th>
+                                        <th>Status Reason</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <?php $num = 1;
                                 foreach($lead as $data){ ?>
                                 <tr>
@@ -70,7 +70,7 @@
                                 <?php 
                                 $num++;
                                 }?>
-                            </tbody>
+                                </tbody>
                             </table>
                             <?php echo $this->pagination->create_links(); ?>
                         </div>
@@ -153,6 +153,9 @@
                 ]
             });
         </script>
+    });
+  });
+});
 </body>
 
 
