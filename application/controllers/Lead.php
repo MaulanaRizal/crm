@@ -18,17 +18,24 @@ class Lead extends CI_Controller{
 		$this->load->view('page/lead/tampil', $data);
 	}
 
+	public function search(){
+		$keyword = $this->input->post('keyword');
+		$lead = $this->m_lead->search($keyword);
+		$hasil = $this->load->view('page/lead/view', array('leads' => $lead), true);
+		$callback = array(
+			'hasil' => $hasil,
+		);
+		echo json_encode($callback);
+	}
+
 	public function tambahLead(){
 		$data['title'] = 'Tambah Lead';
 		$this->load->view('page/lead/tambah', $data);
 	}
 
 	public function qualify($id_leads){
-		$dataDB = $this->m_opportunity->cekNo_Opportunity();
-		$noUrut = substr($dataDB, 3, 4);
-		$noOpportunitySekarang = $noUrut + 1;
-		$data = array('NO_OPPORTUNITY' => $noOpportunitySekarang);
-		$data['title'] = 'Qualify';
+		$data['title'] = 'Tambah Opportunity';
+		$data['no_opportunity'] = $this->m_opportunity->getNo_Opportunity();
 		$data['lead'] = $this->m_lead->getQualify($id_leads);
 		$this->load->view('page/opportunity/qualify', $data);
 	}
