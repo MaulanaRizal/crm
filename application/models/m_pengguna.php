@@ -12,6 +12,13 @@ Class M_pengguna extends CI_Model {
         $this->db->order_by('CRM_ROLE', 'ASC');
        return $this->db->get();
     }
+    public function getSBU()
+    {
+        $this->db->select();
+        $this->db->from('sbu');
+        $this->db->order_by('SBU_REGION', 'ASC');
+       return $this->db->get();
+    }
     public function getTable($table)
     {
         $data = $this->db->get($table);

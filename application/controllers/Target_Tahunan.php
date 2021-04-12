@@ -31,17 +31,28 @@ class Target_Tahunan extends CI_Controller
 			}
 			redirect('target_tahunan');
 		} elseif(!in_array(date('Y'),$per)){
-			$data['period'] = $this->model->getPeriode();
-			$data['tahun'] = $per[0];
+			$where = array(
+				'SBU' 		=> $_SESSION['ID_SBU'],
+				'PERIODE'	=> $per[0]
+			);
+			$data['target']	 = $this->model->getData('annual_target',$where)->result();
+			$data['period']	 = $this->model->getPeriode();
+			$data['tahun']	 = $per[0];
 			$data['title']	 = 'Target Tahunan';
 			$data['saleses'] = $this->model->tampilSalesSBUTarget(array('PERIODE'=> $per[0]))->result();
 			$this->load->view('page/target tahunan/annual', $data);
 		}else {
 			// $data['sbu']	= $this->model->;
+			$where = array(
+				'SBU' 		=> $_SESSION['ID_SBU'],
+				'PERIODE'	=> date('Y')
+			);
+			$data['target']	 = $this->model->getData('annual_target',$where)->result();
 			$data['period'] = $this->model->getPeriode();
 			$data['tahun'] = date('Y');
 			$data['title']	 = 'Target Tahunan';
 			$data['saleses'] = $this->model->tampilSalesSBUTarget(array('PERIODE'=> date('Y')))->result();
+
 			$this->load->view('page/target tahunan/annual', $data);
 			// var_dump($saleses->result());
 		}

@@ -120,52 +120,52 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7">
 
-                <?php if($target[0]->NOMINAL==0): ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-12">
-                                <div class="d-flex flex-wrap">
-                                    <div>
-                                        <h3 class="card-title">SBU Overview</h3>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <ul class="list-inline">
-                                            <?php foreach ($sbus as $sbu) : ?>
-                                                <li>
-                                                    <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
-                                                </li>
-                                            <?php endforeach ?>
-                                        </ul>
+                    <?php if ($target[0]->NOMINAL == 0) : ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap">
+                                        <div>
+                                            <h3 class="card-title">SBU Overview</h3>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <ul class="list-inline">
+                                                <?php foreach ($sbus as $sbu) : ?>
+                                                    <li>
+                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
+                                                    </li>
+                                                <?php endforeach ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php else : ?>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-12">
-                                <div class="d-flex flex-wrap">
-                                    <div>
-                                        <h3 class="card-title">SBU Overview</h3>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <ul class="list-inline">
-                                            <?php foreach ($sbus as $sbu) : ?>
-                                                <li>
-                                                    <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
-                                                </li>
-                                            <?php endforeach ?>
-                                        </ul>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap">
+                                        <div>
+                                            <h3 class="card-title">SBU Overview</h3>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <ul class="list-inline">
+                                                <?php foreach ($sbus as $sbu) : ?>
+                                                    <li>
+                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i> <?= $sbu->SBU_REGION ?></h6>
+                                                    </li>
+                                                <?php endforeach ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 m-0">
-                                <div class="amp-pxl" id=chat style="height: 360px;"></div>
+                                <div class="col-12 m-0">
+                                    <div class="amp-pxl" id=chat style="height: 360px;"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endif ?>
 
                     <div class="card">
@@ -203,7 +203,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
-                    <?php if ($target[0]->NOMINAL==0) : ?>
+                    <?php if ($target[0]->NOMINAL == 0) : ?>
                         <?php $target_periode = 0 ?>
 
                         <div class="card">
@@ -269,7 +269,7 @@
                         </div>
                     <?php endif ?>
 
-                    <?php if (!($target[0]->NOMINAL==0 )) : ?>
+                    <?php if (!($target[0]->NOMINAL == 0)) : ?>
                         <div class="card">
                             <div class="card-body">
                                 <h4>Daftar SBU</h4>
@@ -449,7 +449,7 @@
             }
         }
 
-        $('.nominal').keypress(function(){
+        $('.nominal').keypress(function() {
             val = $(this).val();
             $(this).fromatNominal(val);
         });

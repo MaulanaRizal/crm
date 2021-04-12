@@ -65,6 +65,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $num ?>
                                     <?php foreach ($user as $data) { ?>
                                         <tr>
                                             <td><a href="<?= base_url() ?>pengguna/edit/<?= $data->ID_USER ?>"><?= ++$start ?></a></td>

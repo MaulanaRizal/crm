@@ -38,19 +38,19 @@
                             <hr>
                                 <form action="<?= base_url('pengguna/insert')?> " method="post">
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap*</label>
+                                    <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Lengkap <span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control" required name=nama id="" placeholder="Nama Pengguna">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="telepon" class="col-sm-3 text-right control-label col-form-label">Telepon*</label>
+                                    <label for="telepon" class="col-sm-3 text-right control-label col-form-label">Telepon <span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control" required name="telepon" onkeypress="numberInput(event)" id="" placeholder="Nomor telepon yang bisa dihubungi">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">Role*</label>
+                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">Role <span class='require'>*</span></label>
                                     <div class="col-sm-4">
                                     <select class="form-control" required name="role" required>
                                             <option value="">Pilih Role...</option>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">SBU*</label>
+                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">SBU <span class='require'>*</span></label>
                                     <div class="col-sm-4">
                                         <?php //var_dump($sbu)?> 
                                     <select class="form-control"required name="sbu">
@@ -73,13 +73,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="email" class="col-sm-3 text-right control-label col-form-label">Email*</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" required name="email" class="form-control" id="" placeholder="username">
+                                    <label for="input" class="col-sm-3 text-right control-label col-form-label">Email <span class='require'>*</span></label>
+                                    <div class="col-sm-5">
+                                        <input type="input" required name="email" class="form-control" id="" placeholder="Email">
                                     </div>
+                                    <span class='p-t-10'>@iconplus.com</span>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="password" class="col-sm-3 text-right control-label col-form-label">Password*</label>
+                                    <label for="password" class="col-sm-3 text-right control-label col-form-label">Password <span class='require'>*</span></label>
                                     <div class="col-sm-7">
                                         <input type="password" required name="password" minlength="8" maxlength="15" class="form-control" id="" placeholder="password">
                                         <small class="form-text text-muted">masukan password minimal 8 karakter dan maksimal 15 karakter.</small>

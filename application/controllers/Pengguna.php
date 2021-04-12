@@ -10,7 +10,7 @@ class Pengguna extends CI_Controller {
 	public function index()
 	{
 		$user =  $this->model->getTable('users');
-		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),3);
+		$config = pagination('http://localhost/crm/pengguna/index/',$user->num_rows(),10);
 
 		$this->pagination->initialize($config);
 		$data['start']	= $this->uri->segment(3);
@@ -24,9 +24,8 @@ class Pengguna extends CI_Controller {
 		// $data = $this->model->getTable('ROLES')->result();
 		$data['title']	= 'Tambah Pengguna';
 		$data['roles'] 	= $this->model->getRole()->result();
-		$data['sbu'] 	= $this->model->getTable('SBU')->result();
+		$data['sbu'] 	= $this->model->getSBU()->result();
 		$this->load->view('page/users/tambah',$data);
-		
 	}
 	public function insert()
 	{
@@ -47,7 +46,7 @@ class Pengguna extends CI_Controller {
 			$data = array(
 				'ID_SBU' 		=> $_POST['sbu'],
 				'ID_ROLE'		=> $_POST['role'],
-				'CRM_EMAIL'		=> $_POST['email'],
+				'CRM_EMAIL'		=> $_POST['email'].'@iconplus.com',
 				'CRM_PASSWORD'	=> md5($_POST['password']),
 				'NAMA_LENGKAP'	=> $_POST['nama'],
 				'TELEPON'		=> $_POST['telepon'],
