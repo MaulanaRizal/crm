@@ -13,6 +13,7 @@ class SBU extends CI_Controller{
 		$this->pagination->initialize($config);
 		$data['start']	= $this->uri->segment(3);
 		$data['title'] 	= 'Sbu';
+		$data['no_sbu'] = $this->sbu->kode();
 		$data['sbu'] 	= $this->sbu->getTableLimit($config['per_page'],$data['start'])->result();
 		log_message('error', 'Some variable did not contain a value.'); 
 		$this->load->view('page/sbu/tampil', $data);
@@ -20,7 +21,7 @@ class SBU extends CI_Controller{
 		// $data["sbu"] = $this->sbu->show()->result();
 		// $this->load->view('page/sbu/tampil', $data);
 	public function tambah(){
-		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required');
+		$this->form_validation->set_rules('sbu_region', 'wilayah sbu', 'required|is_unique[sbu.SBU_REGION]');
 		if($this->form_validation->run() == false){
 			$error = array(
 				'sbu_error' => form_error('sbu_region'),
@@ -30,6 +31,7 @@ class SBU extends CI_Controller{
 		else{
 			echo json_encode(['success' => 'Record added successfully.']);
 			$data = [
+				'NO_SBU' => $this->input->post('no_sbu', true),
 				'SBU_REGION' => $this->input->post('sbu_region', true),
 				'DESKRIPSI' => $this->input->post('deskripsi', true)
 			];

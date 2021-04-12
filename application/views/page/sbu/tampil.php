@@ -56,6 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th width=50>#</th>
+                                                <th>No SBU</th>
                                                 <th>Wilayah SBU</th>
                                                 <th width=500>Deskripsi</th>
                                                 <th>Aksi</th>
@@ -66,6 +67,7 @@
                                             foreach($sbu as $data){ ?>
                                             <tr>
                                                 <td><?= $num ?></td>
+                                                <td><?= $data->NO_SBU ?></td>
                                                 <td><?= $data->SBU_REGION ?></td>
                                                 <td><?= $data->DESKRIPSI ?></td>
                                                 <td>
@@ -107,6 +109,10 @@
                         </div>
                         <form novalidate class="item" method="post">
                             <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">No SBU:</label>
+                                    <input type="text" class="form-control" id="no_sbu" name="no_sbu" value="<?php echo $no_sbu ?>">
+                                </div>
                                 <div class="form-group <?=form_error('sbu_region') ? 'has-error' : null?>">
                                     <label for="recipient-name" class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" id="recipient-name1" name="sbu_region">
@@ -138,6 +144,10 @@
                         </div>
                         <form action="<?=base_url('sbu/ubah')?>" method="post">
                             <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="control-label">No SBU:</label>
+                                    <input type="text" class="form-control" name="sbu_region" value="<?= $data->NO_SBU ?>">
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label">Wilayah SBU:</label>
                                     <input type="text" class="form-control" name="sbu_region" value="<?= $data->SBU_REGION ?>">
