@@ -61,7 +61,7 @@ function numberInput(evt) {
 	}
 }
 
-var rupiah = document.getElementById("nominal");
+var rupiah = document.getElementsByClassName("nominal");
 rupiah.addEventListener("keyup", function(e) {
   // tambahkan 'Rp.' pada saat form di ketik
   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka

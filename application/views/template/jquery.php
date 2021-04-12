@@ -33,7 +33,6 @@
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/d3/d3.min.js"></script>
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/c3-master/c3.min.js"></script>
         <!-- Chart JS -->
-        <script src="<?= base_url() ?>assets/js/crm.js"></script>
         <!-- load custom JavaScript -->
         <script src="<?= base_url() ?>assets/js/custom-crm.js"></script>
         <!-- data table -->
@@ -49,4 +48,3 @@
         <script src="<?= base_url() ?>assets/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
         <!-- Style switcher -->
-        <script src="<?= base_url() ?>assets/crm-js/jquery.masknumber.js"></script>
