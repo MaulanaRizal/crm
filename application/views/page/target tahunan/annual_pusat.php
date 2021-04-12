@@ -73,11 +73,11 @@
                 <!-- Modal Tambah Tahun - -->
                 <div class="modal" tabindex="-1" role="dialog" id='hapusTahun'>
                     <div class="modal-dialog" role="document">
-                        <form action="<?= base_url('target_tahunan_pusat/periode/' . date('Y')) ?>" method="post">
+                        <form action="<?= base_url('target_tahunan_pusat/addPeriode/') ?>" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Tambah Periode Target Tahunan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="rupiah close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -119,7 +119,8 @@
 
             <div class="row">
                 <div class="col-lg-7 col-md-7">
-                <?php if(empty($target)): ?>
+
+                <?php if($target[0]->NOMINAL==0): ?>
                     <div class="card">
                         <div class="card-body">
                             <div class="col-12">
@@ -202,7 +203,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
-                    <?php if (empty($target)) : ?>
+                    <?php if ($target[0]->NOMINAL==0) : ?>
                         <?php $target_periode = 0 ?>
 
                         <div class="card">
@@ -211,7 +212,7 @@
                                 <hr class=m-t-0>
                                 <div>
                                     <label for="input-target">Masukan Nominal Target <span class=require>*</span>:</label>
-                                    <input required class="rupiah form-control m-b-10" name='target' id="input-target" type="text" data-a-dec="," data-a-sep="." data-a-sign="Rp. ">
+                                    <input required class="rupiah form-control m-b-10" name='target' id="input-target" id='rupiah' type="text" data-a-dec="," data-a-sep="." data-a-sign="Rp. ">
                                     <small class='require' id="input-target-alert"></small>
                                     <p id='input-terbilang' class=m-0></p>
                                     <button class='btn btn-info btn-xs float-right' id='submit-target'>Submit</button>
@@ -267,7 +268,8 @@
                             </div>
                         </div>
                     <?php endif ?>
-                    <?php if (!(empty($target))) : ?>
+
+                    <?php if (!($target[0]->NOMINAL==0 )) : ?>
                         <div class="card">
                             <div class="card-body">
                                 <h4>Daftar SBU</h4>
@@ -369,8 +371,8 @@
     </div>
     <!-- /content -->
     <?php $this->load->view('template/jquery'); ?>
-    <script src="<?= base_url('assets/crm-js/autoNumeric.js') ?>"></script>
     <script src="<?= base_url('assets/crm-js/annual_pusat.js') ?>"></script>
+    <script src="<?= base_url('assets/crm-js/autoNumeric.js') ?>"></script>
 
     <script>
         $(document).ready(function() {
@@ -446,6 +448,11 @@
                 document.getElementById('alert').innerHTML = 'checkbox tidak boleh kosong.'
             }
         }
+
+        $('.nominal').keypress(function(){
+            val = $(this).val();
+            $(this).fromatNominal(val);
+        });
 
         $('.akumulasi').text('Rp. ' + akumulasi(<?= $aku ?>));
 

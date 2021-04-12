@@ -5,6 +5,13 @@ Class M_pengguna extends CI_Model {
 	public function __construct(){
 		parent::__construct();
     }
+    public function getRole()
+    {
+        $this->db->select();
+        $this->db->from('roles');
+        $this->db->order_by('CRM_ROLE', 'ASC');
+       return $this->db->get();
+    }
     public function getTable($table)
     {
         $data = $this->db->get($table);
@@ -17,7 +24,6 @@ Class M_pengguna extends CI_Model {
         $this->db->join('sbu','users.ID_SBU=sbu.ID_SBU');
         $this->db->join('roles','users.ID_SBU=roles.ID_ROLE');
         $this->db->limit($limit,$offset);
-
         return $this->db->get();
     }
     public function insert($table,$data)
